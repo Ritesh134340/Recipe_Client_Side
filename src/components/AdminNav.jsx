@@ -2,48 +2,44 @@ import React, { useState, useEffect, useRef } from "react";
 import { AdminWrapper, Tab } from "../styles/adminStyle/admin.styled";
 import { BiUserPlus } from "react-icons/bi";
 import { BsCameraVideo } from "react-icons/bs";
-import { NavLink } from "../styles/userStyle/link.styled"
-import AdminRoute from "../routes/AdminRoute";
-import {AiOutlineHome} from "react-icons/ai"
+import { NavLink } from "../styles/userStyle/link.styled";
+import { AiOutlineHome } from "react-icons/ai";
 
-const Admin = () => {
-  const [tab,setTab]=useState("Home")
-
+const AdminNav = ({ selected }) => {
   return (
     <AdminWrapper>
-      
       <div className="main-div">
         <div className="navigator">
-        <NavLink to="/">
-          
-            <Tab selected={tab==="Home"}  className="common-sidebar-div" onClick={()=>setTab("Home")}>
+          <NavLink to="/admin">
+            <Tab selected={selected === "home"} className="common-sidebar-div">
               <AiOutlineHome />
 
               <p>Home</p>
             </Tab>
           </NavLink>
           <NavLink to="/newchef">
-            <Tab selected={tab==="Register"} className="common-sidebar-div" onClick={()=>setTab("Register")}>
-              <BiUserPlus  />
+            <Tab
+              selected={selected === "register"}
+              className="common-sidebar-div"
+            >
+              <BiUserPlus />
               <p>Register</p>
             </Tab>
           </NavLink>
           <NavLink to="/videos">
-            <Tab selected={tab==="Video"} className="common-sidebar-div" onClick={()=>setTab("Video")}>
+            <Tab
+              selected={selected === "uploads"}
+              className="common-sidebar-div"
+            >
               <BsCameraVideo />
 
               <p>Uploads</p>
             </Tab>
           </NavLink>
-
-        
-        </div>
-        <div className="admin-body">
-          <AdminRoute/>
         </div>
       </div>
     </AdminWrapper>
   );
 };
 
-export default Admin;
+export default AdminNav;

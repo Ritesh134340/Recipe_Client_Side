@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const RegisterWrapper=styled.div`
- 
- 
+       display:flex;
+       gap:5px;
     .chef-main{
         margin:auto;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

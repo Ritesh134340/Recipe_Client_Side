@@ -19,10 +19,38 @@ export const searchFilter=(payload)=>(dispatch)=>{
 
 export const chefById=(payload)=>(dispatch)=>{
     dispatch({type:types.GET_CHEF_WITH_ID_REQUEST});
-    axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/chef/id`,payload).then((res)=>{
-        dispatch({type:types.GET_CHEF_WITH_ID_SUCCESS,payload:res.data.document})
+   return  axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/chef/id`,payload).then((res)=>{
+       return  dispatch({type:types.GET_CHEF_WITH_ID_SUCCESS,payload:res.data})
     }).catch((err)=>{
         dispatch({type:types.GET_CHEF_WITH_ID_FAILURE})
     })
     
+}
+
+
+export const postVideo=(payload)=>(dispatch)=>{
+    dispatch({type:types.VIDEO_POST_REQUEST})
+
+    return axios
+      .post(
+        `${process.env.REACT_APP_SERVER_ADDRESS}/admin/create/video`,
+        payload
+      ).then((res)=>{
+       return dispatch({type:types.VIDEO_POST_SUCCESS,payload:res.data})
+      }).catch((err)=>{
+        dispatch({type:types.VIDEO_POST_FAILURE})
+      })
+}
+
+export const deleteVideo=(payload)=>(dispatch)=>{
+    dispatch({type:types.DELETE_VIDEO_REQUEST})
+    return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/video/${payload}`)
+    .then((res)=>{
+      return  dispatch({type:types.DELETE_VIDEO_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+   
+        dispatch({type:types.DELETE_VIDEO_FAILURE})
+    })
+
 }

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { SiCodechef } from "react-icons/si";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   HeadingWrapper,
   InputWrapper,
@@ -13,14 +18,16 @@ import {
 import { loginUser } from "../../redux/AuthRedux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
+  
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const navigate = useNavigate();
   const { REACT_APP_SERVER_ADDRESS } = process.env;
   const { isLoading } = useSelector((state) => {
@@ -39,8 +46,35 @@ const Login = () => {
         password: password,
       };
       dispatch(loginUser(payload)).then((res) => {
-        console.log(res);
-      });
+        
+        toast.success(res.payload.mesg, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
+          if(res.payload.mesg==="Login Successful"){
+            setTimeout(()=>{
+              navigate("/admin")
+           },2000)
+          }
+         
+      }).catch((err)=>{
+        toast.warn(err, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+      })
     }
   };
 
@@ -77,7 +111,7 @@ const Login = () => {
 
               <MainDiv>
                 <form onSubmit={handleSubmit}>
-                  <InputWrapper>
+                  <InputWrapper isFocus={isFocus} showPass={showPass}>
                     <label>Email</label>
                     <br />
                     <input
@@ -89,12 +123,29 @@ const Login = () => {
                     <br />
                     <label>Password</label>
                     <br />
-                    <input
-                      className="em-inp"
-                      vlaue={password}
-                      type="password"
-                      onChange={(e) => setPassword(e.target.value)}
-                    ></input>
+                    <div className="pass-inp-div">
+                      <input
+                        className="pass-inp"
+                        vlaue={password}
+                        type={showPass ? "text" : "password"}
+                        onFocus={() => setIsFocus(true)}
+                        onBlur={() => setIsFocus(false)}
+                        onChange={(e) => setPassword(e.target.value)}
+                      ></input>
+                      {password && !showPass && (
+                        <AiOutlineEye
+                          onClick={() => setShowPass(!showPass)}
+                          className="eye-common"
+                        />
+                      )}
+                      {password && showPass && (
+                        <AiOutlineEyeInvisible
+                          onClick={() => setShowPass(!showPass)}
+                          className="eye-common"
+                        />
+                      )}
+                    </div>
+
                     <SubmitWrapper>
                       <input type="submit"></input>
                     </SubmitWrapper>

@@ -56,22 +56,54 @@ export const LoginWrapper=styled.div`
 export const InputWrapper=styled.div`
   width:93%;
   margin:auto;
+  .pass-inp{
+    border-radius:0px;
+   outline:none;
+   padding-bottom:0px;
+   margin-bottom:0px;
+   margin-top:0px;
+   margin-bottom:0px;
+   height:100%;
+   border:1px solid transparent;
+   width:80%;
+   background-color: transparent;
+   box-sizing:border-box;
+  }
+  .eye-common{
+    color:gray;
+    font-size:18px;
+    padding-right:10px;
 
+  }
+ 
+.pass-inp-div{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    height:33px;
+    border-radius:7px;
+    margin-top:10px;
+    margin-bottom:30px;
+    border:${(props)=>props.isFocus ?"1px solid rgb(34,120,233)":"1px solid rgb(224,226,231)" };
+    box-shadow:${(props)=>props.isFocus ? " rgba(34,120,233, 0.2) 0px 2px 8px 0px":"none"};
+    background-color: rgb(232,240,254);
+}
 .em-inp{
    font-family:sans-serif;
    border:1px solid rgb(224,226,231);
+   background-color: rgb(232,240,254);
    margin-top:7px;
    margin-bottom:23px;
    font-size:15px;
    cursor:pointer;
-
    &:focus{
   
-   border:1px solid rgb(34,120,233);
-   
-   box-shadow: rgba(34,120,233, 0.2) 0px 2px 8px 0px;
-    outline:none;
+  border:1px solid rgb(34,120,233);
+  
+  box-shadow: rgba(34,120,233, 0.2) 0px 2px 8px 0px;
+   outline:none;
 }
+
 }
 
 
@@ -81,7 +113,6 @@ export const InputWrapper=styled.div`
 
 export const HeadingWrapper=styled.div `
     margin:auto;
-    margin-top:25px;
     width:27%;
     box-sizing: border-box;
      padding:15px;

@@ -36,8 +36,6 @@ export const AdminWrapper=styled.div`
        height:99.5vh;
        overflow-y: scroll;
        overflow-x:hidden ;
-   
-     
    }
 `
 

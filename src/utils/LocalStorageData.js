@@ -6,14 +6,11 @@ export const SaveToLocalStorage = (key, data) => {
   }
 };
 
-export const GetFromLocalStorage = (key, defaultValue = null) => {
+export const GetFromLocalStorage = (key) => {
     try{
         const data = localStorage.getItem(key);
         if (data){
             return JSON.parse(data);
-        } 
-        else{
-            return defaultValue;   
         } 
     }
     catch(err){

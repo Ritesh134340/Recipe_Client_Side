@@ -26,7 +26,7 @@ export const loginUser=(payload)=>(dispatch)=>{
 export const signupUser=(payload)=>(dispatch)=>{
  dispatch({type:types.SIGNUP_REQUEST})
   return axios.post(`${REACT_APP_SERVER_ADDRESS}/user/signup`,payload).then((res)=>
-   dispatch({type:types.SIGNUP_SUCCESS,payload:res.data})
+    dispatch({type:types.SIGNUP_SUCCESS,payload:res.data})
  )
  .catch((err)=>{
     dispatch({type:types.SIGNUP_FAILURE})

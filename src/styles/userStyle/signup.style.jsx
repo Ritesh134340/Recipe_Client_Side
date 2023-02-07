@@ -8,7 +8,8 @@ export const SignupWrapper=styled.div`
     width:100%;
     box-sizing: border-box;
     margin:auto;
-    margin-top:90px;
+    margin-top:70px;
+
  
 
 .logo-in-log{
@@ -55,11 +56,44 @@ export const InputWrapper=styled.div`
   width:95%;
   margin:auto;
 
+  .pass-inp{
+    border-radius:0px;
+   outline:none;
+   padding-bottom:0px;
+   margin-bottom:0px;
+   margin-top:0px;
+   margin-bottom:0px;
+   height:100%;
+   border:1px solid transparent;
+   width:80%;
+   background-color: transparent;
+   box-sizing:border-box;
+  }
+  .eye-common{
+    color:gray;
+    font-size:18px;
+    padding-right:10px;
+
+  }
+ 
+.pass-inp-div{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    height:33px;
+    border-radius:7px;
+    margin-top:10px;
+    margin-bottom:30px;
+    border:${(props)=>props.isFocus ?"1px solid rgb(34,120,233)":"1px solid rgb(224,226,231)" };
+    box-shadow:${(props)=>props.isFocus ? " rgba(34,120,233, 0.2) 0px 2px 8px 0px":"none"};
+    background-color: rgb(232,240,254);
+}
+
 .em-inp{
    font-family:sans-serif;
    border:1px solid rgb(224,226,231);
    margin-top:7px;
-   margin-bottom:23px;
+   margin-bottom:18px;
    font-size:15px;
    cursor:pointer;
    &:focus{
@@ -81,7 +115,7 @@ export const HeadingWrapper=styled.div `
     margin-bottom:25px;
     width:30%;
     box-sizing: border-box;
-     padding:15px;
+     padding:1px 15px 15px 15px;
     border-radius:13px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-bottom:20px;
@@ -125,17 +159,17 @@ export const HeadingWrapper=styled.div `
 export const SubmitWrapper=styled.div`
     width:100%;
     margin-top:8px;
-    
+  
 
-    input{
+    button{
         cursor:pointer;
         width:100%;
         text-align:center;
-        height:35px;
+        padding:8px 0px;
         outline:none;
         border:1px solid transparent;
         border-radius:7px;
-        background-color: rgb(13,71,161);
+        background-color:${(props)=>props.showProgress || props.loading ? "gray" : " rgb(13,71,161)" };
         color:white;
         font-weight:bold;
         font-size:17px;
@@ -154,7 +188,8 @@ export const NavLink=styled(Link)`
 export const MainDiv=styled.div`
   width:98%;
   margin:auto;
-  margin-top:20px;
+  margin-top:15px;
+  
   .google-btn-wrapper{
    
 }
@@ -229,9 +264,14 @@ export const SignupImage=styled.div`
     text-align: center;
     margin-bottom:15px;
     
-
+  .progress-main{
+    display:flex;
+    align-items: center;
+    padding:6px;
+  }
   img{
     cursor:pointer;
+    border:1px solid gray;
      width:100px;
      height:100px;
      border-radius:50%;
@@ -243,4 +283,12 @@ export const SignupImage=styled.div`
     border:1px solid transparent;
     background-color: transparent;
   } 
+  .user-icon{
+    cursor:pointer;
+    font-size:35px;
+    color:gray;
+    width:60px;
+    height:60px;
+   
+  }
 `

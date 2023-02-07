@@ -1,16 +1,7 @@
-import Admin from "./components/Admin";
-import UserRoute from "./routes/UserRoute";
-
-
-
+import AllRoutes from "./routes/AllRoutes";
 
 function App() {
-  return (
-    <div >
-     {/* <UserRoute/> */}
-     <Admin/>
-    </div>
-  );
+  return <AllRoutes />
 }
 
 export default App;

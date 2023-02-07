@@ -13,14 +13,18 @@ import { uid } from "uid";
 import { RegisterWrapper } from "../../styles/adminStyle/register.styled";
 import { v4 as uuidv4 } from 'uuid';
 import Loading from "../../components/Loading"
+import Admin from "../../components/AdminNav";
+import AdminNav from "../../components/AdminNav";
+import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 
 const RegisterChef = () => {
   const inputRef = useRef();
-  const [progress, setProgress] = useState(0);
+  
   const [logoUrl,setLogoUrl
   ]=useState("")
   const [name,setName]=useState("");
   const [channel,setChannel]=useState("")
+  const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
   const [image,setImage] = useState(null);
 
@@ -102,6 +106,9 @@ const RegisterChef = () => {
 
   return (
    <RegisterWrapper>
+      <AdminNav selected="register"/>
+      
+      <BodyWrapper>
       <div className="chef-main">
         <h3>Register New Chef</h3>
         <div className="chef-form">
@@ -151,6 +158,8 @@ const RegisterChef = () => {
           </form>
         </div>
       </div>
+      </BodyWrapper>
+     
       <ToastContainer />
     </RegisterWrapper>
   );

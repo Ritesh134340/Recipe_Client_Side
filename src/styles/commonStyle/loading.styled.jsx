@@ -35,11 +35,13 @@ export const LoadingWrapper = styled.div`
   }
   .chef-icon {
     position: absolute;
-    top:42%;
+    top:44%;
     font-size: 60px;
     color: red;
     padding: 8px;
    
   
   }
+  
+  
 `;
