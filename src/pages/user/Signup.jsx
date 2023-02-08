@@ -24,7 +24,7 @@ const Signup = () => {
   const [showProgress, setShowProgress] = useState(false);
   const [name,setName]=useState("")
   const [email,setEmail]=useState("")
-  const [gender,setGender]=useState("male")
+  const [gender,setGender]=useState("")
   const [password,setPassword]=useState("")
   const ImageRef=useRef(null)
   const [image,setImage]=useState("")
@@ -44,7 +44,7 @@ const Signup = () => {
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(!image){
-      toast.error("Please select profile image !", {
+      toast.warn("Please select profile image !", {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: true,
@@ -55,7 +55,7 @@ const Signup = () => {
         theme: "colored",
         });
     }
-    else if( name && email && password && gender){
+    else if( name!=="" && email!=="" && password!=="" && gender){
       const fileName=uid()+image.name;
       const storageRef=ref(storage,`profile/${fileName}`)
 
@@ -76,6 +76,7 @@ const Signup = () => {
         () => {
          
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            
             const payload={
               name:name,
               image:downloadURL,
@@ -85,43 +86,57 @@ const Signup = () => {
             }
             setShowProgress(false)
           dispatch(signupUser(payload)).then((res)=>{
-             
-              toast.success(res.payload.mesg, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
-                setImage("")
-                setEmail("")
-                setPassword("")
-                setName("")
-                if(res.payload.mesg==="Signup Successful !"){
-                  setTimeout(()=>{
-                    navigate("/admin")
-                  },2000)
-                }
-              
-            })
            
-            .catch((err)=>{
-              toast.warn(err, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
+               if(res.status===201){
+                toast.success(res.payload.mesg, {
+                  position: "top-center",
+                  autoClose: 2000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  });
+                  setImage("")
+                  setEmail("")
+                  setPassword("")
+                  setName("")
+                 
+                    setTimeout(()=>{
+                      navigate("/")
+                    },2000)
+                  
+               }
+               
+               else if(res.err===409){
+                
+                toast.warn(res.mesg, {
+                  position: "top-center",
+                  autoClose: 2000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  });
+               }
+               else{
+                toast.error(res.mesg, {
+                  position: "top-center",
+                  autoClose: 2000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  });
+               }
             })
-           
-          });
+          })
+        
         }
       );
   
@@ -147,12 +162,11 @@ const Signup = () => {
 
  }
 
-
   return (
     <>
     <Navbar/>
-    <div> 
-        {loading ?<Loading/> :<SignupWrapper>
+      <div> 
+     { loading ? <Loading/> : <SignupWrapper>
         <div className="logo-in-log">
       
       <SiCodechef className="logo-sign"/>
@@ -219,8 +233,8 @@ const Signup = () => {
                         />
                       )}
                     </div>
-           <SubmitWrapper showProgress={showProgress} loading={loading}>
-           <button disabled={showProgress || loading} onClick={handleSubmit} >{showProgress ? "Image Uploading... ":loading?"Submitting..." : "Submit"}</button>
+           <SubmitWrapper progress={showProgress} submitting={loading}>
+           <button disabled={showProgress || loading} onClick={handleSubmit} >{showProgress ? "Image Uploading... ": "Submit"}</button>
            
            </SubmitWrapper>
            <div className="google-btn-wrapper">
@@ -243,9 +257,9 @@ const Signup = () => {
          </MainDiv>
          
          </HeadingWrapper>
-         <ToastContainer/>
+       
       </SignupWrapper>}
-
+      <ToastContainer/>
       </div>
     </>
          

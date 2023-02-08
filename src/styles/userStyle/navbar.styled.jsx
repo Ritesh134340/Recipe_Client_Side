@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const NavWrapper=styled.div`
+
     display:flex;
     width:100%;
     position: fixed;
+
     top:0;
     box-shadow:${(props)=>props.color ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
     align-items:center;
@@ -12,25 +14,49 @@ export const NavWrapper=styled.div`
     justify-content:space-between;
     z-index:999;
     transition:all 500ms ease-in-out;
-
+   
     .nav-left{
         margin-left:40px;
     }
     .chef-icon{
         font-size:50px;
     }
+    
    
     .ham-icon-div{
         display:none;
     }
     .tabs-div{
-        width:300px;
         margin-right:50px;
         display:flex;
+        gap:20px;  
         align-items:center;
         justify-content: 
-        space-between;
+        space-evenly;
     }
+    .profile-div{
+        display:flex;
+        align-items: center;
+        gap:15px;
+        margin:0px 10px;
+    }
+  
+    .profile-image-div{
+      
+       cursor:pointer;
+       overflow:hidden;
+       object-fit:cover;
+       object-position:top;
+       width:40px;
+       height:40px;
+       border-radius:50%; 
+    }
+    .nav-profile-image{
+      width:100%;
+      height:100%;
+
+    }
+   
     .log-btn{
         padding:8px 15px;
         background-color:black;

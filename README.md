@@ -68,3 +68,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Recipe is MERN stack web application featured with Admin panel , Role based Authorization, Firebase storage api , Youtube api ,React-youtube, Google authentication using Passportjs along with Traditional way of login and signup using email and password.A user can redirect to user route or admin dashboard based on his role.Admin can seaqrch for any available video or chef channel,  create new chef channel, add new video,watch all available recipe video and can do complete CRUD operation. User can search for particular recipe , recipe belonging to a particular chef, watch recipe videos and add any video to his favourite list.Data is stored in mongodb database and images are stored in firebase storage api.

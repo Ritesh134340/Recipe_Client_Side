@@ -169,7 +169,7 @@ export const SubmitWrapper=styled.div`
         outline:none;
         border:1px solid transparent;
         border-radius:7px;
-        background-color:${(props)=>props.showProgress || props.loading ? "gray" : " rgb(13,71,161)" };
+        background-color:${(props)=>props.progress || props.progress ? "gray" : " rgb(13,71,161)" };
         color:white;
         font-weight:bold;
         font-size:17px;

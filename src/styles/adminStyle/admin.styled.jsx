@@ -9,12 +9,14 @@ export const AdminWrapper=styled.div`
    
    }
    .navigator{
-     width:230px;
+     width:215px;
      height:500px;
      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
      margin-top:30px;
-     margin-left:15px;
+     margin-left:20px;
      padding-top:25px;
+     border-radius:4px;
+    
 
    } 
    .common-sidebar-div{
@@ -37,9 +39,88 @@ export const AdminWrapper=styled.div`
        overflow-y: scroll;
        overflow-x:hidden ;
    }
+   .admin-logout-btn{
+     padding:10px 15px;
+     border-radius:8px;
+     outline:none;
+     border:none;
+     display:block;
+     margin:auto;
+     margin-top:140px;
+     color:gray;
+     cursor:pointer;
+     width:89%;
+     font-weight:600;
+     font-size:15px;
+     font-family:sans-serif;
+     
+  }
+  .sidebar-profile{
+     margin:auto;
+    padding:0px 20px;
+   
+
+  }
+  .wel{
+    color:green;
+    font-size:18px;
+    font-weight:600;
+   
+
+  }
+  .img-wrapper{
+    display:flex;
+
+    margin-top:0px;
+    margin-bottom:10px;
+    align-items: center;
+    gap:15px;
+  }
+  .common-p{
+    font-family:sans-serif;
+    margin-top:0px;
+    margin-bottom:0px;
+    font-size:15px;
+    font-weight:600;
+    
+    
+  }
+  .name-p{
+    margin-top:0px;
+    margin-bottom:5px;
+    font-family:sans-serif;
+    font-size:24px;
+    font-weight:500;
+ 
+  }
+  
+  .lower-p{
+    margin-bottom:30px;
+    color:gray;
+    
+  }
+  .side-profile-div{
+   width:45px;
+   height:45px;
+   /* display:flex; */
+   /* justify-content: center; */
+   /* align-items: center; */
+   box-sizing:border-box;
+   overflow: hidden;
+   border-radius:50%;
+   object-fit:cover;
+   object-position:top;
+   
+  }
+  .profile-img-side{
+    width:100%;
+    height:100%;
+  }
 `
 
 export const Tab=styled.div`
-  background-color: ${(props)=>props.selected ? "rgb(243 244 246)" : "white"};
+  background-color: ${(props)=>props.selected ? "rgb(221,244,255)" : "white"};
   color: ${(props)=>props.selected ? "black" : "gray"};
+ 
+ 
 `

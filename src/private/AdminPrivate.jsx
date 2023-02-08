@@ -4,11 +4,9 @@ import { Navigate } from 'react-router-dom'
 
 const AdminPrivate = ({children}) => {
     
-    // const {profile,token} =useSelector((state)=>{return {profile:state.AuthReducer.profile,token:state.AuthReducer.token}})
-
-    const profile=JSON.parse(localStorage.getItem("profile")) || ""
+   const {token,role}=useSelector((state)=>{return { token:state.AuthReducer.token,role:state.AuthReducer.role}})
     
-    if(profile.role!=="admin" ){
+    if(role!=="admin" || !token){
       return  <Navigate to="/" />
     }
     return children

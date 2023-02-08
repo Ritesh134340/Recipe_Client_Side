@@ -1,38 +1,76 @@
-import React from 'react'
-import * as types from "./actionTypes"
-import { SaveToLocalStorage,GetFromLocalStorage } from '../../utils/LocalStorageData'
 
-const token=GetFromLocalStorage("token") || ""
-const profile=GetFromLocalStorage("profile") || ""
+import * as types from "./actionTypes";
+import {
+  SaveToLocalStorage,
+  GetFromLocalStorage,
+} from "../../utils/LocalStorageData";
 
-const initialState={
-  loading:false,
-  error:false,
-  token:token,
-  profile:profile,
-  role:profile.role || ""
-}
+const token = GetFromLocalStorage("token") || "";
+const profile = GetFromLocalStorage("profile") || "";
+const role = profile.role || "";
 
-const reducer = (state=initialState,action) => {
-  const {type,payload} =action;
+const initialState = {
+  loading: false,
+  error: false,
+  token: token,
+  role: role,
+  profile: profile,
+};
 
- switch(type){
-  case types.LOGIN_REQUEST: return {...state,loading:true,error:false}
-  case types.LOGIN_SUCCESS:
-    if(payload.profile && payload.token){
-    SaveToLocalStorage("profile",payload.profile)
-    SaveToLocalStorage("token",payload.token)
-    }
-    
-  return {...state,loading:false,error:false}
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action;
 
-  case types.LOGIN_FAILURE:return {...state,loading:false,error:true};
+  switch (type) {
+    case types.LOGIN_REQUEST:
+      return { ...state, loading: true, error: false };
+    case types.LOGIN_SUCCESS:
+      if (payload.profile && payload.token) {
+        SaveToLocalStorage("profile", payload.profile);
+        SaveToLocalStorage("token", payload.token);
+      }
 
-  case types.SIGNUP_REQUEST :return {...state,loading:true,error:false};
-  case types.SIGNUP_SUCCESS: return {...state,loading:false,error:false};
-  case types.SIGNUP_FAILURE : return {...state,loading:false,error:true}
-  default :return state
- }
-}
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        role: payload.profile.role,
+        token: payload.token,
+        profile: payload.profile,
+      };
 
-export  {reducer}
+    case types.LOGIN_FAILURE:
+      return { ...state, loading: false, error: true };
+
+    case types.SIGNUP_REQUEST:
+      return { ...state, loading: true, error: false };
+    case types.SIGNUP_SUCCESS:
+      if (payload.profile && payload.token) {
+        SaveToLocalStorage("profile", payload.profile);
+        SaveToLocalStorage("token", payload.token);
+      }
+
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        role: payload.profile.role,
+        token: payload.token,
+        profile: payload.profile,
+      };
+    case types.SIGNUP_FAILURE:
+      return { ...state, loading: false, error: true };
+
+    case types.LOGOUT_REQUEST:
+      const profile = "";
+      const token = "";
+      const role = "";
+      SaveToLocalStorage("profile", profile);
+      SaveToLocalStorage("token", token);
+      return { ...state, token: token, role: role, profile: profile };
+
+    default:
+      return state;
+  }
+};
+
+export { reducer };

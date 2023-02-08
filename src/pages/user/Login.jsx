@@ -5,7 +5,7 @@ import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { GetFromLocalStorage } from "../../utils/LocalStorageData";
 import {
   HeadingWrapper,
   InputWrapper,
@@ -18,7 +18,7 @@ import {
 import { loginUser } from "../../redux/AuthRedux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import Loading from "../../components/Loading"
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
@@ -30,11 +30,10 @@ const Login = () => {
   const [isFocus, setIsFocus] = useState(false);
   const navigate = useNavigate();
   const { REACT_APP_SERVER_ADDRESS } = process.env;
-  const { isLoading } = useSelector((state) => {
+  const { loading } = useSelector((state) => {
     return {
-      isError: state.AuthReducer.isError,
-      isLoading: state.AuthReducer.isLoading,
-      token: state.AuthReducer.token,
+
+      loading: state.AuthReducer.loading,
     };
   });
 
@@ -46,36 +45,54 @@ const Login = () => {
         password: password,
       };
       dispatch(loginUser(payload)).then((res) => {
+
+        //  console.log(res.statusText)
+        //  console.log(res.status);
+        //  console.log(res.payload)
+        //  console.log(res.err)
+        //  console.log(res.mesg)
+       
         
-        toast.success(res.payload.mesg, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          })
-          if(res.payload.mesg==="Login Successful"){
+          if(res.status===200){
+  
+            toast.success(res.payload.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              })
             setTimeout(()=>{
-              navigate("/admin")
+              const profile=GetFromLocalStorage("profile") 
+              const role=profile && profile.role;
+              if(role==='admin'){
+                navigate("/admin")
+              }
+              if(role==='user'){
+                navigate("/")
+              }
+             
            },2000)
           }
+
+          else if(res.status!==200){
+            toast.error(res.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              })
+          }
          
-      }).catch((err)=>{
-        toast.warn(err, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          });
       })
-    }
+       }
   };
 
   const handleGoogleLogin = (e) => {
@@ -87,18 +104,8 @@ const Login = () => {
     <>
       <Navbar />
       <div>
-        {isLoading ? (
-          <img
-            src="https://createwebsite.net/wp-content/uploads/2015/09/GD.gif"
-            style={{
-              height: "150px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "auto",
-              marginTop: "200px",
-            }}
-          ></img>
+        {loading ? (
+           <Loading/>
         ) : (
           <LoginWrapper>
             <div className="logo-in-log">

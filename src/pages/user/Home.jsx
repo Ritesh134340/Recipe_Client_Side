@@ -4,6 +4,8 @@ import { HomeWrapper } from "../../styles/userStyle/home.styled"
 import { BsSearch } from "react-icons/bs";
 import Carousel from "../../components/Carousel";
 
+
+
 const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarColor, setNavbarColor] = useState("transparent");
@@ -28,7 +30,9 @@ const Home = () => {
   return (
     <>
       <Navbar link="white" color={navbarColor} />
+
       <HomeWrapper>
+     
         <div className="search-wrapper">
           <h1 className="search-head">What's Going To Be Cooked ?</h1>
           <div className="combine">
@@ -47,6 +51,7 @@ const Home = () => {
           <Carousel />
         </div>
       </HomeWrapper>
+   
     </>
   );
 };

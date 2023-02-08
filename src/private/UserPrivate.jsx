@@ -1,10 +1,12 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom';
+
 const UserPrivate = ({children}) => {
+
+    const token=useSelector((state)=>state.AuthReducer.token)
    
-    const {profile,token} =useSelector((state)=>{return {profile:state.AuthReducer.profile,token:state.AuthReducer.token}})
-    if(!token || profile.role!=="user"){
+    if(token===""){
        return  <Navigate to="/login"/>
      }
      return children

@@ -9,5 +9,8 @@ export const SIGNUP_SUCCESS="SIGNUP_SUCCESS"
 export const SIGNUP_FAILURE="SIGNUP_FAILURE"
 
 
+export const LOGOUT_REQUEST="LOGOUT_RAQUEST"
+
+
 
 
