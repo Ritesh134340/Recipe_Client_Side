@@ -11,6 +11,7 @@ import ChefDetails from "../pages/admin/ChefDetails";
 import ShowVideo from "../pages/admin/ShowVideo";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminPrivate from "../private/AdminPrivate";
+import Users from "../pages/admin/Users";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -66,6 +67,16 @@ const AllRoutes = () => {
           </AdminPrivate>
         }
       />
+
+<Route
+        path="/users"
+        element={
+          <AdminPrivate>
+            <Users/>
+          </AdminPrivate>
+        }
+      />
+
       <Route path="*" element={<h3 style={{display:"flex",alignItems:"center",justifyContent:"center",height:"80vh",color:"gray"}}>Page Not Found...!</h3>}/>
     </Routes>
   );

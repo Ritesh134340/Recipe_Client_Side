@@ -5,21 +5,38 @@ const initialState={
   filtered:[],
   data:[],
   videos:[],
+  filteredVideos:[],
   loading:false,
-  error:false
+  error:false,
+  users:[],
+  filteredUser:[]
 }
 const reducer = (state=initialState,action) => {
   const {type,payload}=action;
 
  switch(type){
+
+  case types.FILTER_USERS : return {...state,filteredUser:payload}
+
+  case types.GET_USER_REQUEST : return {...state,loading:true,error:false}
+  case types.GET_USER_SUCCESS : return {...state,loading:false,error:false,users:payload,filteredUser:payload}
+  case types.GET_USER_FAILURE :return {...state,loading:false,error:true}
+
+
+  case types.DELETE_USER_REQUEST : return {...state,loading:true,error:false}
+  case types.DELETE_USER_SUCCESS : return {...state,loading:false,error:false}
+  case types.DELETE_USER_FAILURE : return {...state,loading:false,error:true}
+
   case types.GET_CHEF_WITH_ID_REQUEST : return {...state,loading:true,error:false}
-  case types.GET_CHEF_WITH_ID_SUCCESS: return {...state,byId:payload.document,videos:payload.videos,loading:false,error:false}
+  case types.GET_CHEF_WITH_ID_SUCCESS: return {...state,byId:payload.document,videos:payload.videos,filteredVideos:payload.videos,loading:false,error:false}
   case types.GET_CHEF_WITH_ID_FAILURE : return {...state,loading:false,error:true}
   case types.CHEF_REQUEST : return {...state,loading:true,error:false};
   case types.CHEF_SUCCESS : return {...state,data:payload,filtered:payload,error:false,loading:false};
   case types.CHEF_FAILURE : return {...state,error:true,loading:false};
 
   case types.SEARCH_FILTER : return {...state,filtered:payload}
+
+  case types.SEARCH_VIDEO_FILTER : return {...state,filteredVideos:payload}
 
   case types.VIDEO_POST_REQUEST : return {...state,error:false,loading:true}
 

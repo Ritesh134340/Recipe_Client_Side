@@ -10,12 +10,12 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import { RxCross2 } from "react-icons/rx";
-import storage from "../../utils/firebaseStorage";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { searchVideoFilter } from "../../redux/AdminRedux/action";
 import VideoGrid from "../../components/VideoGrid";
-import Admin from "../../components/AdminNav";
+import Search from "../../components/Search"
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 import AdminNav from "../../components/AdminNav";
 
@@ -26,11 +26,12 @@ const ChefDetails = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [payload, setPayload] = useState({});
 
-  const { byId, loading, videos } = useSelector((state) => {
+  const { byId, loading, videos,filteredVideos } = useSelector((state) => {
     return {
       byId: state.AdminReducer.byId,
       loading: state.AdminReducer.loading,
       videos: state.AdminReducer.videos,
+      filteredVideos:state.AdminReducer.filteredVideos
     };
   });
 
@@ -136,6 +137,13 @@ const ChefDetails = () => {
       });
   };
 
+  const handleSearch=(searchTerm)=>{
+    const newData= videos && videos.filter((ele)=>
+      ele.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    dispatch(searchVideoFilter(newData))
+  }
+
   useEffect(() => {
     const chefId = { id: id };
     dispatch(chefById(chefId));
@@ -151,15 +159,23 @@ const ChefDetails = () => {
           <img src={byId.banner} alt="banner" className="banner-image" />
         </div>
         <div className="modal-btn-div">
+          <Search placeholder="Search video by title" handleSearch={handleSearch}/>
           <button className="modal-btn" onClick={() => setShowModal(true)}>
             Add New Video
           </button>
         </div>
         <VideoGrid
           show={true}
-          videos={videos}
+          view="customview"
+          videos={filteredVideos}
           handleVideoDelete={handleVideoDelete}
         />
+
+     {filteredVideos.length === 0 && (
+                <h3 className="no-data">
+                  <span className="query">Query </span>Result Not Found...
+                </h3>
+              )}
 
         <div className="modal">
           <div className="modal-content">

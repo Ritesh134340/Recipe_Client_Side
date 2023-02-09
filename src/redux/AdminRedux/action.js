@@ -17,6 +17,10 @@ export const searchFilter=(payload)=>(dispatch)=>{
     dispatch({type:types.SEARCH_FILTER,payload})
 }
 
+export const searchVideoFilter=(payload)=>(dispatch)=>{
+    dispatch({type:types.SEARCH_VIDEO_FILTER,payload})
+}
+
 export const chefById=(payload)=>(dispatch)=>{
     dispatch({type:types.GET_CHEF_WITH_ID_REQUEST});
    return  axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/chef/id`,payload).then((res)=>{
@@ -53,4 +57,34 @@ export const deleteVideo=(payload)=>(dispatch)=>{
         dispatch({type:types.DELETE_VIDEO_FAILURE})
     })
 
+}
+
+
+export const getUser=()=>(dispatch)=>{
+  dispatch({type:types.GET_USER_REQUEST})
+  return axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/users`)
+  .then((res)=>{
+   return  dispatch({type:types.GET_USER_SUCCESS,payload:res.data.userDetails})
+   
+  })
+  .catch((err)=>{
+    dispatch({type:types.GET_USER_FAILURE})
+  })
+
+}
+
+export const deleteUser=(id)=>(dispatch)=>{
+  dispatch({type:types.DELETE_USER_REQUEST})
+  return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/user/${id}`).then((res)=>
+  dispatch({type:types.DELETE_USER_SUCCESS,payload:res.data,successCode:res.status})
+  )
+  .catch((err)=>{
+   return  dispatch({type:types.DELETE_USER_FAILURE,errorCode:err.response.status,mesg:err.response.data.mesg})
+  })
+   
+  
+}
+
+export const filterUsers=(payload)=>(dispatch)=>{
+    dispatch({type:types.FILTER_USERS,payload:payload})
 }

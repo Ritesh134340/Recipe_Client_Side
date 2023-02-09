@@ -3,9 +3,10 @@ import { VideoGridWrapper } from "../styles/commonStyle/videoGrid.styled";
 import { NavLink } from "../styles/userStyle/link.styled";
 import {BsFillPlayBtnFill} from "react-icons/bs"
 
-const VideoGrid = ({ videos,handleVideoDelete,show }) => {
+const VideoGrid = ({ videos,handleVideoDelete,show ,view}) => {
   return (
-    <VideoGridWrapper show={show}>
+    <>
+    { view==="customview" && <VideoGridWrapper show={show}>
       
       {videos &&
         videos.map((ele) => (
@@ -36,7 +37,33 @@ const VideoGrid = ({ videos,handleVideoDelete,show }) => {
             </div>
           </div>
         ))}
-    </VideoGridWrapper>
+    </VideoGridWrapper>}
+
+{view==="linkview" && <VideoGridWrapper show={show}>
+      
+{videos &&
+  videos.map((ele) => (
+    <div key={ele._id} className="video-div">
+      <NavLink to={`/showvideo/${ele._id}`}>
+
+      <div className="vid-img-div">
+        <img
+          src={ele.thumbnails}
+          alt="thumbnail"
+          className="thumbnail-image"
+        />
+         
+            <p className="time-div">{ele.time}</p>
+      </div>
+      </NavLink>
+      
+      <div className="title">
+        <p>{ele.title}</p>
+      </div>
+    </div>
+  ))}
+</VideoGridWrapper>}
+    </>
   );
 };
 

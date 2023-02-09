@@ -13,6 +13,7 @@ export const AdminWrapper=styled.div`
      height:500px;
      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
      margin-top:30px;
+
      margin-left:20px;
      padding-top:25px;
      border-radius:4px;
@@ -20,7 +21,7 @@ export const AdminWrapper=styled.div`
 
    } 
    .common-sidebar-div{
-  
+    
     display:flex;
     font-weight:500;
     gap:11px;
@@ -31,6 +32,7 @@ export const AdminWrapper=styled.div`
     height:30px;
     align-items:center;
     margin-bottom:5px;
+   
     
    }
    .admin-body{
@@ -39,19 +41,37 @@ export const AdminWrapper=styled.div`
        overflow-y: scroll;
        overflow-x:hidden ;
    }
+   .log-out-div{
+    margin:auto;
+    margin-top:70px;
+    display:flex;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:10px;
+    align-items: center;
+    border-radius:8px;
+    gap:15px;
+    width:83%;
+    background-color:rgb(250 210 188);
+   
+   
+
+   }
+   .sign-out-icon{
+     font-size:23px;
+     margin-top:0px;
+     color:rgb(120,115,116);
+     margin-bottom:0px;
+   }
    .admin-logout-btn{
-     padding:10px 15px;
-     border-radius:8px;
+    margin-top:0px;
+     margin-bottom:0px;
      outline:none;
      border:none;
-     display:block;
-     margin:auto;
-     margin-top:140px;
-     color:gray;
+      color:rgb(120,115,116);
      cursor:pointer;
-     width:89%;
      font-weight:600;
-     font-size:15px;
+     font-size:16px;
      font-family:sans-serif;
      
   }
@@ -82,8 +102,8 @@ export const AdminWrapper=styled.div`
     margin-bottom:0px;
     font-size:15px;
     font-weight:600;
-    
-    
+  
+   
   }
   .name-p{
     margin-top:0px;
@@ -96,7 +116,9 @@ export const AdminWrapper=styled.div`
   
   .lower-p{
     margin-bottom:30px;
-    color:gray;
+    color:rgb(120,115,116);
+    padding-bottom:15px;
+    border-bottom:0.3px solid rgb(245,246,247);
     
   }
   .side-profile-div{
@@ -120,7 +142,7 @@ export const AdminWrapper=styled.div`
 
 export const Tab=styled.div`
   background-color: ${(props)=>props.selected ? "rgb(221,244,255)" : "white"};
-  color: ${(props)=>props.selected ? "black" : "gray"};
+  color: ${(props)=>props.selected ? "black" : "rgb(120,115,116)"};
  
  
 `

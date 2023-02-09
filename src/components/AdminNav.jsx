@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AdminWrapper, Tab } from "../styles/adminStyle/admin.styled";
 import { BiUserPlus } from "react-icons/bi";
+import {IoLogOutOutline} from "react-icons/io5"
 import { BsCameraVideo } from "react-icons/bs";
 import { NavLink } from "../styles/userStyle/link.styled";
 import { AiOutlineHome } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import {logoutUser} from "../redux/AuthRedux/action"
+import {HiOutlineUsers} from 'react-icons/hi'
 import {useNavigate} from "react-router-dom"
 
 const AdminNav = ({ selected }) => {
@@ -70,7 +72,24 @@ const AdminNav = ({ selected }) => {
               <p>Uploads</p>
             </Tab>
           </NavLink>
-          <button className="admin-logout-btn" onClick={handleLogout}>Log out</button>  
+
+          <NavLink to="/users">
+            <Tab
+              selected={selected === "users"}
+              className="common-sidebar-div"
+            >
+              <HiOutlineUsers/>
+
+              <p>Users</p>
+            </Tab>
+          </NavLink>
+
+
+           <div className="log-out-div">
+           <IoLogOutOutline className="sign-out-icon"/>
+           <p className="admin-logout-btn" onClick={handleLogout}>Log out</p>  
+           </div>
+         
         </div>
       </div>
     </AdminWrapper>

@@ -14,8 +14,10 @@ export const ChefDetailsWrapper = styled.div`
     width: 96%;
   }
   .modal-btn-div {
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    display:flex;
+    align-items: center;
   }
   .modal-btn {
     padding: 8px 15px;
@@ -27,6 +29,16 @@ export const ChefDetailsWrapper = styled.div`
     display: block;
     margin: auto;
     cursor: pointer;
+  }
+  .no-data {
+    color: gray;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .query {
+    color: green;
   }
 
   .modal {
