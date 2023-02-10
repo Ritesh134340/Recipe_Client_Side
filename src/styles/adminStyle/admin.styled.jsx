@@ -13,7 +13,8 @@ export const AdminWrapper=styled.div`
      height:500px;
      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
      margin-top:30px;
-
+     padding-left:5px;
+     padding-right:5px;
      margin-left:20px;
      padding-top:25px;
      border-radius:4px;
@@ -47,12 +48,11 @@ export const AdminWrapper=styled.div`
     display:flex;
     padding-top:8px;
     padding-bottom:8px;
-    padding-left:10px;
     align-items: center;
+    justify-content: center;
+    gap:5px;
     border-radius:8px;
-    gap:15px;
-    width:83%;
-    background-color:rgb(250 210 188);
+    background-color:rgb(241 241 241);
    
    
 

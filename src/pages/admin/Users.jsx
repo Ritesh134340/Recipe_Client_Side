@@ -41,18 +41,23 @@ const handleDelete=async(image,id)=>{
     setDeleting(false)
     dispatch(deleteUser(id)).then((res)=>{
         if(res.successCode===200){
-            toast.success(res.payload.mesg, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
+          dispatch(getUser()).then(()=>{
+            setDeleting(false)
+            toast.success("User deleted successfully !", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              });
+          })
+           
         }
         else if(res.errCode===500){
+
             toast.err(res.mesg, {
                 position: "top-center",
                 autoClose: 2000,
@@ -63,16 +68,13 @@ const handleDelete=async(image,id)=>{
                 progress: undefined,
                 theme: "colored",
                 });
+                setDeleting(false)
         }
         
     })
-    .catch((err)=>{
-        console.log(err)
-    })
+   
  })
- .catch((err)=>{
-    setDeleting(false)
- })
+
    
 }
 

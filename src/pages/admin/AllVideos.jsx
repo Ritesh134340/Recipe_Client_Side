@@ -3,23 +3,29 @@ import AdminNav from '../../components/AdminNav'
 import { BodyWrapper } from '../../styles/commonStyle/flexbody.styled'
 import { AllVideosWrapper } from '../../styles/adminStyle/allVideos.styled'
 import VideoGrid from '../../components/VideoGrid';
-import axios from "axios"
 import Search from '../../components/Search';
 import Loading from '../../components/Loading';
+import { useSelector,useDispatch } from 'react-redux';
+import { getVideos,filterAllVideosAdmin } from '../../redux/AdminRedux/action';
 
 
 const AllVideos = () => {
-  const [allVideo,setAllVideo]=useState([])
-  const [filtered,setFiltered]=useState([])
-  const [loading,setLoading]=useState(false)
+  
+  const dispatch=useDispatch();
   const [sort,setSort]=useState("")
+  const {loading,allVideos,allFilteredVideos}=useSelector((state)=>{return {allVideos:state.AdminReducer.allVideos,allFilteredVideos:state.AdminReducer.allFilteredVideos,loading:state.AdminReducer.loading}})
+
+
 
   const handleSearch=(searchTerm)=>{
-     const newFilter= allVideo && allVideo.filter((ele)=>
+     const newFilter= allVideos && allVideos.filter((ele)=>
          ele.title.toLowerCase().includes(searchTerm.toLowerCase())
        )
-       setFiltered(newFilter)
+
+       dispatch(filterAllVideosAdmin(newFilter))
+     
   }
+
   const handleSort=(e)=>{
     setSort(e.target.value)
   }
@@ -34,16 +40,8 @@ const AllVideos = () => {
       urlString=`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos`
     }
     
-    setLoading(true)
-    axios.get(urlString).then((res)=>{
-     
-      setAllVideo(res.data.data)
-      setFiltered(res.data.data)
-      setLoading(false)
-    }).catch((err)=>{
-     setLoading(false)
-     console.log(err)
-    })
+    dispatch(getVideos(urlString))
+
    },[sort])
 
   return (
@@ -60,7 +58,7 @@ const AllVideos = () => {
             <Search handleSearch={handleSearch} style={{marginLeft:"0px"}} placeholder="Search video with title"/>
         </div>
         {loading ? <Loading/> : <VideoGrid  show={false}
-         videos={filtered}
+         videos={allFilteredVideos}
          view="linkview"
      />}
       </BodyWrapper>

@@ -86,7 +86,7 @@ const Signup = () => {
             }
             setShowProgress(false)
           dispatch(signupUser(payload)).then((res)=>{
-           
+               
                if(res.status===201){
                 toast.success(res.payload.mesg, {
                   position: "top-center",

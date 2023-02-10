@@ -46,12 +46,6 @@ const Login = () => {
       };
       dispatch(loginUser(payload)).then((res) => {
 
-        //  console.log(res.statusText)
-        //  console.log(res.status);
-        //  console.log(res.payload)
-        //  console.log(res.err)
-        //  console.log(res.mesg)
-       
         
           if(res.status===200){
   

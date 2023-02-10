@@ -3,12 +3,23 @@ import Navbar from "../../components/Navbar";
 import { HomeWrapper } from "../../styles/userStyle/home.styled"
 import { BsSearch } from "react-icons/bs";
 import Carousel from "../../components/Carousel";
+import { useSelector,useDispatch } from "react-redux";
+import {getAllVideos,filterUploaded} from "../../redux/AppRedux/action"
+import VideoGrid from "../../components/VideoGrid";
 
 
 
 const Home = () => {
+  const dispatch=useDispatch()
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarColor, setNavbarColor] = useState("transparent");
+
+ const {loading,uploadedVideos,filteredUploadedVideos}=useSelector((state)=>{return {loading:state.AppReducer.loading,uploadedVideos:state.AppReducer.uploadedVideos,filteredUploadedVideos:state.AppReducer.filteredUploadedVideos}})
+
+
+ useEffect(()=>{
+  dispatch(getAllVideos())
+ },[])
 
   useEffect(() => {
     function handleScroll() {
@@ -49,6 +60,15 @@ const Home = () => {
         <div className="carousel-div-home">
           <h1 className="home-head">Best One Recipe</h1>
           <Carousel />
+        </div>
+
+
+        <h1 className="home-head">Most Loved Videos</h1>
+        <div 
+        
+        className="video-grid-wrapper">
+          
+          <VideoGrid rowgap="40px" colgap="20px" columns={4} view="linkview" videos={filteredUploadedVideos}/>
         </div>
       </HomeWrapper>
    

@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
 
+
 export const VideoGridWrapper=styled.div`
     display: grid;
     margin: auto;
     margin-bottom:30px;
     margin-top: 50px;
     width: 96%;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px 18px;
+    grid-template-columns:${(props)=>props.col ? `repeat(${props.col},1fr)` : 'repeat(3, 1fr)'} ;
+
+    row-gap:${(props)=>props.rg ? props.rg : "34px"};
+    column-gap:${(props)=>props.rg ? props.cg : "25px"};
+    
     
 
   .video-div {

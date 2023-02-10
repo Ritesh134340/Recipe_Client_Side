@@ -40,9 +40,11 @@ export const postVideo=(payload)=>(dispatch)=>{
         `${process.env.REACT_APP_SERVER_ADDRESS}/admin/create/video`,
         payload
       ).then((res)=>{
-       return dispatch({type:types.VIDEO_POST_SUCCESS,payload:res.data})
+       
+       return dispatch({type:types.VIDEO_POST_SUCCESS,payload:res.data,status:res.status,mesg:res.data.mesg})
       }).catch((err)=>{
-        dispatch({type:types.VIDEO_POST_FAILURE})
+      
+       return  dispatch({type:types.VIDEO_POST_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
       })
 }
 
@@ -50,11 +52,11 @@ export const deleteVideo=(payload)=>(dispatch)=>{
     dispatch({type:types.DELETE_VIDEO_REQUEST})
     return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/video/${payload}`)
     .then((res)=>{
-      return  dispatch({type:types.DELETE_VIDEO_SUCCESS,payload:res.data})
+      return  dispatch({type:types.DELETE_VIDEO_SUCCESS,payload:res.data,successCode:res.status})
     })
     .catch((err)=>{
-   
-        dispatch({type:types.DELETE_VIDEO_FAILURE})
+      console.log(err)
+        return dispatch({type:types.DELETE_VIDEO_FAILURE,errCode:err.response.status,mesg:err.response.data.mesg})
     })
 
 }
@@ -87,4 +89,22 @@ export const deleteUser=(id)=>(dispatch)=>{
 
 export const filterUsers=(payload)=>(dispatch)=>{
     dispatch({type:types.FILTER_USERS,payload:payload})
+}
+
+
+export const getVideos=(urlString)=>(dispatch)=>{
+ 
+  dispatch({type:types.GET_ALL_VIDEOS_AD_REQUEST})
+  axios.get(urlString).then((res)=>{
+  
+   return  dispatch({type:types.GET_ALL_VIDEOS_AD_SUCCESS,payload:res.data.data,successCode:res.status})
+  })
+  .catch((err)=>{
+    return dispatch({type:types.GET_ALL_VIDEOS_AD_FAILURE,errCode:err.response.data.mesg})
+  })
+
+}
+
+export const filterAllVideosAdmin=(payload)=>(dispatch)=>{
+  dispatch({type:types.FILTER_ALL_VIDEOS,payload:payload})
 }

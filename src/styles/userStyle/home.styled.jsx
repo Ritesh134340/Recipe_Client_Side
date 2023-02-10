@@ -71,7 +71,15 @@ export const HomeWrapper=styled.div`
     font-family:sans-serif;
     margin-bottom:30px;
     margin-top:40px;
+    border-bottom:1px solid rgb(214 214 214);
+    padding-bottom:19px;
   
+ }
+ .video-grid-wrapper{
+ 
+    margin-top:40px;
+    width:99%;
+    margin:auto;
  }
    
 `

@@ -42,6 +42,10 @@ const ChefDetails = () => {
 
       const apiUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${apiKey}`;
       axios.get(apiUrl).then((res) => {
+       
+        return res
+      })
+      .then((res)=>{
         const duration = res.data.items[0].contentDetails.duration;
         const matches = duration.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
         const hours = parseInt(matches[1] || 0, 10);
@@ -53,88 +57,151 @@ const ChefDetails = () => {
         } else if (hours === 0 && minutes !== 0) {
           time = `${minutes}:${seconds}`;
         }
-
+        
         const data = res.data.items[0].snippet;
+         const channelId=(res.data.items[0].snippet.channelId)
 
-        setPayload({
-          chefId: id,
-          chefName: byId.chefName,
-          channelName: byId.channel,
-          time: time,
-          videoId: videoId,
-          title: data.localized.title,
-          description: data.localized.description,
-          thumbnails: data.thumbnails.medium.url,
-          publishedAt: data.publishedAt,
-        });
-      });
+
+
+       axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${apiKey}`).then((resp)=>{
+          const channelLogo=(resp.data.items[0].snippet.thumbnails.medium.url)
+
+
+          const dt=(data.publishedAt)
+
+          const date=new Date(dt);
+          const postDate=(date.toLocaleDateString('en-us',))
+          const postTime=(date.toLocaleTimeString('en-us'))
+        
+          setPayload({
+            chefId: id,
+            channelId:channelId,
+            channelLogo:channelLogo,
+            postTime:postTime,
+            postDate:postDate,
+            chefName: byId.chefName,
+            channelName: byId.channel,
+            time: time,
+            videoId: videoId,
+            title: data.localized.title,
+            description: data.localized.description,
+            thumbnails: data.thumbnails.medium.url,
+            publishedAt: data.publishedAt,
+          });
+         })
+
+      }) 
     }
   }, [videoUrl]);
 
-  const handleAddVideo = (e) => {
-    e.preventDefault();
 
-    dispatch(postVideo(payload))
-      .then((res) => {
-        setPayload({});
-        setVideoUrl("");
-        setShowModal(false);
-        const chefId = { id: id };
-        dispatch(chefById(chefId));
-        toast.success(res.payload.mesg, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      })
-      .catch((err) => {
-        toast.warn(err, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+const handleAddVideo = (e) => {
+    e.preventDefault();
+    const length=Object.keys(payload).length;
+
+ if(length>0){
+ 
+  dispatch(postVideo(payload))
+  .then((res) => {
+    
+    if(res.status===200){
+     
+       toast.success(res.mesg, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
+      setPayload({});
+      setVideoUrl("");
+      setShowModal(false);
+      const chefId = { id: id };
+      dispatch(chefById(chefId));
+    }
+   else if(res.status===409){
+   
+      toast.warn(res.mesg, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    else{
+      toast.error(res.mesg, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+   
+   
+  }) 
+  
+ }
+ else{
+  toast.warn("Please add video Link !", {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+ }
+   
+    
   };
 
   const handleVideoDelete = (videoId) => {
     dispatch(deleteVideo(videoId))
       .then((res) => {
         const chefId = { id: id };
-        dispatch(chefById(chefId));
-
-        toast.success(res.payload.mesg, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        if(res.successCode===200){
+          dispatch(chefById(chefId)).then(()=>{
+            toast.success("Video deleted successfully !", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          })
+        }
+        if(res.errCode===500){
+          toast.error(res.mesg, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+        
       })
-      .catch((err) => {
-        toast.warn(err, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      });
+      
   };
 
   const handleSearch=(searchTerm)=>{

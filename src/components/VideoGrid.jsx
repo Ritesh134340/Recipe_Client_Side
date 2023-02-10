@@ -3,10 +3,11 @@ import { VideoGridWrapper } from "../styles/commonStyle/videoGrid.styled";
 import { NavLink } from "../styles/userStyle/link.styled";
 import {BsFillPlayBtnFill} from "react-icons/bs"
 
-const VideoGrid = ({ videos,handleVideoDelete,show ,view}) => {
+const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap}) => {
+
   return (
     <>
-    { view==="customview" && <VideoGridWrapper show={show}>
+    { view==="customview" && <VideoGridWrapper col={columns} show={show} rg={rowgap} cg={colgap}>
       
       {videos &&
         videos.map((ele) => (
@@ -39,7 +40,7 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view}) => {
         ))}
     </VideoGridWrapper>}
 
-{view==="linkview" && <VideoGridWrapper show={show}>
+{view==="linkview" && <VideoGridWrapper rg={rowgap} cg={colgap} col={columns} show={show}>
       
 {videos &&
   videos.map((ele) => (
