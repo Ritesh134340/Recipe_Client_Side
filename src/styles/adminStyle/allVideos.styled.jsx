@@ -10,6 +10,16 @@ export const AllVideosWrapper=styled.div`
     align-items: center;
     
   }   
+  .no-data {
+    color: gray;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .query {
+    color: green;
+  }
   #select-filter{
     width:120px;
     font-size:16px;

@@ -31,17 +31,19 @@ const AdminHome = () => {
   };
 
   useEffect(() => {
-    dispatch(getChef());
+    if(data.length===0){
+      dispatch(getChef());
+    }
   }, []);
 
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
+ 
+      
         <AdminHomeWrapper>
           <AdminNav selected="home" />
-          <BodyWrapper>
+         {loading ? (
+        <Loading />
+      ) :  <BodyWrapper>
             <div className="search-holder">
               <Search
                 handleSearch={handleSearch}
@@ -73,10 +75,10 @@ const AdminHome = () => {
                 </h3>
               )}
             </div>
-          </BodyWrapper>
+          </BodyWrapper>}
         </AdminHomeWrapper>
-      )}
-    </>
+      
+   
   );
 };
 

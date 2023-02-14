@@ -19,7 +19,6 @@ const {users,loading,filteredUser}=useSelector((state)=>{return {users:state.Adm
 const dispatch=useDispatch()
 
 const deleteFirebaseImage=(url)=>{
-    
 const imagePath = decodeURIComponent(url.split("/o/")[1].split("?")[0]);
   const storageRef=ref(storage,imagePath)
 
@@ -27,7 +26,6 @@ const imagePath = decodeURIComponent(url.split("/o/")[1].split("?")[0]);
 }
 
 const handleSearch=(searchTerm)=>{
-    console.log(searchTerm)
     const filter=users && users.filter((ele)=>
       ele.name.toLowerCase().includes(searchTerm.toLowerCase()) || ele.email.toLowerCase().includes(searchTerm.toLowerCase()) || ele.gender.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -37,10 +35,51 @@ const handleSearch=(searchTerm)=>{
 
 const handleDelete=async(image,id)=>{
     setDeleting(true)
- deleteFirebaseImage(image).then(()=>{
-    setDeleting(false)
-    dispatch(deleteUser(id)).then((res)=>{
+    if(image.includes("/o/")){
+      deleteFirebaseImage(image).then(()=>{
+        setDeleting(false)
+        dispatch(deleteUser(id)).then((res)=>{
+            if(res.successCode===200){
+              dispatch(getUser()).then(()=>{
+                setDeleting(false)
+                toast.success("User deleted successfully !", {
+                  position: "top-center",
+                  autoClose: 2000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  });
+              })
+               
+            }
+            else if(res.errCode===500){
+    
+                toast.err(res.mesg, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
+                    setDeleting(false)
+            }
+            
+        })
+       
+     })
+    
+    }
+    else{
+      setDeleting(true)
+      dispatch(deleteUser(id)).then((res)=>{
         if(res.successCode===200){
+          
           dispatch(getUser()).then(()=>{
             setDeleting(false)
             toast.success("User deleted successfully !", {
@@ -57,7 +96,7 @@ const handleDelete=async(image,id)=>{
            
         }
         else if(res.errCode===500){
-
+            
             toast.err(res.mesg, {
                 position: "top-center",
                 autoClose: 2000,
@@ -72,16 +111,19 @@ const handleDelete=async(image,id)=>{
         }
         
     })
-   
- })
+    }
 
    
 }
 
 
 useEffect(()=>{
- dispatch(getUser())
+ 
+
+    dispatch(getUser())
+  
 },[])
+
 
   return (
    
@@ -89,7 +131,7 @@ useEffect(()=>{
         <AdminNav selected="users"/>
         <BodyWrapper>
             <div className="search-div">
-            <Search handleSearch={handleSearch}placeholder="Search user data"/>
+            <Search  handleSearch={handleSearch}placeholder="Search user data"/>
             </div>
           
            {deleting || loading ?  <Loading/> :

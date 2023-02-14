@@ -55,7 +55,33 @@ export const SignupWrapper=styled.div`
 export const InputWrapper=styled.div`
   width:95%;
   margin:auto;
+  .fb-icon{
+    font-size:20px;
+    color:blue
+  }
+  .fb-icon-wrapper{
+    width:55%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+  }
+  .facebook-btn-div p{
+    font-size:11px;
+    font-weight:900;
+ 
 
+
+  }
+  .facebook-btn-div{
+  display:flex;
+  margin-top:20px;
+  border:1px solid rgb(209,213,219);
+  border-radius:6px;
+  align-items: center;
+  justify-content:center;
+  cursor:pointer
+    
+  }
   .pass-inp{
     border-radius:0px;
    outline:none;

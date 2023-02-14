@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 
 export const VideoGridWrapper=styled.div`
+    user-select:none;
     display: grid;
     margin: auto;
     margin-bottom:30px;
@@ -16,6 +17,31 @@ export const VideoGridWrapper=styled.div`
     
 
   .video-div {
+  }
+  .logo-with-channel{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:0px;
+    margin-top:5px;
+
+  }
+  .channel-image{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    overflow:hidden;
+    object-fit:cover;
+    object-position:center;
+
+  }
+  .channel-name{
+    font-size:14px;
+    font-weight:bold
+  }
+  .channel-image>img{
+    width:100%;
+    height:100%;
   }
   .vid-img-div {
     position: relative;
@@ -56,9 +82,10 @@ export const VideoGridWrapper=styled.div`
     border-radius: 5px;
   }
   .title{
-    margin-top:8px;
-    font-size:15px;
-    font-weight:600;
+    font-size:14px;
+    font-weight:500;
+    width:100%;
+    box-sizing:border-box;
     font-family:sans-serif;
   }
   .play-icon{
@@ -68,4 +95,17 @@ export const VideoGridWrapper=styled.div`
     border-radius:5px;
     cursor:pointer;
   }
+  @media all and (max-width:1024px) and (min-width:769px){
+   
+   grid-template-columns:repeat(3,1fr)
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+  grid-template-columns:repeat(3,1fr)
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+  grid-template-columns:repeat(1,1fr)
+}
 `

@@ -41,6 +41,7 @@ const Navbar = ({ color, link }) => {
       },2000)
   }
 
+
   return (
     <>
      <NavWrapper profileDetails={showProfile} color={color} show={show}>

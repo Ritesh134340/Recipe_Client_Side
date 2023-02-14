@@ -12,6 +12,7 @@ import ShowVideo from "../pages/admin/ShowVideo";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminPrivate from "../private/AdminPrivate";
 import Users from "../pages/admin/Users";
+import GoogleRedirect from "../pages/user/GoogleRedirect";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -76,6 +77,7 @@ const AllRoutes = () => {
           </AdminPrivate>
         }
       />
+      <Route path="/redirect" element={<GoogleRedirect/>} />
 
       <Route path="*" element={<h3 style={{display:"flex",alignItems:"center",justifyContent:"center",height:"80vh",color:"gray"}}>Page Not Found...!</h3>}/>
     </Routes>

@@ -39,8 +39,10 @@ const AllVideos = () => {
     else{
       urlString=`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos`
     }
+    if(allVideos.length===0){
+      dispatch(getVideos(urlString))
+    }
     
-    dispatch(getVideos(urlString))
 
    },[sort])
 
@@ -61,6 +63,13 @@ const AllVideos = () => {
          videos={allFilteredVideos}
          view="linkview"
      />}
+       {allFilteredVideos.length===0 && allVideos.length!==0 && <h3 className="no-data">
+              <span className="query">Query </span>result not found...
+            </h3>}
+
+          { allVideos.length===0 && <h3 className="no-data">
+              <span className="query">Videos</span> are not added...
+            </h3>}
       </BodyWrapper>
       </AllVideosWrapper>
   

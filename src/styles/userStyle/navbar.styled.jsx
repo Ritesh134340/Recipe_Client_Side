@@ -49,11 +49,13 @@ export const NavWrapper=styled.div`
        object-position:top;
        width:40px;
        height:40px;
-       border-radius:50%; 
+       border-radius:50%;
+      
     }
     .nav-profile-image{
       width:100%;
       height:100%;
+     
 
     }
    

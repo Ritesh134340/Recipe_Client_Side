@@ -2,7 +2,7 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { CarouselImage } from "../styles/userStyle/carousel.styled";
+import styled from "styled-components"
 
 const Carousel = () => {
   const data = [
@@ -27,6 +27,7 @@ const Carousel = () => {
     dots: true,
     infinite: true,
     speed: 500,
+    arrows:false,
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
@@ -35,23 +36,51 @@ const Carousel = () => {
     pauseOnHover: false,
   };
   return (
-    <Slider {...settings} style={{width:"96%",margin:"auto"}}>
+     <CarouselWrapper>
+    <Slider {...settings} style={{boxSizing:"border-box",width:"100%",margin:"auto",textAlign:"center"}}>
+      
       {data &&
         data.map((ele, index) => (
-          <CarouselImage key={index}>
-            <img
+          <div key={index} className='carousel-image-wrapper' >
+            <img className='carousel-image'
               src={ele.image}
-              style={{
-                height: "340px",
-                width: "96%",
-                borderRadius: "13px",
-                margin: "auto",
-              }}
+             
             ></img>
-          </CarouselImage>
+          </div>
         ))}
     </Slider>
+    </CarouselWrapper>
   );
 };
 
 export default Carousel;
+
+
+export const CarouselWrapper=styled.div`
+  box-sizing:border-box;
+  .carousel-image-wrapper{
+    width:100%
+  }
+  .carousel-image{
+    height:350px;
+    display:block;
+    margin:auto;
+    box-sizing:border-box;
+    width:96%;
+    border-radius:13px;
+    }
+    .slick-prev:before,
+      .slick-next:before {
+        color: red;
+      }
+      .slick-dots li button:before
+    {
+        font-size: 10px;
+        padding-top:15px;
+
+    
+ 
+    }
+`
+
+

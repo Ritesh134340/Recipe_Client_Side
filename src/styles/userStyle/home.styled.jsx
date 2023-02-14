@@ -10,6 +10,7 @@ export const HomeWrapper=styled.div`
         width:100%;
         background-color: black;
         z-index:7;
+      
         position:relative;
 
         &::before{
@@ -53,10 +54,9 @@ export const HomeWrapper=styled.div`
     }
 
     .carousel-div-home{
-        
-        width:100%;
         margin:auto;
-       
+        box-sizing:border-box;
+        width:100%;  
     }
 
     .search-head{
@@ -65,11 +65,16 @@ export const HomeWrapper=styled.div`
         top:22%;
         color:white;
     }
+    .loved{
+        padding-top:30px;
+   
+    }
  .home-head{
     text-align:center;
     font-weight:600;
     font-family:sans-serif;
     margin-bottom:30px;
+    box-sizing:border-box;
     margin-top:40px;
     border-bottom:1px solid rgb(214 214 214);
     padding-bottom:19px;

@@ -6,6 +6,8 @@ import Carousel from "../../components/Carousel";
 import { useSelector,useDispatch } from "react-redux";
 import {getAllVideos,filterUploaded} from "../../redux/AppRedux/action"
 import VideoGrid from "../../components/VideoGrid";
+import Pagination from "../../components/Pagination";
+import Footer from "../../components/Footer";
 
 
 
@@ -16,9 +18,24 @@ const Home = () => {
 
  const {loading,uploadedVideos,filteredUploadedVideos}=useSelector((state)=>{return {loading:state.AppReducer.loading,uploadedVideos:state.AppReducer.uploadedVideos,filteredUploadedVideos:state.AppReducer.filteredUploadedVideos}})
 
+ const [perPage,setPerPage]=useState(8);
+ const [currentPage,setCurrentPage]=useState(1)
+
+ const firstIndex=(currentPage-1)*perPage;
+ const lastIndex=firstIndex+perPage;
+ const totalPages=Math.ceil(filteredUploadedVideos.length/perPage);
+
+let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
+
+ const handlePageChange=(current)=>{
+  setCurrentPage(current)
+ }
+
 
  useEffect(()=>{
-  dispatch(getAllVideos())
+  if(uploadedVideos.length===0){
+    dispatch(getAllVideos())
+  }
  },[])
 
   useEffect(() => {
@@ -63,13 +80,15 @@ const Home = () => {
         </div>
 
 
-        <h1 className="home-head">Most Loved Videos</h1>
+        <h1 className="home-head loved">Most Loved Videos</h1>
         <div 
         
         className="video-grid-wrapper">
           
-          <VideoGrid rowgap="40px" colgap="20px" columns={4} view="linkview" videos={filteredUploadedVideos}/>
+          <VideoGrid rowgap="40px" colgap="20px" columns={4} view="linkview" videos={filteredVideos}/>
         </div>
+        <Pagination current={currentPage} total={totalPages} handleChange={handlePageChange} />
+        <Footer/>
       </HomeWrapper>
    
     </>

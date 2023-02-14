@@ -9,6 +9,103 @@ export const LoginWrapper=styled.div`
     margin:auto;
     margin-top:80px;
     margin-bottom:30px;
+    .forgot-modal{
+    position: fixed;
+    z-index:1000;
+    padding-top: 20px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: ${(props) => (props.showForgotModal  ? "block" : "none")};
+    }
+    .otp-input-div {
+    border: 1px solid red;
+  }
+  .otp-input-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: auto;
+    border: 1px solid red;
+  }
+  .otp-inp-box {
+    text-align: center;
+    font-size: 17px;
+    width: 35px;
+    display: block;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  .otp-des {
+    font-family: sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    line-height: 20px;
+  }
+  .send-btn {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    margin-top: 15px;
+  }
+
+
+    .forgot-modal-main{
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top:70px;
+    border: 1px solid #888;
+    width: 30%;
+    }
+    .cross-icon-div{
+        text-align:right;
+        font-size:25px;
+        cursor:pointer;
+    }
+    .forgot-modal-content{
+      width:100%;
+      margin-top:10px;
+     
+    }
+    .forgot-mail-input{
+       width:100%;
+       height:35px;
+       border-radius:4px;
+       box-sizing:border-box;
+       border:1px solid gray;
+       font-size:17px;
+       padding-left:8px;
+    }
+
+    .send-btn{
+        display:block;
+        margin:auto;
+        cursor:pointer;
+        background-color: blue;
+        color:white;
+        font-size:15px;
+        border-radius:5px;
+        border:none;
+        outline:none;
+        font-weight:bold;
+        padding:8px 15px;
+        margin-top:15px;
+    }
 
 .logo-in-log{
     display: flex;
@@ -29,6 +126,7 @@ export const LoginWrapper=styled.div`
 .logo-in-log>h1{
  font-family:sans-serif;
  font-size:24px;
+
 
 }
 @media all and (max-width:1024px) and (min-width:769px){
@@ -56,6 +154,49 @@ export const LoginWrapper=styled.div`
 export const InputWrapper=styled.div`
   width:93%;
   margin:auto;
+
+ 
+  .fb-icon{
+    font-size:20px;
+    color:blue
+  }
+  .fb-icon-wrapper{
+    width:60%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+  }
+  .facebook-btn-div p{
+    font-size:11px;
+    font-weight:900;
+ 
+
+
+  }
+  .facebook-btn-div{
+  display:flex;
+  margin-top:20px;
+  border:1px solid rgb(209,213,219);
+  border-radius:6px;
+  align-items: center;
+  justify-content:center;
+  cursor:pointer
+    
+  }
+  .forgot-div{
+    text-align:right;
+    margin-bottom:35px;
+  }
+  .forgot-p{
+    user-select:none;
+  color:rgb(34,120,233);
+   margin:0px;
+   padding:0px;
+   padding-top:10px;
+   cursor:pointer;
+   padding-right:5px;
+   
+  }
   .pass-inp{
     border-radius:0px;
    outline:none;
@@ -83,7 +224,6 @@ export const InputWrapper=styled.div`
     height:33px;
     border-radius:7px;
     margin-top:10px;
-    margin-bottom:30px;
     border:${(props)=>props.isFocus ?"1px solid rgb(34,120,233)":"1px solid rgb(224,226,231)" };
     box-shadow:${(props)=>props.isFocus ? " rgba(34,120,233, 0.2) 0px 2px 8px 0px":"none"};
     background-color: rgb(232,240,254);
@@ -112,6 +252,7 @@ export const InputWrapper=styled.div`
 `
 
 export const HeadingWrapper=styled.div `
+ 
     margin:auto;
     width:27%;
     box-sizing: border-box;
@@ -119,6 +260,10 @@ export const HeadingWrapper=styled.div `
     border-radius:13px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     font-size:14px;
+    h1{
+       
+        margin-top:0px;
+    }
     h5{
         text-align: center;
         margin-top:25px;
@@ -157,6 +302,7 @@ export const HeadingWrapper=styled.div `
 export const SubmitWrapper=styled.div`
     width:100%;
     margin-top:8px;
+    margin-bottom:-15px;
     
 
     input{
@@ -185,9 +331,9 @@ export const NavLink=styled(Link)`
 
 export const MainDiv=styled.div`
   width:98%;
-
   margin:auto;
-  margin-top:20px;
+  margin-top:15px;
+
   .google-btn-wrapper{
    
 }

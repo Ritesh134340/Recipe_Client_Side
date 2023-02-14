@@ -46,15 +46,18 @@ export const AdminWrapper=styled.div`
     margin:auto;
     margin-top:70px;
     display:flex;
-    padding-top:8px;
-    padding-bottom:8px;
     align-items: center;
     justify-content: center;
-    gap:5px;
+    padding-top:8px;
+    padding-bottom:8px;
     border-radius:8px;
     background-color:rgb(241 241 241);
-   
-   
+
+   }
+   .log-out-main{
+    display:flex;
+    align-items: center;
+    gap:5px;
 
    }
    .sign-out-icon{

@@ -57,6 +57,12 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap})
             <p className="time-div">{ele.time}</p>
       </div>
       </NavLink>
+      <div className="logo-with-channel">
+       <div className="channel-image">
+        <img src={ele.channelLogo} alt="logo" />
+       </div>
+       <p className="channel-name">{ele.channelName}</p>
+      </div>
       
       <div className="title">
         <p>{ele.title}</p>

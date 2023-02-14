@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const RegisterWrapper=styled.div`
        display:flex;
+     
        gap:5px;
     .chef-main{
         margin:auto;

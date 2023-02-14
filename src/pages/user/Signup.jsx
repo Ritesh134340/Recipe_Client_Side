@@ -1,6 +1,7 @@
 import React, { useRef,useEffect } from 'react'
 import {useNavigate} from "react-router-dom";
 import {FcGoogle} from "react-icons/fc";
+import {BsFacebook} from "react-icons/bs"
 import { HeadingWrapper, SignupImage , InputWrapper, MainDiv, NavLink, SignupWrapper, SubmitWrapper }  from "../../styles/userStyle/signup.style"
 import { useState } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
@@ -161,6 +162,10 @@ const Signup = () => {
     window.open(`${REACT_APP_SERVER_ADDRESS}/auth/google`,'_self');
 
  }
+ const handleFacebookLogin = (e) => {
+  e.preventDefault();
+  window.open(`${REACT_APP_SERVER_ADDRESS}/auth/facebook`, "_self");
+};
 
   return (
     <>
@@ -246,6 +251,16 @@ const Signup = () => {
             <span><FcGoogle className="google-icon"/></span>
            <button onClick={handleGoogleSignup}>SIGN UP WITH GOOGLE</button>
            </div>
+
+           <div className="facebook-btn-div">
+                        <div className="fb-icon-wrapper"onClick={handleFacebookLogin}>
+                        <span>
+                          <BsFacebook className="fb-icon" />
+                        </span>
+                        <p >SIGNUP WITH FACEBOOK</p>
+                        </div>
+                        
+                      </div>
    
           </div>
           </InputWrapper>
