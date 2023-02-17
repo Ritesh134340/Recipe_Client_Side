@@ -1,12 +1,20 @@
 import styled from "styled-components"
 
 export const HomeWrapper=styled.div`
-    height:400px;
+   
     position:relative;
     
-
+   .pagination-wrapper{
+  
+    margin:auto;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    margin-top:80px;
+    
+   }
     .search-wrapper{
-        height:100%;
+        height:400px;
         width:100%;
         background-color: black;
         z-index:7;

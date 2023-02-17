@@ -45,6 +45,7 @@ const AllVideos = () => {
     
 
    },[sort])
+   
 
   return (
   
@@ -61,7 +62,7 @@ const AllVideos = () => {
         </div>
         {loading ? <Loading/> : <VideoGrid  show={false}
          videos={allFilteredVideos}
-         view="linkview"
+         view="linkview" videoPath="/showvideo"
      />}
        {allFilteredVideos.length===0 && allVideos.length!==0 && <h3 className="no-data">
               <span className="query">Query </span>result not found...

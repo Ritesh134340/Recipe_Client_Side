@@ -85,9 +85,9 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
         
         className="video-grid-wrapper">
           
-          <VideoGrid rowgap="40px" colgap="20px" columns={4} view="linkview" videos={filteredVideos}/>
+          <VideoGrid rowgap="40px" colgap="20px" columns={4} view="linkview" videos={filteredVideos} videoPath="/uservideo"/>
         </div>
-        <Pagination current={currentPage} total={totalPages} handleChange={handlePageChange} />
+        {filteredUploadedVideos.length!==0 && <div className="pagination-wrapper"><Pagination current={currentPage} total={totalPages} handleChange={handlePageChange} /></div>}
         <Footer/>
       </HomeWrapper>
    

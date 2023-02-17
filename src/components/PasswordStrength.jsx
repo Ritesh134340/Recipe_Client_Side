@@ -1,14 +1,87 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector,useDispatch } from "react-redux";
+import { resetPassword } from "../redux/AuthRedux/action";
+import { GetFromLocalStorage } from "../utils/LocalStorageData";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
-const PasswordStrength = () => {
+const PasswordStrength = ({setModal}) => {
   const [password, setPassword] = useState("");
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
   const [confirm,setConfirm]=useState("")
   const [strength, setStrength] = useState(0);
 
   const handlePasswordSubmit=()=>{
-   console.log(confirm)
+    if(password===confirm){
+        if(strength<5){
+            toast.warn("Weak password !", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+        }
+        else{
+            const token=GetFromLocalStorage('passwordToken') || "";
+            const payload={
+               token:token,
+               password:confirm
+            }
+           dispatch(resetPassword(payload)).then((res)=>{
+            console.log(res)
+            if(res.status===200){
+                setPassword("");
+                setConfirm("")
+                setModal(false)
+                toast.success(res.payload.mesg, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+
+            }
+            else{
+                toast.error(res.mesg, {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+            }
+           })
+        }
+       
+    }
+    else{
+        toast.warn("Password mismatched !", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+    }
+    
   }
 
   const handleChange = (e) => {
@@ -64,6 +137,7 @@ const PasswordStrength = () => {
        </ul>
       </div>
       <button className="pass-save-btn" onClick={handlePasswordSubmit}>Submit Password</button>
+      <ToastContainer/>
     </StrengthWrapper>
   );
 };

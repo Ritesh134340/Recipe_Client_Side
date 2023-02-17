@@ -16,7 +16,7 @@ export const loginUser=(payload)=>(dispatch)=>{
     return dispatch({type:types.LOGIN_SUCCESS,payload:res.data,status:res.status,statusText:res.statusText})
  })
  .catch((err)=>{
-     
+   
      return dispatch({type:types.LOGIN_FAILURE,err:err.response.status,mesg:err.response.data.mesg})
  })
 
@@ -75,9 +75,9 @@ export const verifyOtp=(payload)=>(dispatch)=>{
 export const resetPassword=(payload)=>(dispatch)=>{
    dispatch({type:types.RESET_PASSWORD_REQUEST})
    return axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/user/password/change`,payload).then((res)=>{
-    return dispatch({type:types.GET_OTP_SUCCESS,paylaod:res.data,status:res.status})
+    return dispatch({type:types.RESET_PASSWORD_SUCCESS,payload:res.data,status:res.status})
    })
-   .carch((err)=>{
-      return dispatch({type:types.GET_OTP_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
+   .catch((err)=>{
+      return dispatch({type:types.RESET_PASSWORD_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
    })
 }

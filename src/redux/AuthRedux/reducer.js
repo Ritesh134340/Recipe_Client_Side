@@ -14,7 +14,9 @@ const initialState = {
   error: false,
   token: token,
   role: role,
-  profile: profile
+  profile: profile,
+  resetToken:"",
+  passwordToken:""
 };
 
 const reducer = (state = initialState, action) => {
@@ -90,17 +92,17 @@ const reducer = (state = initialState, action) => {
         case types.GET_OTP_REQUEST : return {...state,loading:true,error:false};
         case types.GET_OTP_SUCCESS :
          SaveToLocalStorage("resetToken", payload.token);
-        return {...state,loading:false,error:false };
+        return {...state,resetToken:payload.token,loading:false,error:false };
         case types.GET_OTP_FAILURE : return {...state,loading:false,error:true}
 
         case types.VERIFY_OTP_REQUEST :  return  {...state,loading:true,error:true}
         case types.VERIFY_OTP_SUCCESS :
           SaveToLocalStorage("passwordToken",payload.passwordToken)
-        return {...state,loading:false,error:false}
+        return {...state,passwordToken:payload.passwordToken,resetToken:"",loading:false,error:false}
         case types.VERIFY_OTP_FAILURE : return {...state,loading:false,error:true}
 
     case  types.RESET_PASSWORD_REQUEST : return {...state,loading:true,error:false}
-    case  types.RESET_PASSWORD_SUCCESS : return {...state,loading:false,error:false}
+    case  types.RESET_PASSWORD_SUCCESS : return {...state,passwordToken:"",resetToken:"",loading:false,error:false}
     case  types.RESET_PASSWORD_FAILURE : return {...state,loading:false,error:true}
 
     default:

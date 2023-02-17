@@ -42,12 +42,14 @@ const PaginationWrapper=styled.div`
     align-items: center;
     justify-content: center;
     padding-bottom:50px;
+
+   
     .pagination-btn-wrapper{
         display:flex;
         align-items: center;
-        width:150px;
         gap:8px;
         margin:auto;
+    
       
     }
     .show-current{
@@ -55,7 +57,7 @@ const PaginationWrapper=styled.div`
      height:100%;
      color:white;
      border-radius:5px;
-     font-size:18px;
+     font-size:16px;
      background-color: blue;
     }
     .change-button{
@@ -63,7 +65,8 @@ const PaginationWrapper=styled.div`
       cursor:pointer;
       border-radius:4px;
       border:1px solid gray;
-      font-size:19px;
+      font-size:15px;
       outline:none;
+      background: linear-gradient(140deg,green,yellow);
     }
 `

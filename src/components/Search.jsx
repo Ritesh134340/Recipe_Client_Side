@@ -5,7 +5,7 @@ import { SearchWrapper } from '../styles/adminStyle/search.styled'
 const Search = ({handleSearch,height,width,placeholder,first}) => {
 
   const [searchTerm,setSearchTerm]=useState("")
-
+  
   useEffect(()=>{
     
     let timerId;

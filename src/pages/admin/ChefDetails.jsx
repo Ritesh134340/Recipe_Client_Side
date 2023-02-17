@@ -231,7 +231,7 @@ const ChefDetails = () => {
             view="customview"
             videos={filteredVideos}
             handleVideoDelete={handleVideoDelete}
-          />
+          videoPath="/showvideo" />
 
      
            {filteredVideos.length===0 && videos.length!==0 && <h3 className="no-data">

@@ -86,9 +86,9 @@ const AdminNav = ({ selected }) => {
 
 
            <div className="log-out-div">
-            <div className="log-out-main">
+            <div  onClick={handleLogout}className="log-out-main">
             <IoLogOutOutline className="sign-out-icon"/>
-           <p className="admin-logout-btn" onClick={handleLogout}>Log out</p> 
+           <p className="admin-logout-btn">Log out</p> 
             </div>
            
            </div>

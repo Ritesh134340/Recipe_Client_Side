@@ -56,6 +56,7 @@ export const AdminWrapper=styled.div`
    }
    .log-out-main{
     display:flex;
+    cursor:pointer;
     align-items: center;
     gap:5px;
 

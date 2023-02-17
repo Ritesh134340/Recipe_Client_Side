@@ -43,14 +43,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [showOtpInput, setShowOtpInput] = useState(false);
   const navigate = useNavigate();
   const { REACT_APP_SERVER_ADDRESS } = process.env;
   const [forgotEmail, setForgotEmail] = useState("");
-
-  const { loading } = useSelector((state) => {
+  
+  const { loading,resetToken,passwordToken } = useSelector((state) => {
     return {
-      loading: state.AuthReducer.loading,
+      loading: state.AuthReducer.loading,resetToken:state.AuthReducer.resetToken,passwordToken:state.AuthReducer.passwordToken
     };
   });
 
@@ -170,7 +169,8 @@ const Login = () => {
         const payload = { email: forgotEmail };
         dispatch(getOtp(payload)).then((res) => {
           if (res.status === 200) {
-            setShowOtpInput(true);
+            
+            setForgotEmail("")
             toast.success(res.payload.mesg, {
               position: "top-center",
               autoClose: 2000,
@@ -224,12 +224,17 @@ const Login = () => {
   const handleVerifyOtp = () => {
     if (otp1 && otp2 && otp3 && otp4 && otp5) {
       const combinedOtp = otp1 + otp2 + otp3 + otp4 + otp5;
-      const resetToken = GetFromLocalStorage("resetToken") || null;
+     
       if (resetToken) {
         dispatch(verifyOtp({ token: resetToken, otp: combinedOtp })).then(
           (res) => {
             if (res.status === 200) {
               localStorage.removeItem("resetToken");
+              setOtp1("")
+              setOtp2("")
+              setOtp3("")
+              setOtp4("")
+              setOtp5("")
               toast.success(res.payload.mesg, {
                 position: "top-center",
                 autoClose: 2000,
@@ -268,6 +273,8 @@ const Login = () => {
       }
     }
   };
+
+  
 
   return (
     <>
@@ -379,7 +386,7 @@ const Login = () => {
               
 
 
-                  <div style={{display:"none"}}className="forgot-modal-content">
+                 { (!resetToken && !passwordToken) && <div className="forgot-modal-content">
                     <p className="otp-des">
                       An otp will be sent to your registered email, using which
                       you can reset your password.
@@ -394,11 +401,11 @@ const Login = () => {
                     <button className="send-btn" onClick={handleEmailSubmit}>
                       Continue
                     </button>
-                  </div>
+                  </div>}
                 
 
 
-                 <div style={{display:"none"}}className="otp-wrapper-main" >
+              { resetToken && <div className="otp-wrapper-main" >
                   <div className="otp-input-div">
                     <div className="otp-input-wrapper">
                       <input
@@ -474,9 +481,9 @@ const Login = () => {
                     </button>
                   </div>
                 
-                </div>
+                </div>}
 
-                <PasswordStrength />
+             {passwordToken && <PasswordStrength setModal={setShowForgot} />}
 
               </div>
             </div>

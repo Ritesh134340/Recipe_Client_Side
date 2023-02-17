@@ -1,9 +1,9 @@
 import React from "react";
 import { VideoGridWrapper } from "../styles/commonStyle/videoGrid.styled";
 import { NavLink } from "../styles/userStyle/link.styled";
-import {BsFillPlayBtnFill} from "react-icons/bs"
 
-const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap}) => {
+
+const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap,videoPath}) => {
 
   return (
     <>
@@ -30,7 +30,7 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap})
                 >
                   Delete
                 </button>
-                <NavLink to={`/showvideo/${ele._id}`}><button className="play-icon">Play</button></NavLink>
+                <NavLink to={`${videoPath}/${ele._id}`}><button className="play-icon">Play</button></NavLink>
                
               </div>
             <div className="title">
@@ -45,7 +45,7 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap})
 {videos &&
   videos.map((ele) => (
     <div key={ele._id} className="video-div">
-      <NavLink to={`/showvideo/${ele._id}`}>
+     <NavLink to={`${videoPath}/${ele._id}`}>
 
       <div className="vid-img-div">
         <img
@@ -70,6 +70,7 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap})
     </div>
   ))}
 </VideoGridWrapper>}
+
     </>
   );
 };
