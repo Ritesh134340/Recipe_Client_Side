@@ -1,91 +1,142 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Recipe Web Application Using MERN Stack 
 
 
-Recipe is MERN stack web application featured with Admin panel , Role based Authorization, Firebase storage api , Youtube api ,React-youtube, Google authentication using Passportjs along with Traditional way of login and signup using email and password.A user can redirect to user route or admin dashboard based on his role.Admin can seaqrch for any available video or chef channel,  create new chef channel, add new video,watch all available recipe video and can do complete CRUD operation. User can search for particular recipe , recipe belonging to a particular chef, watch recipe videos and add any video to his favourite list.Data is stored in mongodb database and images are stored in firebase storage api.
+Welcome to our website! Our site is powered by the MERN stack, and we utilize the YouTube API to bring you the latest and most popular recipe videos on the web.
+
+As a user, you can create an account, sign in,watch and start adding your favorite videos to your personal list. Our user-friendly interface makes it easy to find and save the content you love.
 
 
 
-/* /index.html 200
+## Deployed Link :
+https://awesomerecipe.netlify.app
+## Features :-
+
+**COMMON :**
+
+- User/Admin will be redirected to respective page from the same login form based on role.
+- User can Signup/Login using email or password, but there are two more ways to login/signup using Google and facebook.
+- User can choose his profile picture to show it when user is logged in, it is stored on firebase storage. 
+- While logging in password can be hide or show by clicking on given eye icon.
+
+***There is a password reset option given using which password can be reset after verifying the OTP, which will be sent to user's registered email address using NodeMailer.***
 
 
-[build]
-  command = "CI='' npm run build"
-  publish = "/build"
-  base ="/"
+**AS USER :**
+- User can land on home page and watch different uploaded recipe videos.
+- Any recipe video or channel name can be searched from the search bar given at top of the home page.
+- On the home page click search functionality is used which gets data from server based on search text.
+- All other search starts working if user starts typing, but there is pre-applied debouncing functionality to decrease the  rate of request made.
+- User can see the available channel lists.
+- Any recipe video can be saved inside favourites tab after clicking on AddtoFavourite button given.
+- User must be logged in to save any recipe video into his favourite list otherwise he will be redirected to log in page.
+- User can also remove any recipe from his favourite list.
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
-  _redirects
-  netlify.tomal
+
+
+**AS ADMIN :**
+
+- Admin panel can be visited only if a user is logged in with correct credentials and has correct authorization which will be checked from database.
+- After successful log in admin can add new Channels.
+- Admin can add new videos inside any existing channel.
+- Admin will have access to watch any uploaded videos or delete any video.
+- There is a tab where admin can see all the available users and any user can be deleted from database. 
+- There are search options given on all required pages, which can be used to get required data in less time.
+- All search input has pre-applied debouncing functionality.
+- Admin can directly change home page carousel image and hero image from admin dashboard.
+
+
+
+
+## Tech Stack
+
+**Client:**
+ - React-Js
+ - Redux
+ - React-Router-Dom
+ - Thunk
+ -  React-Redux
+
+ ### Supportive Client Library :
+
+  ***Axios***,
+  ***Styled-Components***,
+  ***Jwt-Decode***,
+   ***React-Icons***,
+***React-Slick***,
+***React-Tostify***,
+ ***React-Youtube***,
+ ***Uid***, 
+ ***Javascript***,
+ ***Html***,
+  ***CSS***
+
+**Server:** 
+- Nodejs 
+- Express 
+- Mongodb 
+- Mongoose
+
+ ### Supportive Server Library :
+
+ ***Passport js***,
+ ***Firebase Storage***,
+  ***NodeMailer***,
+   ***Bcrypt***,
+    ***Jsonwebtoken***,
+    ***Cors***, 
+    ***Passport-facebook***,
+     ***Passport-google-auth20***,
+       ***YoutubeApi***
+
+
+## Screenshots
+
+![App Screenshot](https://fitness-blender.netlify.app/)
+
+
+## Run Locally :-
+
+Clone the project
+
+**Client-Repository :**
+
+```bash
+  https://github.com/Ritesh134340/Recipe_Client_Side.git
+```
+
+
+**Server-Repository :**
+
+```bash
+https://github.com/Ritesh134340/Recipe_Server_Side.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start Client server :
+
+```bash
+  npm run start
+```
+
+Start Backend server :
+
+```bash
+  nodemon index.js
+```
+
+
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ritesh134340.github.io/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ritesh134340/)
