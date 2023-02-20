@@ -67,6 +67,6 @@ const PaginationWrapper=styled.div`
       border:1px solid gray;
       font-size:15px;
       outline:none;
-      background: linear-gradient(140deg,green,yellow);
+     
     }
 `

@@ -74,3 +74,36 @@ export const removeFavourite=(id,payload)=>(dispatch)=>{
 }
 
 
+export const setSearchTerm=(payload)=>(dispatch)=>{
+  dispatch({type:types.SET_SEARCH_TERM,payload:payload})
+}
+
+
+export const findSearch=(payload)=>(dispatch)=>{
+  dispatch({type:types.SEARCH_REQUEST})
+ return  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/app/search?title=${payload}`)
+  .then((res)=>{
+ return  dispatch({type:types.SEARCH_SUCCESS,status:res.status,payload:res.data})
+  })
+  .catch((err)=>{
+    return dispatch({type:types.SEARCH_FAILURE,mesg:err.response.data.mesg,status:err.response.status})
+  })
+}
+
+export const searchVideoFilter=(payload)=>(dispatch)=>{
+  dispatch({type:types.SEARCH_VIDEO_FILTER,payload})
+}
+
+
+
+export const getChefById=(id)=>(dispatch)=>{
+  dispatch({type:types.GET_CHEF_BY_ID_REQUEST})
+  return axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/app/chef/${id}`)
+  .then((res)=>{
+    return dispatch({type:types.GET_CHEF_BY_ID_SUCCESS,payload:res.data})
+  })
+  .catch((err)=>{
+    return   dispatch({type:types.GET_CHEF_BY_ID_FAILURE})
+  })
+
+}

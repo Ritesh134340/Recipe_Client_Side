@@ -191,7 +191,6 @@ const ChefDetails = () => {
   };
 
   const handleSearch = (searchTerm) => {
-   
     const newData =
       videos &&
       videos.filter((ele) =>
@@ -201,10 +200,8 @@ const ChefDetails = () => {
   };
 
   useEffect(() => {
-    
-      const chefId = { id: id };
-      dispatch(chefById(chefId));
-    
+    const chefId = { id: id };
+    dispatch(chefById(chefId));
   }, []);
 
   return (
@@ -231,17 +228,20 @@ const ChefDetails = () => {
             view="customview"
             videos={filteredVideos}
             handleVideoDelete={handleVideoDelete}
-          videoPath="/showvideo" />
+            videoPath="/showvideo"
+          />
 
-     
-           {filteredVideos.length===0 && videos.length!==0 && <h3 className="no-data">
+          {filteredVideos.length === 0 && videos.length !== 0 && (
+            <h3 className="no-data">
               <span className="query">Query </span>result not found...
-            </h3>}
+            </h3>
+          )}
 
-          { videos.length===0 && <h3 className="no-data">
+          {videos.length === 0 && (
+            <h3 className="no-data">
               <span className="query">Videos</span> are not added...
-            </h3>}
-          
+            </h3>
+          )}
 
           <div className="modal">
             <div className="modal-content">

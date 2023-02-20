@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom"
 
 
-const Navbar = ({ color, link }) => {
+const Navbar = ({ color }) => {
   const [show, setShow] = useState(false);
   const navigate=useNavigate()
   const dispatch=useDispatch()
@@ -46,7 +46,7 @@ const Navbar = ({ color, link }) => {
     <>
      <NavWrapper profileDetails={showProfile} color={color} show={show}>
       <div className="nav-left">
-        <NavLink color="red" to="/">
+        <NavLink color="white" to="/">
           <SiCodechef className="chef-icon" />
         </NavLink>
       </div>
@@ -70,7 +70,7 @@ const Navbar = ({ color, link }) => {
             </div>
             <p
               style={{
-                color: link,
+                color:"white",
                 letterSpacing: "0.5px",
                 fontWeight: "bold",
               }}
@@ -79,8 +79,12 @@ const Navbar = ({ color, link }) => {
             </p>
            
           </div>}
-          <NavLink to="/favourite" color={link} onClick={() => setShow(false)}>
+          <NavLink to="/favourite" color="white" onClick={() => setShow(false)}>
             Favourites
+          </NavLink>
+
+          <NavLink to="/allchannels" color="white" onClick={() => setShow(false)}>
+            Channels
           </NavLink>
 
            {token && role==="user" &&  <button className="log-btn" onClick={handleLogout}>Log Out</button>}

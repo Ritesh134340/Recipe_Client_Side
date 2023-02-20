@@ -72,9 +72,9 @@ const Favourite = () => {
     <>
       <Navbar/>
      {   loading ? <Loading/> :  <FavouriteWrapper>
-             <NavLink to="/">
-             <p className="back-btn-fav">Back</p>
-            </NavLink>
+          <div className="favourite-heading-wrapper">
+            <h2>Favourite Recipe List</h2>
+          </div>
           {
             videoId && <div className="player-wrapper">
              <VideoPlayer videoId={videoId}/>

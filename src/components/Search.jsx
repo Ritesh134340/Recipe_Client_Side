@@ -1,37 +1,46 @@
-import React,{useState,useEffect} from 'react'
-import {BsSearch} from "react-icons/bs"
-import { SearchWrapper } from '../styles/adminStyle/search.styled'
+import React, { useState, useEffect } from "react";
+import { BsSearch } from "react-icons/bs";
+import { SearchWrapper } from "../styles/adminStyle/search.styled";
 
-const Search = ({handleSearch,height,width,placeholder,first}) => {
+const Search = ({ handleSearch, height, width, placeholder,handleClickSearch }) => {
+  const [searchTerm,setSearchTerm] = useState("");
 
-  const [searchTerm,setSearchTerm]=useState("")
-  
-  useEffect(()=>{
-    
+  useEffect(() => {
     let timerId;
-    
+    if(searchTerm!==""){
       clearTimeout(timerId);
-      timerId=setTimeout(()=>{
-       handleSearch(searchTerm)
-      },500)
-    
-     
-    
-     
-   return ()=>{
-    clearTimeout(timerId);
-   }
-  
+      timerId = setTimeout(() => {
+        handleSearch(searchTerm);
+      }, 500);
+    }
 
-  },[searchTerm])
+    return () => {
+      clearTimeout(timerId);
+    };
+    
+  }, [searchTerm]);
+
+
+  const handleBack=(e)=>{
+    if(e.key==="Backspace"){
+      setSearchTerm(e.target.value)
+      handleSearch(searchTerm)
+    }
+  }
 
   return (
     <SearchWrapper width={width} height={height}>
-      
-      <input value={searchTerm} className='search-input' type="text" onChange={(e)=>setSearchTerm(e.target.value)} placeholder={placeholder}/>
-      <BsSearch className='search-icon'/>
+      <input
+        value={searchTerm}
+        className="search-input"
+        type="text"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder={placeholder}
+        onKeyUp={handleBack}
+      />
+      <BsSearch className="search-icon" onClick={()=>handleClickSearch(searchTerm)}/>
     </SearchWrapper>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

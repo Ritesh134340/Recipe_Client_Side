@@ -1,15 +1,14 @@
 import styled from "styled-components"
 
 export const FavouriteWrapper=styled.div`
-  margin-top:100px; 
-  .back-btn-fav{
-    position:fixed;
-    left:20px;
-    top:80px;
-    background-color:rgb(238 240 242);
-    padding:8px 14px;
-    border-radius:5px;
-    border:0.5px solid black;
+  margin-top:70px; 
+  border:1px solid transparent;
+ 
+  .favourite-heading-wrapper{
+    text-align:center;
+    margin-bottom:50px;
+    margin-top:40px;
+  
   }
   .player-wrapper{
     width:80%;

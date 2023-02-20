@@ -14,6 +14,9 @@ import AdminPrivate from "../private/AdminPrivate";
 import Users from "../pages/admin/Users";
 import GoogleRedirect from "../pages/user/GoogleRedirect";
 import UserShowVideo from "../pages/user/UserShowVideo";
+import SearchResult from "../pages/user/SearchResult";
+import ChannelDetails from "../pages/user/ChannelsDetails";
+import AllChannels from "../pages/user/AllChannels";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -36,7 +39,9 @@ const AllRoutes = () => {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-
+      <Route path="/searchresult" element={<SearchResult/>} />
+      <Route path="/allchannels" element={<AllChannels/>} />
+      <Route path="/channeldetails/:id" element={<ChannelDetails/>} />
       <Route
         path="/newchef"
         element={

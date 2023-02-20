@@ -13,17 +13,14 @@ const AllVideos = () => {
   
   const dispatch=useDispatch();
   const [sort,setSort]=useState("")
+
   const {loading,allVideos,allFilteredVideos}=useSelector((state)=>{return {allVideos:state.AdminReducer.allVideos,allFilteredVideos:state.AdminReducer.allFilteredVideos,loading:state.AdminReducer.loading}})
-
-
 
   const handleSearch=(searchTerm)=>{
      const newFilter= allVideos && allVideos.filter((ele)=>
          ele.title.toLowerCase().includes(searchTerm.toLowerCase())
        )
-
-       dispatch(filterAllVideosAdmin(newFilter))
-     
+       dispatch(filterAllVideosAdmin(newFilter))  
   }
 
   const handleSort=(e)=>{
@@ -32,21 +29,10 @@ const AllVideos = () => {
 
 
   useEffect(()=>{
-    let urlString;
-    if(sort!==""){
-       urlString=`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos?publishedAt=${sort}`
-    }
-    else{
-      urlString=`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos`
-    }
-    if(allVideos.length===0){
-      dispatch(getVideos(urlString))
-    }
-    
-
+     dispatch(getVideos(sort))
    },[sort])
    
-
+  
   return (
   
       <AllVideosWrapper>
@@ -64,7 +50,7 @@ const AllVideos = () => {
          videos={allFilteredVideos}
          view="linkview" videoPath="/showvideo"
      />}
-       {allFilteredVideos.length===0 && allVideos.length!==0 && <h3 className="no-data">
+       {allVideos.length!==0 && allFilteredVideos.length===0 && <h3 className="no-data">
               <span className="query">Query </span>result not found...
             </h3>}
 

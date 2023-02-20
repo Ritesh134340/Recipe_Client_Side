@@ -92,10 +92,13 @@ export const filterUsers=(payload)=>(dispatch)=>{
 }
 
 
-export const getVideos=(urlString)=>(dispatch)=>{
+
+
+export const getVideos=(sort)=>(dispatch)=>{
  
   dispatch({type:types.GET_ALL_VIDEOS_AD_REQUEST})
-  axios.get(urlString).then((res)=>{
+  
+  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos?publishedAt=${sort}`).then((res)=>{
   
    return  dispatch({type:types.GET_ALL_VIDEOS_AD_SUCCESS,payload:res.data.data,successCode:res.status})
   })
@@ -104,6 +107,8 @@ export const getVideos=(urlString)=>(dispatch)=>{
   })
 
 }
+
+
 
 export const filterAllVideosAdmin=(payload)=>(dispatch)=>{
   dispatch({type:types.FILTER_ALL_VIDEOS,payload:payload})

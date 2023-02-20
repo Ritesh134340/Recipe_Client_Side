@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import { HomeWrapper } from "../../styles/userStyle/home.styled"
-import { BsSearch } from "react-icons/bs";
 import Carousel from "../../components/Carousel";
 import { useSelector,useDispatch } from "react-redux";
-import {getAllVideos,filterUploaded} from "../../redux/AppRedux/action"
+import {getAllVideos,filterUploaded,setSearchTerm} from "../../redux/AppRedux/action"
 import VideoGrid from "../../components/VideoGrid";
 import Pagination from "../../components/Pagination";
 import Footer from "../../components/Footer";
+import Search from "../../components/Search"
+import { useNavigate } from "react-router-dom";
 
 
 
 const Home = () => {
   const dispatch=useDispatch()
+  const navigate=useNavigate()
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [navbarColor, setNavbarColor] = useState("transparent");
+  const [navbarColor, setNavbarColor] = useState("#876445");
 
  const {loading,uploadedVideos,filteredUploadedVideos}=useSelector((state)=>{return {loading:state.AppReducer.loading,uploadedVideos:state.AppReducer.uploadedVideos,filteredUploadedVideos:state.AppReducer.filteredUploadedVideos}})
 
  const [perPage,setPerPage]=useState(8);
  const [currentPage,setCurrentPage]=useState(1)
-
  const firstIndex=(currentPage-1)*perPage;
  const lastIndex=firstIndex+perPage;
  const totalPages=Math.ceil(filteredUploadedVideos.length/perPage);
@@ -30,7 +31,19 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
  const handlePageChange=(current)=>{
   setCurrentPage(current)
  }
+ const handleSearch=(searchTerm)=>{
+ 
+ }
 
+ const handleClickSearch=(searchTerm)=>{
+  
+  if(searchTerm){
+    dispatch(setSearchTerm(searchTerm))
+    navigate("/searchresult")
+  }
+
+
+ }
 
  useEffect(()=>{
   if(uploadedVideos.length===0){
@@ -49,29 +62,26 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
 
   useEffect(() => {
     if (scrollPosition > 0) {
-      setNavbarColor("rgb(0,0,0,0.5)");
+      setNavbarColor("#562B08");
     } else {
-      setNavbarColor("transparent");
+      setNavbarColor("#876445");
     }
   }, [scrollPosition]);
 
   return (
     <>
-      <Navbar link="white" color={navbarColor} />
+     
 
       <HomeWrapper>
+      <Navbar color={navbarColor} />
      
         <div className="search-wrapper">
           <h1 className="search-head">What's Going To Be Cooked ?</h1>
           <div className="combine">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search recipe..."
-            />
-            <BsSearch className="search-icon" />
-          
+           <Search  placeholder="Search recipe or channel" width="100%" height="50px" handleSearch={handleSearch} handleClickSearch={handleClickSearch} />
+           
           </div>
+      
         </div>
 
         <div className="carousel-div-home">

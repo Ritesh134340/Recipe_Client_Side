@@ -3,11 +3,19 @@ import styled from "styled-components";
 export const ShowUserVideoWrapper=styled.div`  
       margin-top:100px;
       padding-bottom:30px;
+      .show-video-title{
+        font-weight:700;
+        font-size:18px;
+        margin-bottom:50px;
+   
+      }
      .player-wrapper{
+        
        width:70%;
        margin:auto;
        margin-top:30px;
        overflow: hidden;
+      
     
     };
     .player-div{

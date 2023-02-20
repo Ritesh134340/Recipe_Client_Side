@@ -10,7 +10,7 @@ export const NavWrapper=styled.div`
     box-shadow:${(props)=>props.color ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
     align-items:center;
     height:70px;
-    background-color:${(props)=>props.color?props.color:"white"};
+    background-color:${(props)=>props.color?props.color:"#562B08"};
     justify-content:space-between;
     z-index:999;
     transition:all 500ms ease-in-out;

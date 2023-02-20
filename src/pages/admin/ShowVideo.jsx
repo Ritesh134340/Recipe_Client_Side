@@ -29,10 +29,10 @@ const ShowVideo = () => {
           </div>
       
       <div>
-        <p>{videoData.title}</p>
+        <p >{videoData.title}</p>
       </div>
       <div>
-        <p>{videoData.description}</p>
+        <pre>{videoData.description}</pre>
       </div>
         </div>
      

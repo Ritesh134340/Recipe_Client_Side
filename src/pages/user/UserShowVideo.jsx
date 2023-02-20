@@ -104,10 +104,11 @@ const UserShowVideo = () => {
           </div>
       
       <div>
-        <p>{videoData.title}</p>
+        <p className="show-video-title">{videoData.title}</p>
       </div>
       <div>
-        <p>{videoData.description}</p>
+        <h4>Video Description : </h4>
+        <pre>{videoData.description}</pre>
       </div>
         </div>}
         <ToastContainer/>
