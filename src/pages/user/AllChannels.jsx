@@ -6,6 +6,7 @@ import { NavLink } from "../../styles/userStyle/link.styled";
 import Loading from "../../components/Loading";
 import Navbar from "../../components/Navbar";
 import { AllChannelsWrapper } from "../../styles/userStyle/allchannels.styled";
+import Footer from "../../components/Footer"
 
 const AllChannels = () => {
     const dispatch = useDispatch();
@@ -41,8 +42,9 @@ const AllChannels = () => {
    {loading ? (
   <Loading />
 ) :  <div className="chef-channel-wrapper">
+    <div className="channel-head"><h3>Find Best Channels Here</h3></div>
       <div className="search-holder">
-        <Search
+        <Search width="100%"
           handleSearch={handleSearch}
           placeholder="Search by channel or chef name"
         />
@@ -53,8 +55,8 @@ const AllChannels = () => {
           filtered.map((ele) => (
             <div key={ele._id} className="indv-div-home">
               <div className="logo-with-channel">
-                <div className="profile-img">
-                  <img src={ele.logo} alt="profile" />
+                <div className="profile-img" style={{backgroundImage:`url(${ele.logo})`,backgroundSize:'cover',backgroundRepeat:'no-repeat',backgroundPosition:"top"}}>
+                  
                 </div>
                 <div>
                   <h3 className="channel-name">{ele.channel}</h3>
@@ -73,6 +75,7 @@ const AllChannels = () => {
         )}
       </div>
     </div>}
+    <Footer/>
   </AllChannelsWrapper>
 
   )

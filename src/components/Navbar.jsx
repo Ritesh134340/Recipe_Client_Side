@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom"
 
 
-const Navbar = ({ color }) => {
+const Navbar = ({ color,link }) => {
   const [show, setShow] = useState(false);
   const navigate=useNavigate()
   const dispatch=useDispatch()
@@ -44,9 +44,9 @@ const Navbar = ({ color }) => {
 
   return (
     <>
-     <NavWrapper profileDetails={showProfile} color={color} show={show}>
+     <NavWrapper profileDetails={showProfile} color={color} show={show} nameColor={link}>
       <div className="nav-left">
-        <NavLink color="white" to="/">
+        <NavLink color="#EB455F" to="/">
           <SiCodechef className="chef-icon" />
         </NavLink>
       </div>
@@ -61,6 +61,7 @@ const Navbar = ({ color }) => {
         </div>
 
         <div className="tabs-div">
+       
           {token && role==="user" && <div className="profile-div">
             <div
               className="profile-image-div"
@@ -68,22 +69,18 @@ const Navbar = ({ color }) => {
             >
               <img className="nav-profile-image" src={imageUrl} alt="profile" />
             </div>
-            <p
-              style={{
-                color:"white",
-                letterSpacing: "0.5px",
-                fontWeight: "bold",
-              }}
+            <p className="nav-user-name"
+             
             >
               {name}
             </p>
            
           </div>}
-          <NavLink to="/favourite" color="white" onClick={() => setShow(false)}>
+          <NavLink to="/favourite" color={link} onClick={() => setShow(false)}>
             Favourites
           </NavLink>
 
-          <NavLink to="/allchannels" color="white" onClick={() => setShow(false)}>
+          <NavLink to="/allchannels" color={link} onClick={() => setShow(false)}>
             Channels
           </NavLink>
 
@@ -93,6 +90,7 @@ const Navbar = ({ color }) => {
               <button className="log-btn">Log in</button>
             </NavLink>
           )} 
+          
         </div>
       </div>
      

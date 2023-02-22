@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 export const AllChannelsWrapper=styled.div`
 
+width:100%;
+box-sizing:border-box;
+ .channel-head{
+
+  text-align:center;
+ }
    .chef-channel-wrapper{
+ 
+    padding-bottom:50px;
   margin:auto;
   margin-top:110px;
   width:80%;
-  
-  
+
    }
 
  .search-holder {
+  width:48%;
+  margin:auto;
    margin-top: 30px;
    margin-bottom: 60px;
  }
@@ -36,10 +45,13 @@ export const AllChannelsWrapper=styled.div`
  }
  .profile-img {
    border-radius: 50%;
-   overflow: hidden;
-   width: 80px;
-   height: 80px;
-   object-fit: center;
+   width: 70px;
+   height: 70px;
+   object-fit:cover;
+
+ }
+ .profile-img>img{
+  display:block;
  }
  .chef-name {
    font-size: 11px;
@@ -66,4 +78,63 @@ export const AllChannelsWrapper=styled.div`
  .query {
    color: green;
  }
+
+ @media all and (max-width:1024px) and (min-width:769px){
+  .chef-channel-wrapper{
+    width:95%;
+  }
+  .indv-div-home {
+    width:85%
+  }
+  .search-holder {
+  width:60%;
+  
+ }
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+  .chef-channel-wrapper{
+    width:95%;
+  }
+  .indv-div-home {
+    width:85%
+  }
+  .search-holder {
+  width:60%;
+  
+ }
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+  .search-holder {
+  width:90%;
+  
+ }
+  .chef-channel-wrapper{
+    width:100%;
+  }
+  .indv-div-home {
+    box-sizing:border-box;
+   width:97%;
+   padding-right:8px;
+   padding-left:8px;
+   margin-bottom: 30px;
+   justify-content: space-between;
+   border-radius: 8px;
+  }
+  .details-btn {
+   margin-right: 0px;
+   padding: 6px 10px;
+
+ }
+ .profile-img {
+   width: 50px;
+   height: 50px;
+   
+ }
+ .channel-name{
+  font-size:14px
+ }
+}
 `

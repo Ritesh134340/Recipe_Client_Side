@@ -10,6 +10,7 @@ import VideoGrid from "../../components/VideoGrid";
 import Search from "../../components/Search";
 import Navbar from "../../components/Navbar";
 import { ChannelDetailsWrapper } from "../../styles/userStyle/channelDetails.styled";
+import Footer from "../../components/Footer";
 
 const ChannelDetails = () => {
   const { id } = useParams();
@@ -73,6 +74,7 @@ const ChannelDetails = () => {
           )}
         </div>
       )}
+      <Footer/>
       <ToastContainer />
     </ChannelDetailsWrapper>
   );

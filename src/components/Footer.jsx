@@ -11,10 +11,15 @@ const Footer = () => {
     <FooterWrapper>
       <div className="footer-main">
         <div className="icon-div">
+        {/* <div className="made-india-div">
+            <p>Made with ❤️ in India.</p>
+          </div> */}
             <div className="recipe-icon-wrapper">
             <SiCodechef  className="chef-icon" />
             <p className="chef-icon-p">Recipe.com</p>
             </div>
+
+           
         
         </div>
 
@@ -25,21 +30,17 @@ const Footer = () => {
             <div className="about">
               <h3>About</h3>
               <p>
-                Welcome to our website! We're a platform that brings together
-                the latest and greatest in video content, all in one place. Our
+                Welcome to our website! Our
                 site is powered by the MERN stack, and we utilize the YouTube
                 API to bring you the latest and most popular recipe videos on
                 the web.
               </p>
               <p>
-                As a user, you can create an account, sign in, and start adding
-                your favorite videos to your personal list. Our user-friendly
-                interface makes it easy to find and save the content you love.
+                Our user-friendly interface makes it easy to find and save the content you love.
               </p>
 
               <p>
-                Thank you for choosing our website as your go-to destination for
-                all things video. We hope you enjoy using our site, and we look
+                Thank you for choosing our website.we look
                 forward to bringing you even more great content in the future!
               </p>
             </div>
@@ -99,22 +100,20 @@ const Footer = () => {
                   <BsTelegram className="social-common tele" />
                 </a>
               </div>
-              <div className="qr-div">
+            
+            </div>
+            <div className="qr-div">
                 <img
                   className="qr-image"
                   src="https://firebasestorage.googleapis.com/v0/b/recipe-238bd.appspot.com/o/qrcode%2Ftele.png?alt=media&token=1de5a40b-7249-4000-8ff1-81e5668818ee"
                   alt=""
                 />
               </div>
-            </div>
           </div>
         </div>
 
         <div className="made-with">
-          <div>
-            <p>Made with ❤️ in India.</p>
-          </div>
-
+       
           <div>
             <p>Copyright &copy; 2023 All Rights Reserved by Recipe.</p>
           </div>
@@ -128,7 +127,7 @@ export default Footer;
 
 const FooterWrapper = styled.div`
   margin-top: 20px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #393053;
   width:100%;
   box-sizing:border-box;
   
@@ -150,7 +149,7 @@ const FooterWrapper = styled.div`
     gap: 10px;
   }
   .project-link p{
-    font-size:15px;
+    font-size:14px;
    
   }
   .email-div {
@@ -178,16 +177,15 @@ const FooterWrapper = styled.div`
 
   .left-and-right {
     display: flex;
-    padding-top:0px;
-    margin-bottom:20px;
     box-sizing:border-box;
     justify-content: space-between;
   }
   .left-and-right a{
     color:#cecccd;
    text-decoration:none;
+   font-size:14px;
    &:hover{
-    color:red;
+    color:white;
    }
   }
   .left-div {
@@ -217,7 +215,7 @@ const FooterWrapper = styled.div`
     color:#cecccd;
   }
   .footer-main {
-    width:90%;
+    width:86%;
     box-sizing: border-box;
     padding: 8px 0px;
     margin: auto;
@@ -225,33 +223,39 @@ const FooterWrapper = styled.div`
 
   }
   .made-with {
-    text-align: center;
+  text-align: center;
+   margin-auto;
+   width:100%;
+ 
+   color:gray;
+
+font-family:sans-serif;
+font-size:15px;
 
   }
-  .made-with>div{
-    &:nth-child(1){
-   color:white;
-    }
-    &:nth-child(2){
-        color:#cecccd;
-      font-family:sans-serif;
-      font-size:16px;
-    }
-  }
+ 
   .icon-div {
     color: white;
+    margin-top:9px;
+    margin-bottom:13px;
   }
   .recipe-icon-wrapper{
     display:flex;
     align-items:baseline;
   }
+  .made-india-div{
+    color:#cecccd;
+    text-align: center;
+  }
   .chef-icon-p{
    color:#cecccd;
-   font-size:17px;
+   font-size:15px;
    font-weight:700;
+   margin-bottom:0px;
+   padding-bottom:0px;
   }
   .chef-icon {
-    font-size: 50px;
+    font-size: 35px;
   }
   .social-div {
     color: white;
@@ -267,6 +271,7 @@ const FooterWrapper = styled.div`
   .social-common {
     margin-top:15px;
     cursor: pointer;
+ 
    
   }
   .linkd{
@@ -286,12 +291,13 @@ const FooterWrapper = styled.div`
     color:#cecccd;
     line-height:20px;
     letter-spacing:0.6px;
-    font-size:15px;
+    font-size:14px;
   }
  .left-and-right h3{
    font-weight:500;
-   margin-bottom:0px;
-    font-size:18px;
+   margin-bottom:10px;
+  
+    font-size:15px;
     letter-spacing:0.7px;
   }
 
@@ -318,22 +324,43 @@ const FooterWrapper = styled.div`
 }
 
 @media all and (max-width:480px) and (min-width:279px){
+
    .footer-main{
-     width:100%;
+     width:95%;
      padding-left:5px;
      padding-right:5px;
    }
  .left-and-right{
+
    flex-direction: column;
    justify-content: center;
  }
  .left-div{
-    width:97%;
+    width:100%;
+    
+  
  }
  .mid-div{
     display:flex;
-    gap:18px;
+ 
+    justify-content: space-between;
     padding-left:10px;
+ }
+ .right-div{
+ margin-top:30px;
+ margin-bottom:25px;
+  display:flex;
+ align-items:center;
+  justify-content: space-between;
+ 
+ }
+ .social-div{
+  
+  
+ }
+ .qr-div{
+
+  margin-top:0px;
  }
 }
 `;

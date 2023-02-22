@@ -28,12 +28,38 @@ const Carousel = () => {
     infinite: true,
     speed: 500,
     arrows:false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     autoplay: true,
     autoplaySpeed: 2000,
-    centerMode: true,
+    centerMode: false,
     pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   return (
      <CarouselWrapper>
@@ -62,7 +88,7 @@ export const CarouselWrapper=styled.div`
     width:100%
   }
   .carousel-image{
-    height:350px;
+    height:230px;
     display:block;
     margin:auto;
     box-sizing:border-box;
@@ -81,6 +107,31 @@ export const CarouselWrapper=styled.div`
     
  
     }
+
+    @media all and (max-width:1024px) and (min-width:769px){
+    .carousel-image{
+    height:150px;
+    width:93%;
+    border-radius:10px;
+    }
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+  .carousel-image{
+    height:150px;
+    width:93%;
+    border-radius:10px;
+    }
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+  .carousel-image{
+    height:190px;
+    width:95%;
+    border-radius:8px;
+    }
+}
 `
 
 

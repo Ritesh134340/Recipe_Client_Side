@@ -5,12 +5,11 @@ export const NavWrapper=styled.div`
     display:flex;
     width:100%;
     position: fixed;
-
-    top:0;
+    top:0px;
     box-shadow:${(props)=>props.color ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
     align-items:center;
     height:70px;
-    background-color:${(props)=>props.color?props.color:"#562B08"};
+    background-color:${(props)=>props.color?props.color:"white"};
     justify-content:space-between;
     z-index:999;
     transition:all 500ms ease-in-out;
@@ -19,7 +18,10 @@ export const NavWrapper=styled.div`
         margin-left:40px;
     }
     .chef-icon{
-        font-size:50px;
+        font-size:40px;
+        background:#FCFFE7;
+        padding:8px;
+        border-radius:50%;
     }
     
    
@@ -28,6 +30,7 @@ export const NavWrapper=styled.div`
     }
     .tabs-div{
         margin-right:50px;
+     
         display:flex;
         gap:20px;  
         align-items:center;
@@ -69,55 +72,76 @@ export const NavWrapper=styled.div`
         border:none;
         font-weight:bold;
     }
-
+.nav-user-name{
+  
+    color:${(props)=>props.nameColor ? props.nameColor : "black"};
+  letter-spacing:0.5px;
+  font-weight: bold;  
+}
     
 @media all and (max-width:1024px) and (min-width:769px){
   .tabs-div{
-    margin-right:30px;
+    margin-right:15px;
   }
 }
 
 
 @media all and (max-width:768px) and (min-width:481px){
   .tabs-div{
-   width:250px;
-
+    margin-right:10px;
   }
 }
 
 @media all and (max-width:480px) and (min-width:279px){
+   .chef-icon{
+    font-size:30px;
+    color:#EB455F;
+   }
+  
     .nav-left{
-        margin-left:25px;
+        margin-left:18px;
     }
      .rav-right{
         position:relative;
      }
     .ham-icon-div{
         display:block;
-        margin-right:20px;
+        margin-right:13px;
         transition: all 600ms ease;
     }
     .ham-icon{
-        font-size:35px;
+        font-weight:100;
+        color:black;
+        font-size:33px;
         display:${(props)=>!props.show ? "block" : "none"}
     }
     .cross-icon{
+      transition: all 600ms ease;
         font-size:35px;
         display:${(props)=>props.show ? "block" : "none"}
     }
+    .nav-user-name{
+        color:white;
+    }
     .tabs-div{
       position:absolute;
+      box-sizing:border-box;
       flex-direction:column;
-      top:70px;
+      top:0px;
       height:100vh;
       margin-right:0px;
-      right:${(props)=>props.show ? "0%" : "-130%"};
-      background-color :blue ;
+      left:${(props)=>props.show ? "-18%" : "-130%"};
+      top:${(props)=>props.show ? "0%" : "-150vh"};
+      background-color :#00425A ;
+
       width:100vw;
       padding-top:50px;
       gap:30px;
       justify-content: flex-start;
-      transition:all 400ms ease;
+      transition:all 500ms ease;
+    }
+    .profile-div{
+        flex-direction:column;
     }
 }
 `

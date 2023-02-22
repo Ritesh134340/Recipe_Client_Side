@@ -100,7 +100,7 @@ const UserShowVideo = () => {
         {loading ? <Loading/> : <div className='player-wrapper'>
           
           <div className="player-div">
-          <VideoPlayer videoId={videoData.videoId} />
+          <VideoPlayer videoId={videoData.videoId} height="450px" />
           </div>
       
       <div>

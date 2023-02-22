@@ -9,7 +9,9 @@ const initialState = {
   searchTerm: "",
   filteredVideos:[],
   byId:[],
-  videos:[]
+  videos:[],
+  filteredFavourite:[],
+  favouriteVideo:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,14 +51,15 @@ const reducer = (state = initialState, action) => {
     case types.GET_FAVOURITE_REQUEST:
       return { ...state, loading: true, error: false };
     case types.GET_FAVOURITE_SUCCESS:
-      return { ...state, loading: false, error: false };
+      return { ...state, loading: false, error: false,favouriteVideo:payload.favourite,filteredFavourite:payload.favourite };
     case types.GET_FAVOURITE_FAILURE:
       return { ...state, loading: false, error: true };
 
     case types.REMOVE_FAVOURITE_REQUEST:
       return { ...state, loading: true, error: false };
     case types.REMOVE_FAVOURITE_SUCCESS:
-      return { ...state, loading: false, error: false };
+      return { ...state, loading: false, error: false};
+
     case types.REMOVE_FAVOURITE_FAILURE:
       return { ...state, loading: false, error: true };
 
@@ -80,6 +83,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, loading: false, error: true };
 
       case types.SEARCH_VIDEO_FILTER : return {...state,filteredVideos:payload}
+
+      case types.FILTER_FAVOURITE_VIDEOS : return {...state,filteredFavourite:payload}
 
     default:
       return state;

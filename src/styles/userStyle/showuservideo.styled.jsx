@@ -15,13 +15,9 @@ export const ShowUserVideoWrapper=styled.div`
        margin:auto;
        margin-top:30px;
        overflow: hidden;
-      
-    
     };
     .player-div{
       
-        border-radius:15px;
-        overflow:hidden;  
     }
     .favourite-wrapper{
         position:fixed;

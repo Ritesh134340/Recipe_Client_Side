@@ -16,7 +16,7 @@ const Home = () => {
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [navbarColor, setNavbarColor] = useState("#876445");
+  const [navbarColor, setNavbarColor] = useState("transparent");
 
  const {loading,uploadedVideos,filteredUploadedVideos}=useSelector((state)=>{return {loading:state.AppReducer.loading,uploadedVideos:state.AppReducer.uploadedVideos,filteredUploadedVideos:state.AppReducer.filteredUploadedVideos}})
 
@@ -62,9 +62,9 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
 
   useEffect(() => {
     if (scrollPosition > 0) {
-      setNavbarColor("#562B08");
+      setNavbarColor("rgba(0,0,0,0.3)");
     } else {
-      setNavbarColor("#876445");
+      setNavbarColor("transparent");
     }
   }, [scrollPosition]);
 
@@ -73,14 +73,19 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
      
 
       <HomeWrapper>
-      <Navbar color={navbarColor} />
+      <Navbar color={navbarColor} link="white"/>
      
         <div className="search-wrapper">
+
+          
+          <div className="head-with-search">
           <h1 className="search-head">What's Going To Be Cooked ?</h1>
           <div className="combine">
            <Search  placeholder="Search recipe or channel" width="100%" height="50px" handleSearch={handleSearch} handleClickSearch={handleClickSearch} />
            
           </div>
+          </div>
+         
       
         </div>
 

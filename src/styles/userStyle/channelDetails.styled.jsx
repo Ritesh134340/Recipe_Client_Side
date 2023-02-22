@@ -3,7 +3,8 @@ import styled from "styled-components"
 export const ChannelDetailsWrapper=styled.div`
   margin-top:80px;
   .channeldetails-wrapper-main{
-    width: 80%;
+    width: 85%;
+    box-sizing:border-box;
     margin:auto;
   }
   .banner-div {
@@ -14,6 +15,7 @@ export const ChannelDetailsWrapper=styled.div`
     display: block;
     margin: auto;
     height: auto;
+    width:100%;
    
   }
   .modal-btn-div {
@@ -29,6 +31,8 @@ export const ChannelDetailsWrapper=styled.div`
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
+ 
+    
   }
   .query {
     color: green;
@@ -57,6 +61,31 @@ export const ChannelDetailsWrapper=styled.div`
     padding-left: 8px;
   }
   
+  @media all and (max-width:1024px) and (min-width:769px){
+    .channeldetails-wrapper-main{
+  width:98%;
+  padding-bottom:40px;
+
+
+ }
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+  .channeldetails-wrapper-main{
+  width:98%;
+  padding-bottom:40px;
+
+ }
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+ .channeldetails-wrapper-main{
+  width:99%;
+  padding-bottom:40px;
+
+ }
+}
 
  
 `

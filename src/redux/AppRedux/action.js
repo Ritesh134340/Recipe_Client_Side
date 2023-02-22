@@ -107,3 +107,8 @@ export const getChefById=(id)=>(dispatch)=>{
   })
 
 }
+
+
+export const filterFavourite=(payload)=>(dispatch)=>{
+  dispatch({type:types.FILTER_FAVOURITE_VIDEOS,payload:payload})
+}

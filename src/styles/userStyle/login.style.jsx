@@ -158,7 +158,7 @@ export const InputWrapper=styled.div`
  
   .fb-icon{
     font-size:20px;
-    color:blue
+    color:rgb(13,71,161);
   }
   .fb-icon-wrapper{
     width:60%;

@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const HomeWrapper=styled.div`
    
     position:relative;
-    margin-top:70px;
    
    .pagination-wrapper{
   
@@ -15,11 +14,10 @@ export const HomeWrapper=styled.div`
     
    }
     .search-wrapper{
-        height:400px;
+        height:460px;
         width:100%;
         background-color: black;
         z-index:7;
-      
         position:relative;
 
         &::before{
@@ -31,16 +29,13 @@ export const HomeWrapper=styled.div`
           height:100%;
           width:100%;
           opacity:0.8;
-          background-image:url("https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60");
+          background-image:url("https://static.wixstatic.com/media/a936fed67f61499e9facde45392e47c8.jpg/v1/fill/w_980,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/a936fed67f61499e9facde45392e47c8.jpg");
           top:0;
         }
     }
   
     .combine{
-        width:38%;
-        position:absolute;
-        top:53%;
-        right:30%;
+        width:100%;
     }
    
 
@@ -51,9 +46,7 @@ export const HomeWrapper=styled.div`
     }
 
     .search-head{
-        position:absolute;
-        left:34%;
-        top:22%;
+        width:100%;
         color:white;
     }
     .loved{
@@ -64,11 +57,12 @@ export const HomeWrapper=styled.div`
     text-align:center;
     font-weight:600;
     font-family:sans-serif;
-    margin-bottom:30px;
+    margin-bottom:15px;
     box-sizing:border-box;
-    margin-top:40px;
+    margin-top:25px;
+    font-size:22px;
     border-bottom:1px solid rgb(214 214 214);
-    padding-bottom:19px;
+    padding-bottom:8px;
   
  }
  .video-grid-wrapper{
@@ -77,5 +71,57 @@ export const HomeWrapper=styled.div`
     width:99%;
     margin:auto;
  }
+ .head-with-search{
+    position:absolute;
+    width:40%;
+    text-align:center;
+    top:30%;
+    left:32%;
+ }
+
+ @media all and (max-width:1024px) and (min-width:769px){
+    .search-head{
+        font-size:30px;
+    }
+    .head-with-search{
+    position:absolute;
+    width:55%;
+    text-align:center;
+    top:33%;
+    left:23%;
+ }
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+    .search-head{
+        font-size:30px;
+    }
+    .head-with-search{
+    position:absolute;
+    width:58%;
+    text-align:center;
+    top:33%;
+    left:23%;
+ }
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+    .search-head{
+        font-size:23px;
+    }
+    .head-with-search{
+    position:absolute;
+    width:90%;
+    text-align:center;
+    top:33%;
+    left:5%;
+ }
+ .search-wrapper{
+    height:300px;
+    box-sizing:border-box;
+ }
+
+}
    
 `
