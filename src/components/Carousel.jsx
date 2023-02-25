@@ -8,19 +8,24 @@ const Carousel = () => {
   const data = [
     {
       image:
-        "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGFuZWVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://static.wixstatic.com/media/a487476686464aaf8212ff0c6439a50d.jpg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/a487476686464aaf8212ff0c6439a50d.jpg",
     },
     {
       image:
-        "https://images.unsplash.com/photo-1573821663912-569905455b1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHBhbmVlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        "https://static.wixstatic.com/media/fc1909a357c14537ab206230eaec855b.jpg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/fc1909a357c14537ab206230eaec855b.jpg",
     },
     {
       image:
-        "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+        "https://static.wixstatic.com/media/daeb33d827a4610b13984b0934106c73.jpg/v1/fill/w_414,h_272,fp_0.50_0.50,lg_1,q_80,enc_auto/daeb33d827a4610b13984b0934106c73.jpg",
     },
     {
       image:
-        "https://media.istockphoto.com/id/1145763261/photo/image-of-romantic-indian-breakfast-of-fried-love-heart-shaped-uttapams-savoury-pancakes.jpg?b=1&s=170667a&w=0&k=20&c=UBR5A1XkJ3NbUJlIZRWTBCeyCuLb4U17BmO7n8B24vc=",
+        "https://static.wixstatic.com/media/19b7cdcd2fb243728976335d99575469.jpeg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/19b7cdcd2fb243728976335d99575469.jpeg",
+    },
+
+    {
+      image:
+        "https://static.wixstatic.com/media/4f2cd1de7f844d5985460325e7a9075b.jpg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/4f2cd1de7f844d5985460325e7a9075b.jpg",
     },
   ];
   const settings = {
@@ -28,8 +33,8 @@ const Carousel = () => {
     infinite: true,
     speed: 500,
     arrows:false,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
     centerMode: false,
@@ -70,8 +75,10 @@ const Carousel = () => {
           <div key={index} className='carousel-image-wrapper' >
             <img className='carousel-image'
               src={ele.image}
-             
             ></img>
+            <div className="abs-text-div">
+              <h1>Hello world</h1>
+            </div>
           </div>
         ))}
     </Slider>
@@ -86,7 +93,30 @@ export const CarouselWrapper=styled.div`
   box-sizing:border-box;
   .carousel-image-wrapper{
     width:100%
+    position:relative;
+    border:3px solid red;
   }
+  .abs-text-div{
+
+   border:2px solid yellow;
+   position:absolute;
+   top:30px;
+   color:white;
+ 
+
+   &:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:99999999;
+    width:100%;
+    height:100%;
+    opacity:0.5;
+    background-color:black;
+   }
+  }
+  
   .carousel-image{
     height:230px;
     display:block;

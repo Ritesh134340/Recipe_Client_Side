@@ -69,9 +69,12 @@ const AllChannels = () => {
             </div>
           ))}
         {filtered.length === 0 && (
-          <h3 className="no-data">
+          <div className="no-data-wrapper">
+         <h3 className="no-data">
             <span className="query">Query </span>Result Not Found...
           </h3>
+          </div>
+         
         )}
       </div>
     </div>}

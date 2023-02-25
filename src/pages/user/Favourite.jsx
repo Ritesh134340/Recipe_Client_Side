@@ -100,7 +100,7 @@ const Favourite = () => {
         {loading ? (
           <Loading />
         ) : (
-           favouriteVideo.length>0 && <div className="favourite-grid-wrapper">
+           filteredFavourite.length>0 && <div className="favourite-grid-wrapper">
 
             {filteredFavourite  && 
               filteredFavourite.map((ele, index) => (
@@ -134,7 +134,7 @@ const Favourite = () => {
           
         )}
 
-        {favouriteVideo && favouriteVideo.length===0 && <div className="fav-data-div">
+        {(filteredFavourite.length===0 || favouriteVideo.length===0) && <div className="fav-data-div">
           
           <p><span>Data</span>not available ...</p>
         </div>}

@@ -70,19 +70,28 @@ box-sizing:border-box;
  }
  .no-data {
    color: gray;
-   text-align: center;
    font-size: 18px;
    font-weight: 600;
    letter-spacing: 0.5px;
+  
  }
  .query {
    color: green;
+ }
+ .no-data-wrapper{
+ display:flex;
+ justify-content:center;
+ align-items:center;
  }
 
  @media all and (max-width:1024px) and (min-width:769px){
   .chef-channel-wrapper{
     width:95%;
   }
+  .no-data-wrapper{
+ margin-top:100px;
+ margin-bottom:375px;
+ }
   .indv-div-home {
     width:85%
   }
@@ -100,6 +109,10 @@ box-sizing:border-box;
   .indv-div-home {
     width:85%
   }
+  .no-data-wrapper{
+ margin-top:100px;
+ padding-bottom:200px;
+ }
   .search-holder {
   width:60%;
   

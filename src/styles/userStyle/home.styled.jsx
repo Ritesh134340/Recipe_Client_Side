@@ -28,7 +28,7 @@ export const HomeWrapper=styled.div`
           position:absolute;
           height:100%;
           width:100%;
-          opacity:0.8;
+          opacity:0.7;
           background-image:url("https://static.wixstatic.com/media/a936fed67f61499e9facde45392e47c8.jpg/v1/fill/w_980,h_426,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/a936fed67f61499e9facde45392e47c8.jpg");
           top:0;
         }

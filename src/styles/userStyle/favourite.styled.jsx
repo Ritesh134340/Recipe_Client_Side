@@ -25,13 +25,13 @@ export const FavouriteWrapper = styled.div`
   }
   .favourite-grid-wrapper{
      display:grid;
-     grid-template-columns:repeat(3,1fr);
-   
-     gap:30px;
      margin:auto;
-     margin-bottom:40px;
-     width:80%;
-    
+     grid-template-columns:repeat(4,1fr);
+     grid-row-gap:50px;
+     grid-column-gap:30px;
+     padding-bottom:40px;
+     width:87%;
+  
   }
   .ele-wrapper{
     border-radius:8px;
@@ -66,7 +66,7 @@ export const FavouriteWrapper = styled.div`
   .play-text{
     position:absolute;
     top:35%;
-    left:43%;
+    left:40%;
     height:20px;
     width:35px;
     padding:7px 12px;
@@ -109,23 +109,25 @@ export const FavouriteWrapper = styled.div`
   }
  
  .fav-data-div{
-  width:100%
+  width:100%;
   text-align:center;
-  height:200px;
   display:flex;
   align-items:center;
   justify-content:center;
+
  }
 
  .fav-data-div>p>span{
   color:green;
   font-weight:700;
   font-size:20px;
+  letter-spacing:0.6px;
   padding-right:5px;
  }
  .fav-data-div>p{
   font-size:16px;
   font-weight:700;
+  letter-spacing:0.5px;
   color:gray;
  }
 
@@ -140,14 +142,16 @@ export const FavouriteWrapper = styled.div`
     width:95%;
   }
     .favourite-grid-wrapper{
-     width:90%;
-     margin-top:80px;
-     padding-bottom:220px;
+     width:94%;
+     margin-top:50px;
+     padding-bottom:230px;
+     grid-template-columns:repeat(3,1fr)
     }
     .fav-data-div{
-     height:500px;
+    padding-bottom:418px;
+
+   }
   
- }
 
 }
 
@@ -159,14 +163,15 @@ export const FavouriteWrapper = styled.div`
   .search-box-wrapper{
       width:55%; 
   }
-  .fav-data-div{
-  height:30px;
- }
+ 
    .favourite-grid-wrapper{
-    width:90%;
-    margin-top:80px;
-    padding-bottom:55px;
-    grid-row-gap:50px;
+     width:94%;
+     margin-top:50px;
+     padding-bottom:80px;
+     grid-template-columns:repeat(3,1fr)
+    }
+   .fav-data-div{
+    padding-bottom:265px;
 
    }
 }
@@ -185,7 +190,7 @@ export const FavouriteWrapper = styled.div`
     
   }
   .fav-data-div{
-  padding-bottom:30px;
+  padding-bottom:80px;
  }
   
 }

@@ -10,16 +10,14 @@ import VideoGrid from "../../components/VideoGrid"
 const SearchResult = () => {
     const dispatch=useDispatch()
     const searchTerm=useSelector((state)=>state.AppReducer.searchTerm)
-    const [searchData,setSearchData]=useState([])
+    const searchData=useSelector((state)=>state.AppReducer.searchData)
+  
     
 
     useEffect(()=>{
         if(searchTerm){
         dispatch(findSearch(searchTerm)).then((res)=>{
-            if(res.status===200){
-                setSearchData(res.payload.searchResult)
-            }
-            else{
+            if(res.status!==200){
                 toast.error(res.mesg, {
                     position: "top-center",
                     autoClose: 2000,
@@ -37,7 +35,7 @@ const SearchResult = () => {
     
     },[])
 
-
+   console.log(searchData)
   return (
   
         <SearchResultWrapper>
@@ -45,8 +43,10 @@ const SearchResult = () => {
             <div>
               <p>Showing Search result for </p><span>{searchTerm}</span>
             </div>
-
-            <VideoGrid videos={searchData} view="linkview" videoPath="/uservideo" />
+            <div className="search-grid-wrapper">
+            <VideoGrid videos={searchData} view="linkview" videoPath="/uservideo" columns="4" />
+            </div>
+           
     
         <ToastContainer/>
         </SearchResultWrapper>

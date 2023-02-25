@@ -11,7 +11,8 @@ const initialState = {
   byId:[],
   videos:[],
   filteredFavourite:[],
-  favouriteVideo:[]
+  favouriteVideo:[],
+  searchData:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -69,7 +70,7 @@ const reducer = (state = initialState, action) => {
     case types.SEARCH_REQUEST:
       return { ...state, loading: true, error: false };
     case types.SEARCH_SUCCESS:
-      return { ...state, loading: false, error: false };
+      return { ...state, loading: false, error: false,searchData:payload.searchResult };
     case types.SEARCH_FAILURE:
       return { ...state, loading: false, error: true };
 

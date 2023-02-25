@@ -52,7 +52,7 @@ const ChannelDetails = () => {
             <Search
               placeholder="Search video by title"
               handleSearch={handleSearch}
-            />
+            width="100%" />
           </div>
           <VideoGrid
             show={true}
