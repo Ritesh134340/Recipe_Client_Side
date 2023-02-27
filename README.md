@@ -8,7 +8,7 @@ As a user, you can create an account, sign in,watch and start adding your favori
 
 
 ## Deployed Link :
-https://awesomerecipe.netlify.app
+https://amazingrecipe.in
 ## Features :-
 
 **COMMON :**
