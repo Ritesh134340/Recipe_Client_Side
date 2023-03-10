@@ -6,4 +6,7 @@ export const BodyWrapper=styled.div`
     height: 99.5vh;
     overflow-y: scroll;
     overflow-x: hidden;
+    &::-webkit-scrollbar {
+    display: none;
+}
 `

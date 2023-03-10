@@ -11,8 +11,12 @@ to{
 export const LoadingWrapper = styled.div`
   width: 100%;
   height:100vh;
+  padding-bottom:90px;
+  position:absolute;
+  top:0;
+  z-index:1000;
   background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
 
   .icon-div {
     margin: auto;
@@ -22,13 +26,19 @@ export const LoadingWrapper = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+    box-sizing:border-box;
      
   }
   .border-div{
-    border:2px solid #ccc;
-    width:80px;
-    height:80px;
-    border-top-color: #333;
+    border:3px solid gray;
+    width:88px;
+    height:88px;
+    box-sizing:border-box;
+    background-color:rgb(252,255,231);
+    border-top-color:red;
+    border-bottom-color:blue;
+    border-right-color:orange;
+    border-left-color:green;
     animation: ${LoadingAnimation} 1s linear infinite;
      border-radius:50%;
      
@@ -40,8 +50,46 @@ export const LoadingWrapper = styled.div`
     color: red;
     padding: 8px;
    
-  
+  }
+
+  @media all and (max-width:1024px) and (min-width:769px){
+ 
+    .chef-icon {
+    font-size:60px;
+    top:46.7%;
+    
+  }
+  .border-div{
+    width:85px;
+    height:85px;
+  }
+
+}
+
+
+@media all and (max-width:768px) and (min-width:481px){
+  .chef-icon {
+    font-size:60px;
+    top:46%;
+    
+  }
+  .border-div{
+    width:85px;
+    height:85px;
+  }
+}
+
+@media all and (max-width:480px) and (min-width:279px){
+  .chef-icon {
+    font-size:60px;
+    top:44.3%;
+    
+  }
+  .border-div{
+    width:80px;
+    height:80px;
   }
   
+}
   
 `;

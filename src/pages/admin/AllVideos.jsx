@@ -16,6 +16,8 @@ const AllVideos = () => {
 
   const {loading,allVideos,allFilteredVideos}=useSelector((state)=>{return {allVideos:state.AdminReducer.allVideos,allFilteredVideos:state.AdminReducer.allFilteredVideos,loading:state.AdminReducer.loading}})
 
+  const token=useSelector((state)=>state.AuthReducer.token)
+
   const handleSearch=(searchTerm)=>{
      const newFilter= allVideos && allVideos.filter((ele)=>
          ele.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,7 +31,7 @@ const AllVideos = () => {
 
 
   useEffect(()=>{
-     dispatch(getVideos(sort))
+     token && dispatch(getVideos(sort,{headers:{'Authorization':`Bearer ${token}`}}))
    },[sort])
    
   

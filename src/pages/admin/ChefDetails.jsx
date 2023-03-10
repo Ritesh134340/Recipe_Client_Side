@@ -7,6 +7,7 @@ import {
   postVideo,
   deleteVideo,
 } from "../../redux/AdminRedux/action";
+
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import { RxCross2 } from "react-icons/rx";
@@ -34,6 +35,8 @@ const ChefDetails = () => {
       filteredVideos: state.AdminReducer.filteredVideos,
     };
   });
+
+  const token=useSelector((state)=>state.AuthReducer.token)
 
   useEffect(() => {
     if (videoUrl !== "") {
@@ -103,7 +106,7 @@ const ChefDetails = () => {
     const length = Object.keys(payload).length;
 
     if (length > 0) {
-      dispatch(postVideo(payload)).then((res) => {
+      dispatch(postVideo(payload,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
         if (res.status === 200) {
           toast.success(res.mesg, {
             position: "top-center",
@@ -118,8 +121,8 @@ const ChefDetails = () => {
           setPayload({});
           setVideoUrl("");
           setShowModal(false);
-          const chefId = { id: id };
-          dispatch(chefById(chefId));
+          const chefId = id;
+          dispatch(chefById(chefId,{headers:{'Authorization':`Bearer ${token}`}}));
         } else if (res.status === 409) {
           toast.warn(res.mesg, {
             position: "top-center",
@@ -159,10 +162,10 @@ const ChefDetails = () => {
   };
 
   const handleVideoDelete = (videoId) => {
-    dispatch(deleteVideo(videoId)).then((res) => {
-      const chefId = { id: id };
+    dispatch(deleteVideo(videoId,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
+      const chefId =id ;
       if (res.successCode === 200) {
-        dispatch(chefById(chefId)).then(() => {
+        dispatch(chefById(chefId,{headers:{'Authorization':`Bearer ${token}`}})).then(() => {
           toast.success("Video deleted successfully !", {
             position: "top-center",
             autoClose: 2000,
@@ -200,9 +203,11 @@ const ChefDetails = () => {
   };
 
   useEffect(() => {
-    const chefId = { id: id };
-    dispatch(chefById(chefId));
+   
+    dispatch(chefById(id,{headers:{'Authorization':`Bearer ${token}`}}));
   }, []);
+
+ console.log(payload)
 
   return (
     <ChefDetailsWrapper showModal={showModal}>

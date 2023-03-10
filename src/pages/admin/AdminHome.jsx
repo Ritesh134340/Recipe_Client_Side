@@ -19,6 +19,8 @@ const AdminHome = () => {
     };
   });
 
+  const {token}=useSelector((state)=>{return {token:state.AuthReducer.token}})
+
   const handleSearch = (searchTerm) => {
     const newData =
       data &&
@@ -32,51 +34,60 @@ const AdminHome = () => {
 
   useEffect(() => {
     if(data.length===0){
-      dispatch(getChef());
+      dispatch(getChef({headers:{'Authorization':`Bearer ${token}`}}));
     }
   }, []);
 
   return (
- 
+          
+    <>
+    <div style={{paddingLeft:"30px",color:"#3A98B9",borderBottom:"0.5px solid #F5F5F5",marginBottom:"30px"}}>
+    <h1 >Recipe Dashboard</h1>
+    </div>
+    
+    <AdminHomeWrapper>
+         
+         <AdminNav selected="home" />
+        {loading ? (
+       <Loading />
+     ) :  <BodyWrapper>
       
-        <AdminHomeWrapper>
-          <AdminNav selected="home" />
-         {loading ? (
-        <Loading />
-      ) :  <BodyWrapper>
-            <div className="search-holder">
-              <Search
-                handleSearch={handleSearch}
-                placeholder="Search by channel or chef name"
-              />
-            </div>
+           <div className="search-holder">
+             <Search
+               handleSearch={handleSearch}
+               placeholder="Search by channel or chef name"
+             />
+           </div>
 
-            <div>
-              {filtered &&
-                filtered.map((ele) => (
-                  <div key={ele._id} className="indv-div-home">
-                    <div className="logo-with-channel">
-                      <div className="profile-img">
-                        <img src={ele.logo} alt="profile" />
-                      </div>
-                      <div>
-                        <h3 className="channel-name">{ele.channel}</h3>
-                        <p className="chef-name">{ele.chefName}</p>
-                      </div>
-                    </div>
-                    <NavLink to={`/chefdetails/${ele._id}`}>
-                      <button className="details-btn">Details</button>
-                    </NavLink>
-                  </div>
-                ))}
-              {filtered.length === 0 && (
-                <h3 className="no-data">
-                  <span className="query">Query </span>Result Not Found...
-                </h3>
-              )}
-            </div>
-          </BodyWrapper>}
-        </AdminHomeWrapper>
+           <div>
+             {filtered &&
+               filtered.map((ele) => (
+                 <div key={ele._id} className="indv-div-home">
+                   <div className="logo-with-channel">
+                     <div className="profile-img">
+                       <img src={ele.logo} alt="profile" />
+                     </div>
+                     <div>
+                       <h3 className="channel-name">{ele.channel}</h3>
+                       <p className="chef-name">{ele.chefName}</p>
+                     </div>
+                   </div>
+                   <NavLink to={`/chefdetails/${ele._id}`}>
+                     <button className="details-btn">Details</button>
+                   </NavLink>
+                 </div>
+               ))}
+             {filtered && filtered.length === 0 && (
+               <h3 className="no-data">
+                 <span className="query">Query </span>Result Not Found...
+               </h3>
+             )}
+           </div>
+         </BodyWrapper>}
+       </AdminHomeWrapper>
+    </>
+      
+      
       
    
   );

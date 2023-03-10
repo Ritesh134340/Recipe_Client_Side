@@ -3,15 +3,17 @@ import axios from "axios";
 import * as types from "./actionTypes";
 
 
-export const getChef=()=>(dispatch)=>{
+export const getChef=(header)=>(dispatch)=>{
     dispatch({type:types.CHEF_REQUEST});
 
-   return  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/get/chef`).then((res)=>{
+   return  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/get/chef`,header).then((res)=>{
        return  dispatch({type:types.CHEF_SUCCESS,payload:res.data.document})
     }).catch((err)=>{
         dispatch({type:types.CHEF_FAILURE})
     })
 }
+
+
 
 export const searchFilter=(payload)=>(dispatch)=>{
     dispatch({type:types.SEARCH_FILTER,payload})
@@ -21,9 +23,12 @@ export const searchVideoFilter=(payload)=>(dispatch)=>{
     dispatch({type:types.SEARCH_VIDEO_FILTER,payload})
 }
 
-export const chefById=(payload)=>(dispatch)=>{
+
+
+export const chefById=(payload,header)=>(dispatch)=>{
     dispatch({type:types.GET_CHEF_WITH_ID_REQUEST});
-   return  axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/chef/id`,payload).then((res)=>{
+   return  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/chef/${payload}`,header).then((res)=>{
+    
        return  dispatch({type:types.GET_CHEF_WITH_ID_SUCCESS,payload:res.data})
     }).catch((err)=>{
         dispatch({type:types.GET_CHEF_WITH_ID_FAILURE})
@@ -32,13 +37,14 @@ export const chefById=(payload)=>(dispatch)=>{
 }
 
 
-export const postVideo=(payload)=>(dispatch)=>{
+
+export const postVideo=(payload,header)=>(dispatch)=>{
     dispatch({type:types.VIDEO_POST_REQUEST})
 
     return axios
       .post(
         `${process.env.REACT_APP_SERVER_ADDRESS}/admin/create/video`,
-        payload
+        payload,header
       ).then((res)=>{
        
        return dispatch({type:types.VIDEO_POST_SUCCESS,payload:res.data,status:res.status,mesg:res.data.mesg})
@@ -48,9 +54,12 @@ export const postVideo=(payload)=>(dispatch)=>{
       })
 }
 
-export const deleteVideo=(payload)=>(dispatch)=>{
+
+
+
+export const deleteVideo=(payload,header)=>(dispatch)=>{
     dispatch({type:types.DELETE_VIDEO_REQUEST})
-    return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/video/${payload}`)
+    return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/video/${payload}`,header)
     .then((res)=>{
       return  dispatch({type:types.DELETE_VIDEO_SUCCESS,payload:res.data,successCode:res.status})
     })
@@ -62,9 +71,12 @@ export const deleteVideo=(payload)=>(dispatch)=>{
 }
 
 
-export const getUser=()=>(dispatch)=>{
+
+
+
+export const getUser=(header)=>(dispatch)=>{
   dispatch({type:types.GET_USER_REQUEST})
-  return axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/users`)
+  return axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/users`,header)
   .then((res)=>{
    return  dispatch({type:types.GET_USER_SUCCESS,payload:res.data.userDetails})
    
@@ -75,9 +87,12 @@ export const getUser=()=>(dispatch)=>{
 
 }
 
-export const deleteUser=(id)=>(dispatch)=>{
+
+
+
+export const deleteUser=(id,header)=>(dispatch)=>{
   dispatch({type:types.DELETE_USER_REQUEST})
-  return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/user/${id}`).then((res)=>
+  return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/user/${id}`,header).then((res)=>
   dispatch({type:types.DELETE_USER_SUCCESS,payload:res.data,successCode:res.status})
   )
   .catch((err)=>{
@@ -87,6 +102,9 @@ export const deleteUser=(id)=>(dispatch)=>{
   
 }
 
+
+
+
 export const filterUsers=(payload)=>(dispatch)=>{
     dispatch({type:types.FILTER_USERS,payload:payload})
 }
@@ -94,11 +112,13 @@ export const filterUsers=(payload)=>(dispatch)=>{
 
 
 
-export const getVideos=(sort)=>(dispatch)=>{
+
+
+export const getVideos=(sort,header)=>(dispatch)=>{
  
   dispatch({type:types.GET_ALL_VIDEOS_AD_REQUEST})
   
-  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos?publishedAt=${sort}`).then((res)=>{
+  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/getall/videos?publishedAt=${sort}`,header).then((res)=>{
   
    return  dispatch({type:types.GET_ALL_VIDEOS_AD_SUCCESS,payload:res.data.data,successCode:res.status})
   })
@@ -107,6 +127,8 @@ export const getVideos=(sort)=>(dispatch)=>{
   })
 
 }
+
+
 
 
 

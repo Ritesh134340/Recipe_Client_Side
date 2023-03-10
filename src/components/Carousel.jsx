@@ -4,8 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import styled from "styled-components"
 
-const Carousel = () => {
-  const data = [
+const Carousel = ({infinite,arrows,data}) => {
+
+  const dataArray =data ? data : [
     {
       image:
         "https://static.wixstatic.com/media/a487476686464aaf8212ff0c6439a50d.jpg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/a487476686464aaf8212ff0c6439a50d.jpg",
@@ -28,12 +29,17 @@ const Carousel = () => {
         "https://static.wixstatic.com/media/4f2cd1de7f844d5985460325e7a9075b.jpg/v1/fill/w_470,h_308,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/4f2cd1de7f844d5985460325e7a9075b.jpg",
     },
   ];
+  const arrowValue=arrows==="true"? true : false
+  const infiniteValue=infinite==="false" ?false :true
+
+ 
+
   const settings = {
     dots: true,
-    infinite: true,
+    infinite:infiniteValue,
     speed: 500,
-    arrows:false,
-    slidesToShow: 3,
+    arrows:arrowValue,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -70,14 +76,16 @@ const Carousel = () => {
      <CarouselWrapper>
     <Slider {...settings} style={{boxSizing:"border-box",width:"100%",margin:"auto",textAlign:"center"}}>
       
-      {data &&
-        data.map((ele, index) => (
+      {dataArray &&
+        dataArray.map((ele, index) => (
+
           <div key={index} className='carousel-image-wrapper' >
+
             <img className='carousel-image'
               src={ele.image}
             ></img>
             <div className="abs-text-div">
-              <h1>Hello world</h1>
+              <p className="image-text">Text here</p>
             </div>
           </div>
         ))}
@@ -91,34 +99,28 @@ export default Carousel;
 
 export const CarouselWrapper=styled.div`
   box-sizing:border-box;
+
   .carousel-image-wrapper{
-    width:100%
     position:relative;
-    border:3px solid red;
   }
+
+  .image-text{
+    margin-top:10px;
+    margin-bottom:10px;
+    color:white;
+  }
+
   .abs-text-div{
-
-   border:2px solid yellow;
-   position:absolute;
-   top:30px;
-   color:white;
+    position: absolute;
+    top:4%;
+    margin-left:2%;
+    width:130px;
+    background-color:rgba(0,0,0,0.6);
  
-
-   &:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:99999999;
-    width:100%;
-    height:100%;
-    opacity:0.5;
-    background-color:black;
-   }
   }
   
   .carousel-image{
-    height:230px;
+    height:200px;
     display:block;
     margin:auto;
     box-sizing:border-box;
@@ -140,27 +142,28 @@ export const CarouselWrapper=styled.div`
 
     @media all and (max-width:1024px) and (min-width:769px){
     .carousel-image{
-    height:150px;
-    width:93%;
+    width:96%;
     border-radius:10px;
     }
+   
 }
 
 
 @media all and (max-width:768px) and (min-width:481px){
   .carousel-image{
-    height:150px;
     width:93%;
     border-radius:10px;
     }
+
 }
 
 @media all and (max-width:480px) and (min-width:279px){
   .carousel-image{
-    height:190px;
     width:95%;
     border-radius:8px;
     }
+
+   
 }
 `
 

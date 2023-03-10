@@ -11,11 +11,9 @@ import {
 import axios from "axios"
 import { uid } from "uid";
 import { RegisterWrapper } from "../../styles/adminStyle/register.styled";
-import { v4 as uuidv4 } from 'uuid';
-import Loading from "../../components/Loading"
-import Admin from "../../components/AdminNav";
 import AdminNav from "../../components/AdminNav";
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
+import { useSelector } from "react-redux";
 
 const RegisterChef = () => {
   const inputRef = useRef();
@@ -29,6 +27,8 @@ const RegisterChef = () => {
   const [image,setImage] = useState(null);
 
   const url = image && URL.createObjectURL(image);
+
+  const token=useSelector((state)=>state.AuthReducer.token)
 
   const handleSelect = () => {
     inputRef.current.click();
@@ -67,7 +67,7 @@ const RegisterChef = () => {
             logo:logoUrl
            
           }
-          axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/create/chef`,payload).then((res)=>{
+          axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/create/chef`,payload,{headers:{'Authorization':`Bearer ${token}`}}).then((res)=>{
            
             toast.success(res.data.mesg, {
               position: "top-center",

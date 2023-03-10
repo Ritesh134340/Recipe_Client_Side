@@ -9,8 +9,17 @@ import Pagination from "../../components/Pagination";
 import Footer from "../../components/Footer";
 import Search from "../../components/Search"
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 
+const data=[
+  {image:"https://yt3.googleusercontent.com/ytc/AL5GRJVmL-c8HxJp0vFE_9YaVsujNWmz_EdAzibwnOwNRg=s88-c-k-c0x00ffffff-no-rj"},
+  {image:"https://yt3.googleusercontent.com/Y9WNjujyk3DD1-us69Hksq8cjX8FI1VA1dopoC8prw1WwhjiN8JQiKnHJRtLuj3hITSynJxi=s88-c-k-c0x00ffffff-no-rj"},
+  {image:"https://yt3.googleusercontent.com/ytc/AL5GRJUnX5BZBfCeHOGrriZYY-uPaNFaD9pxOlcVXbszDQ=s88-c-k-c0x00ffffff-no-rj"},
+  {image:"https://yt3.googleusercontent.com/ytc/AL5GRJXQpmLL88JcuzwZgY7o9k4ZyziLw_PtAJkrHoaj=s88-c-k-c0x00ffffff-no-rj"},
+  {image:"https://yt3.googleusercontent.com/GVTtEiBD6Mt1FR_Y5FKgYa8mHXcJiNfzDTa991tu1LZ3OrOANZC4J1-kSMmuaEys86yY336pcg=s88-c-k-c0x00ffffff-no-rj"},
+  {image:"https://yt3.googleusercontent.com/5r_5Sfai3atj0lLu9luwMNO-XfnOP8IB3DSDqX88nnHIO6en34IJvDeBL-tbI8EDJDlS1WhW=s88-c-k-c0x00ffffff-no-rj"}
 
+]
 
 const Home = () => {
   const dispatch=useDispatch()
@@ -74,7 +83,7 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
 
       <HomeWrapper>
       <Navbar color={navbarColor} link="white"/>
-     
+      
         <div className="search-wrapper">
 
           
@@ -88,6 +97,11 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
          
       
         </div>
+        <div>
+
+
+        </div>
+
 
         <div className="carousel-div-home">
           <h1 className="home-head">Best One Recipe</h1>

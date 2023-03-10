@@ -99,6 +99,9 @@ box-sizing:border-box;
   width:60%;
   
  }
+ .channel-wrapper-main{
+  padding-bottom:350px;
+ }
 }
 
 
@@ -116,6 +119,9 @@ box-sizing:border-box;
   .search-holder {
   width:60%;
   
+ }
+ .channel-wrapper-main{
+  padding-bottom:168px;
  }
 }
 

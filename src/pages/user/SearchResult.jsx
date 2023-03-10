@@ -35,7 +35,6 @@ const SearchResult = () => {
     
     },[])
 
-   console.log(searchData)
   return (
   
         <SearchResultWrapper>

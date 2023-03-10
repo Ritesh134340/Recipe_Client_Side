@@ -6,6 +6,7 @@ export const ChannelDetailsWrapper=styled.div`
     width: 85%;
     box-sizing:border-box;
     margin:auto;
+
   }
   .banner-div {
     margin: auto;
@@ -23,6 +24,7 @@ export const ChannelDetailsWrapper=styled.div`
     margin-top: 70px;
     margin-bottom: 80px;
     width:50%;
+    
   }
 
   .no-data {
@@ -65,6 +67,7 @@ export const ChannelDetailsWrapper=styled.div`
     .channeldetails-wrapper-main{
   width:98%;
   padding-bottom:40px;
+
  }
 
  .no-data {
@@ -80,7 +83,7 @@ export const ChannelDetailsWrapper=styled.div`
   .channeldetails-wrapper-main{
   width:98%;
   padding-bottom:40px;
-
+ 
  }
  .no-data {
     padding-bottom:58px;

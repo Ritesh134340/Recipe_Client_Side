@@ -5,15 +5,17 @@ import axios from "axios"
 import VideoPlayer from "../../components/VideoPlayer";
 import AdminNav from "../../components/AdminNav";
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
+import { useSelector } from "react-redux";
 
 
 
 const ShowVideo = () => {
   const { id } = useParams();
   const [videoData, setVideoData] = useState({});
- 
+  const token=useSelector((state)=>state.AuthReducer.token)
+  
   useEffect(() => {
-   axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/video/${id}`).then((res)=>{
+   axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/video/${id}`,{headers:{'Authorization':`Bearer ${token}`}}).then((res)=>{
     setVideoData(res.data.document)
    })
    

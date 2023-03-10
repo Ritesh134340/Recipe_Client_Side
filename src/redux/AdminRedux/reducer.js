@@ -1,5 +1,7 @@
 import React from 'react'
 import * as types from "./actionTypes"
+
+
 const initialState={
   byId:[],
   filtered:[],
@@ -12,7 +14,6 @@ const initialState={
   filteredUser:[],
   allVideos:[],
   allFilteredVideos:[]
-  
 }
 const reducer = (state=initialState,action) => {
   const {type,payload}=action;

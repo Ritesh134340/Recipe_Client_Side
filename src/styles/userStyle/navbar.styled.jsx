@@ -44,24 +44,16 @@ export const NavWrapper=styled.div`
         margin:0px 10px;
     }
   
-    .profile-image-div{
-      
+    .profile-image-nav-div{
        cursor:pointer;
-       overflow:hidden;
-       object-fit:cover;
-       object-position:top;
-       width:40px;
-       height:40px;
+       width:45px;
+       height:45px;
+       background-size:cover;
+       background-repeat:no-repeat;
+       background-position:top;
        border-radius:50%;
-      
     }
-    .nav-profile-image{
-      width:100%;
-      height:100%;
-     
 
-    }
-   
     .log-btn{
         padding:8px 15px;
         background-color:black;

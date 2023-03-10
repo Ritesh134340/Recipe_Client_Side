@@ -9,12 +9,15 @@ export const AdminHomeWrapper = styled.div`
     height: 99.5vh;
     overflow-y: scroll;
     overflow-x: hidden;
+    
   }
+
   .search-holder {
     margin-top: 30px;
     margin-bottom: 60px;
   }
   .indv-div-home {
+  
     width: 80%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 15px;

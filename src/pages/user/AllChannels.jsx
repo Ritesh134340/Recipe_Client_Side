@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "../../components/Search";
-import { getChef, searchFilter } from "../../redux/AdminRedux/action";
+import { getChef, channelFilter } from "../../redux/AppRedux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "../../styles/userStyle/link.styled";
 import Loading from "../../components/Loading";
@@ -10,28 +10,28 @@ import Footer from "../../components/Footer"
 
 const AllChannels = () => {
     const dispatch = useDispatch();
-
-  const { data, filtered, loading } = useSelector((state) => {
+  const { channelData, filteredChannel, loading } = useSelector((state) => {
     return {
-      data: state.AdminReducer.data,
-      filtered: state.AdminReducer.filtered,
-      loading: state.AdminReducer.loading,
+      channelData: state.AppReducer.channelData,
+      filteredChannel: state.AppReducer.filteredChannel,
+      loading: state.AppReducer.loading,
     };
   });
 
   const handleSearch = (searchTerm) => {
     const newData =
-      data &&
-      data.filter(
+      channelData &&
+      channelData.filter(
         (ele) =>
           ele.channel.toLowerCase().includes(searchTerm.toLowerCase()) ||
           ele.chefName.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    dispatch(searchFilter(newData));
+    dispatch(channelFilter(newData));
   };
+ 
+
 
   useEffect(() => {
-    
       dispatch(getChef());
   }, []);
   return (
@@ -50,9 +50,9 @@ const AllChannels = () => {
         />
       </div>
 
-      <div>
-        {filtered &&
-          filtered.map((ele) => (
+      <div className="channel-wrapper-main">
+        {filteredChannel &&
+          filteredChannel.map((ele) => (
             <div key={ele._id} className="indv-div-home">
               <div className="logo-with-channel">
                 <div className="profile-img" style={{backgroundImage:`url(${ele.logo})`,backgroundSize:'cover',backgroundRepeat:'no-repeat',backgroundPosition:"top"}}>
@@ -68,7 +68,7 @@ const AllChannels = () => {
               </NavLink>
             </div>
           ))}
-        {filtered.length === 0 && (
+        {filteredChannel && filteredChannel.length === 0 && (
           <div className="no-data-wrapper">
          <h3 className="no-data">
             <span className="query">Query </span>Result Not Found...

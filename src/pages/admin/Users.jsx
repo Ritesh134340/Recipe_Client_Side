@@ -24,7 +24,7 @@ const Users = () => {
       filteredUser: state.AdminReducer.filteredUser,
     };
   });
-
+  const token=useSelector((state)=>state.AuthReducer.token)
   const dispatch = useDispatch();
 
   const deleteFirebaseImage = (url) => {
@@ -54,9 +54,9 @@ const Users = () => {
     if (image.includes("/o/")) {
       deleteFirebaseImage(image).then(() => {
         setDeleting(false);
-        dispatch(deleteUser(id)).then((res) => {
+        dispatch(deleteUser(id,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
           if (res.successCode === 200) {
-            dispatch(getUser()).then(() => {
+            dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}})).then(() => {
               setDeleting(false);
               toast.success("User deleted successfully !", {
                 position: "top-center",
@@ -88,7 +88,7 @@ const Users = () => {
       setDeleting(true);
       dispatch(deleteUser(id)).then((res) => {
         if (res.successCode === 200) {
-          dispatch(getUser()).then(() => {
+          dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}})).then(() => {
             setDeleting(false);
             toast.success("User deleted successfully !", {
               position: "top-center",
@@ -119,7 +119,7 @@ const Users = () => {
   };
 
   useEffect(() => {
-    users.length === 0 && dispatch(getUser());
+    users.length === 0 && dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}}));
   }, []);
 
   return (

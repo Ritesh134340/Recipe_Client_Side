@@ -33,10 +33,10 @@ export const getVideoById=(id)=>(dispatch)=>{
  
 }
 
-export const addToFavourite=(payload)=>(dispatch)=>{
+export const addToFavourite=(payload,header)=>(dispatch)=>{
     dispatch({type:types.ADD_TO_FAVOURITE_REQUEST})
 
-   return  axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/app/add/favourite`,payload)
+   return  axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/app/add/favourite`,payload,header)
    .then((res)=>{
         return dispatch({type:types.ADD_TO_FAVOURITE_SUCCESS,payload:res.data,status:res.status})
     })
@@ -111,4 +111,47 @@ export const getChefById=(id)=>(dispatch)=>{
 
 export const filterFavourite=(payload)=>(dispatch)=>{
   dispatch({type:types.FILTER_FAVOURITE_VIDEOS,payload:payload})
+}
+
+export const getChef=()=>(dispatch)=>{
+  
+  dispatch({type:types.CHEF_REQUEST});
+ return  axios.get(`${process.env.REACT_APP_SERVER_ADDRESS}/app/get/chef`).then((res)=>{
+     
+     return  dispatch({type:types.CHEF_SUCCESS,payload:res.data.document})
+  }).catch((err)=>{
+      dispatch({type:types.CHEF_FAILURE})
+  })
+}
+
+
+
+export const channelFilter=(payload)=>(dispatch)=>{
+  dispatch({type:types.SEARCH_FILTER,payload})
+}
+
+
+export const submitRating=(payload,header)=>(dispatch)=>{
+
+  dispatch({type:types.SUBMIT_RATING_REQUEST})
+
+  return axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/app/rate/video`,payload,header).then((res)=>{
+    return dispatch({type:types.SUBMIT_RATING_SUCCESS,payload:res.data,status:res.status})
+  })
+  .catch((err)=>{
+    return dispatch({type:types.SUBMIT_RATING_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
+  })
+}
+
+
+
+  export const addComment=(payload,header)=>(dispatch)=>{
+  dispatch({type:types.COMMENT_REQUEST})
+  return axios.post(`${process.env.REACT_APP_SERVER_ADDRESS}/app/add/comment`,payload,header).then((res)=>{
+    
+       return dispatch({type:types.COMMENT_SUCCESS,payload:res.data,staus:res.status})
+  })
+  .catch((err)=>{
+    return dispatch({type:types.COMMENT_FAILURE,mesg:err.response.data.mesg,status:err.response.status})
+  })
 }

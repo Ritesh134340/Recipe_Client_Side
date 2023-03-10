@@ -12,7 +12,9 @@ const initialState = {
   videos:[],
   filteredFavourite:[],
   favouriteVideo:[],
-  searchData:[]
+  searchData:[],
+  channelData:[],
+  filteredChannel:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -85,8 +87,22 @@ const reducer = (state = initialState, action) => {
 
       case types.SEARCH_VIDEO_FILTER : return {...state,filteredVideos:payload}
 
+      case types.SEARCH_FILTER : return {...state,filteredChannel:payload}
+
       case types.FILTER_FAVOURITE_VIDEOS : return {...state,filteredFavourite:payload}
 
+
+      case types.CHEF_REQUEST: return {...state,loading:true,error:false}
+      
+      case types.CHEF_SUCCESS: return {...state,loading:false,error:false,channelData:payload,filteredChannel:payload}
+      
+      case types.CHEF_FAILURE: return {...state,loading:false,error:true}
+
+
+      case type.SUBMIT_RATING_REQUEST: return {...state,loading:true,error:false}
+      case type.SUBMIT_RATING_SUCCESS: return {...state,loading:false,error:false}
+      case type.SUBMIT_RATING_FAILURE: return {...state,loading:false,error:true}
+      
     default:
       return state;
   }

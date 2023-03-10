@@ -20,9 +20,9 @@ const Navbar = ({ color,link }) => {
   const role= useSelector((state) => state.AuthReducer.role);
 
 
-  const imageUrl =role==="user" &&  token && profile && profile.image;
-  const name =role==="user" && token && profile && profile.name;
-  const email =role==="user" && token && profile && profile.email;
+  const imageUrl =(role==="user") &&  token && profile && profile.image;
+  const name =(role==="user") && token && profile && profile.name;
+  const email =(role==="user" )&& token && profile && profile.email;
   const [showProfile, setShowProfile] = useState(false);
   const handleLogout=()=>{
     dispatch(logoutUser())
@@ -40,7 +40,6 @@ const Navbar = ({ color,link }) => {
         navigate("/")
       },2000)
   }
-
 
   return (
     <>
@@ -64,10 +63,11 @@ const Navbar = ({ color,link }) => {
        
           {token && role==="user" && <div className="profile-div">
             <div
-              className="profile-image-div"
+              className="profile-image-nav-div"
               onClick={() => setShowProfile(!showProfile)}
+             style={{backgroundImage:`url(${imageUrl})`}}
             >
-              <img className="nav-profile-image" src={imageUrl} alt="profile" />
+              {/* <img className="nav-profile-image" src={imageUrl} alt="profile" /> */}
             </div>
             <p className="nav-user-name"
              
@@ -84,8 +84,10 @@ const Navbar = ({ color,link }) => {
             Channels
           </NavLink>
 
-           {token && role==="user" &&  <button className="log-btn" onClick={handleLogout}>Log Out</button>}
-          {(!token || role==="admin")  && (
+           {role==="user" &&  <button className="log-btn" onClick={handleLogout}>Log Out</button>}
+
+
+          { (!token || role==="admin") &&  (
             <NavLink to="/login">
               <button className="log-btn">Log in</button>
             </NavLink>

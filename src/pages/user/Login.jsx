@@ -279,7 +279,6 @@ const Login = () => {
   return (
     <>
       <Navbar />
-
       <div>
         {loading ? (
           <Loading />

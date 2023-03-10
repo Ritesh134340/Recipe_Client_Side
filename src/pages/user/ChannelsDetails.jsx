@@ -39,7 +39,8 @@ const ChannelDetails = () => {
   }, []);
 
   return (
-    <ChannelDetailsWrapper>
+   
+     <ChannelDetailsWrapper>
       <Navbar />
       {loading ? (
         <Loading />
