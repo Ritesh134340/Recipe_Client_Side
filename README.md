@@ -9,6 +9,10 @@ As a user, you can create an account, sign in,watch and start adding your favori
 
 ## Deployed Link :
 https://amazingrecipe.in
+
+## Client Flow
+![Blank diagram](https://user-images.githubusercontent.com/105931703/224886457-e3d0a73b-e71d-4ffc-a804-c9c446247d0d.svg)
+
 ## Features :-
 
 **COMMON :**
