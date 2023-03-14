@@ -38,10 +38,116 @@ export const NavWrapper=styled.div`
         space-evenly;
     }
     .profile-div{
+      cursor:pointer;
         display:flex;
         align-items: center;
         gap:15px;
         margin:0px 10px;
+    }
+    .profile-details-div{
+      position:fixed;
+      box-sizing:border-box;
+      width:100%;
+      height:100vh;
+      background-color:rgb(0,0,0);
+      background-color:rgba(0,0,0,0.5);
+      top:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px;
+    }
+    .details-close{
+      cursor:pointer;
+      font-size:25px;
+      padding-right:10px;
+      padding-top:10px;
+    }
+    .nav-modal-content{
+      background-color:white;
+      width:30%;
+      border-radius:5px;
+      padding:0px 25px 35px 25px;
+    }
+    .main-content{
+
+     width:100%;
+     margin:auto;
+     margin-top:10px;
+    }
+    .close-wrapper{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .manage-acc{
+      color:#9ca3af;
+      font-size:12px;
+      letter-spacing:0.5px;
+      line-height:16px;
+      font-weight:400;
+ 
+    }
+    .main-content>label{
+      font-size:13px;
+      color:gray;
+    }
+    .main-content>input{
+     width:100%;
+     padding-left:8px;
+     height:35px;
+     margin-top:5px;
+     border:1px solid gray;
+     outline:none;
+     margin-bottom:13px;
+     border-radius:3px;
+     box-sizing:border-box;
+
+    }
+    .main-content>button{
+      border-radius:6px;
+      padding:8px 13px;
+      font-weight:bold;
+      cursor:pointer;
+      border-none;
+      outline-none;
+      display:block;
+      margin-top:30px;
+    }
+   
+    .profile-name{
+      font-size:14px;
+      font-weight:500;
+    }
+    .edit-image-wrapper{
+      display:flex;
+      box-sizing:border-box;
+      margin-bottom:20px;
+      gap:10px;
+      position:relative;
+    }
+    .edit-image-wrapper>img{
+      border:1px solid gray;
+      width:80px;
+      font-weight:500;
+      padding:3px;
+      height:80px;
+      object-fit:top;
+      border-radius:5px;
+    }
+    .change{
+      position:absolute;
+      bottom:0%;
+      left:23%;
+      border:none;
+      outline:none;
+      padding:3px 10px;
+      font-size:13px;
+      font-weight:600;
+      border-radius:30px;
+      background-color:#3F497F;
+      color:white;
+      cursor:pointer;
     }
   
     .profile-image-nav-div{
@@ -53,6 +159,11 @@ export const NavWrapper=styled.div`
        background-position:top;
        border-radius:50%;
     }
+    .progress-main {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+  }
 
     .log-btn{
         padding:8px 15px;

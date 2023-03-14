@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "../../components/AdminNav";
+import {Heading} from "../../components/Heading"
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 import { UsersWrapper } from "../../styles/adminStyle/users.styled";
 import storage from "../../utils/firebaseStorage";
@@ -18,13 +19,16 @@ import Search from "../../components/Search";
 const Users = () => {
   const [deleting, setDeleting] = useState(false);
   const { users, loading, filteredUser } = useSelector((state) => {
+
     return {
       users: state.AdminReducer.users,
       loading: state.AdminReducer.loading,
       filteredUser: state.AdminReducer.filteredUser,
     };
   });
+
   const token=useSelector((state)=>state.AuthReducer.token)
+
   const dispatch = useDispatch();
 
   const deleteFirebaseImage = (url) => {
@@ -86,7 +90,7 @@ const Users = () => {
       });
     } else {
       setDeleting(true);
-      dispatch(deleteUser(id)).then((res) => {
+      dispatch(deleteUser(id,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
         if (res.successCode === 200) {
           dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}})).then(() => {
             setDeleting(false);
@@ -125,20 +129,23 @@ const Users = () => {
   return (
     <UsersWrapper>
       <AdminNav selected="users" />
-      <BodyWrapper>
+      {deleting || loading ? (
+          <Loading />
+        ) :  <BodyWrapper>
         <div className="search-div">
-          <Search handleSearch={handleSearch} placeholder="Search user data" />
+          <Heading/>
+          <div className="search-wrapper">
+          <Search handleSearch={handleSearch} placeholder="Search user data" width="100%" />
+          </div>
+         
         </div>
 
-        {deleting || loading ? (
-          <Loading />
-        ) : (
           <table className="table-main">
+           
             <thead className="thead">
               <tr>
                 <th>Image</th>
                 <th>Name</th>
-                <th>Email</th>
                 <th>Gender</th>
                 <th>Remove</th>
               </tr>
@@ -148,14 +155,29 @@ const Users = () => {
               {filteredUser &&
                 filteredUser.map((ele) => (
                   <tr key={ele._id} className="body-row">
-                    <td className="image-data">
-                      <img className="pro-img" src={ele.image} alt="profile" />
-                    </td>
-                    <td className="data-common">{ele.name}</td>
-                    <td className="data-common">{ele.email}</td>
-                    <td className="data-common">{ele.gender}</td>
+                     <td>
+                     <div className="pro-img" alt="profile" style={{backgroundImage:`url(${ele.image})`}} />
+                     </td>
+                     
 
-                    <td className="data-common">
+                    <td>
+                    <div className="name-with-email">
+                    <div className="data-common-name">{ele.name}</div>
+                    <div className="data-common">{ele.email}</div>
+                    </div>
+                    </td>
+                    
+
+                    
+                    
+                    <td >
+                     <div className="data-common-gender">
+                     {ele.gender}
+                     </div>
+                    </td>
+
+
+                    <td>
                       <button
                         onClick={() => handleDelete(ele.image, ele._id)}
                         className="user-del-btn"
@@ -163,12 +185,14 @@ const Users = () => {
                         Delete
                       </button>
                     </td>
+
                   </tr>
                 ))}
             </tbody>
           </table>
-        )}
+        
       </BodyWrapper>
+      }
       <ToastContainer />
     </UsersWrapper>
   );

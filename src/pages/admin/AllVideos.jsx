@@ -9,6 +9,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { getVideos,filterAllVideosAdmin } from '../../redux/AdminRedux/action';
 
 
+
 const AllVideos = () => {
   
   const dispatch=useDispatch();
@@ -39,19 +40,26 @@ const AllVideos = () => {
   
       <AllVideosWrapper>
       <AdminNav selected="uploads"></AdminNav>
-      <BodyWrapper>
+      {loading ? <Loading/> : <BodyWrapper>
+     
         <div className="searchWrapper">
-           <select onChange={handleSort} id="select-filter">
+      
+          <select onChange={handleSort} id="select-filter">
             <option value="">Sort by</option>
             <option value="desc">Latest</option>
             <option value="asc">Oldest</option>
            </select>
-            <Search handleSearch={handleSearch} style={{marginLeft:"0px"}} placeholder="Search video with title"/>
+            <div className="search-holder">
+            <Search handleSearch={handleSearch}placeholder="Search video with title" width="100%" />
+          
+          </div>
+           
+          
         </div>
-        {loading ? <Loading/> : <VideoGrid  show={false}
+         <VideoGrid  show={false}
          videos={allFilteredVideos}
          view="linkview" videoPath="/showvideo"
-     />}
+     />
        {allVideos.length!==0 && allFilteredVideos.length===0 && <h3 className="no-data">
               <span className="query">Query </span>result not found...
             </h3>}
@@ -59,7 +67,7 @@ const AllVideos = () => {
           { allVideos.length===0 && <h3 className="no-data">
               <span className="query">Videos</span> are not added...
             </h3>}
-      </BodyWrapper>
+      </BodyWrapper>}
       </AllVideosWrapper>
   
   )

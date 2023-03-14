@@ -8,6 +8,8 @@ to{
     transform:rotate(360deg)
 }
 `;
+
+
 export const LoadingWrapper = styled.div`
   width: 100%;
   height:100vh;

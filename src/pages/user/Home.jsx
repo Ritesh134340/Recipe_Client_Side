@@ -90,7 +90,7 @@ let filteredVideos=filteredUploadedVideos.slice(firstIndex,lastIndex)
           <div className="head-with-search">
           <h1 className="search-head">What's Going To Be Cooked ?</h1>
           <div className="combine">
-           <Search  placeholder="Search recipe or channel" width="100%" height="50px" handleSearch={handleSearch} handleClickSearch={handleClickSearch} />
+           <Search  placeholder="Search recipe video title" width="100%" height="50px" handleSearch={handleSearch} handleClickSearch={handleClickSearch} />
            
           </div>
           </div>

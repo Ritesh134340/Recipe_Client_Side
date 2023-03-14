@@ -1,13 +1,16 @@
 import React from "react";
-import { VideoGridWrapper } from "../styles/commonStyle/videoGrid.styled";
+import { AnimationTest, CustomWrapper, VideoGridWrapper } from "../styles/commonStyle/videoGrid.styled";
 import { NavLink } from "../styles/userStyle/link.styled";
+import ShowStarRating from "./ShowStarRating";
 
 
 const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap,videoPath}) => {
 
   return (
     <>
-    { view==="customview" && <VideoGridWrapper col={columns} show={show} rg={rowgap} cg={colgap}>
+    { view==="customview" && 
+    
+    <CustomWrapper col={columns} show={show} rg={rowgap} cg={colgap}>
       
       {videos &&
         videos.map((ele) => (
@@ -24,12 +27,12 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap,v
               
             </div>
             <div className="del-div">
-                <button
+                <p
                   className="vid-del-btn"
                   onClick={(e) => handleVideoDelete(ele._id)}
                 >
                   Delete
-                </button>
+                </p>
                 <NavLink to={`${videoPath}/${ele._id}`}><button className="play-icon">Play</button></NavLink>
                
               </div>
@@ -38,13 +41,13 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap,v
             </div>
           </div>
         ))}
-    </VideoGridWrapper>}
+    </CustomWrapper>}
 
 {view==="linkview" && <VideoGridWrapper rg={rowgap} cg={colgap} col={columns} show={show}>
       
 {videos &&
   videos.map((ele) => (
-    <div key={ele._id} className="video-div">
+    <div key={ele._id} className="video-div-link">
      <NavLink to={`${videoPath}/${ele._id}`}>
 
       <div className="vid-img-div">
@@ -53,8 +56,11 @@ const VideoGrid = ({ videos,handleVideoDelete,show ,view,columns,rowgap,colgap,v
           alt="thumbnail"
           className="thumbnail-image"
         />
-         
+          
             <p className="time-div">{ele.time}</p>
+            <div>
+              <ShowStarRating rating={ele.rating} />
+            </div>
       </div>
       </NavLink>
       <div className="logo-with-channel">

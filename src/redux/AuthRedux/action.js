@@ -81,3 +81,16 @@ export const resetPassword=(payload)=>(dispatch)=>{
       return dispatch({type:types.RESET_PASSWORD_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
    })
 }
+
+
+export const editProfile=(payload,header)=>(dispatch)=>{
+ 
+  dispatch({type:types.EDIT_PROFILE_REQUEST});
+ return  axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/user/edit/details`,payload,header)
+  .then((res)=>{
+   return dispatch({type:types.EDIT_PROFILE_SUCCESS,payload:res.data,status:res.status})
+  })
+  .catch((err)=>{
+   return dispatch({type:types.EDIT_PROFILE_FAILURE,mesg:err.response.data.mesg,status:err.response.status})
+  })
+}

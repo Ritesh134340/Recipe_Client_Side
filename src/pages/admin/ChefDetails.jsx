@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { searchVideoFilter } from "../../redux/AdminRedux/action";
 import VideoGrid from "../../components/VideoGrid";
 import Search from "../../components/Search";
+import {AiOutlineVideoCameraAdd} from "react-icons/ai"
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 import AdminNav from "../../components/AdminNav";
 
@@ -26,7 +27,7 @@ const ChefDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const [payload, setPayload] = useState({});
-
+  
   const { byId, loading, videos, filteredVideos } = useSelector((state) => {
     return {
       byId: state.AdminReducer.byId,
@@ -35,7 +36,7 @@ const ChefDetails = () => {
       filteredVideos: state.AdminReducer.filteredVideos,
     };
   });
-
+  
   const token=useSelector((state)=>state.AuthReducer.token)
 
   useEffect(() => {
@@ -206,9 +207,8 @@ const ChefDetails = () => {
    
     dispatch(chefById(id,{headers:{'Authorization':`Bearer ${token}`}}));
   }, []);
-
- console.log(payload)
-
+let  imageUrl=byId && byId.banner
+ 
   return (
     <ChefDetailsWrapper showModal={showModal}>
       <AdminNav selected="home" />
@@ -217,17 +217,29 @@ const ChefDetails = () => {
       ) : (
         <BodyWrapper>
           <div className="banner-div">
-            <img src={byId.banner} alt="banner" className="banner-image" />
-          </div>
-          <div className="modal-btn-div">
+          
+          <div  className="banner-image-wrapper">
+            <img src={imageUrl} alt="" />
+           </div>
+
+            <div className="modal-btn-div">
+            <div className="search-wrapper">
             <Search
+              width="100%"
               placeholder="Search video by title"
               handleSearch={handleSearch}
             />
+            </div>
+           
             <button className="modal-btn" onClick={() => setShowModal(true)}>
               Add New Video
             </button>
+            <AiOutlineVideoCameraAdd className="video-icon" onClick={() => setShowModal(true)}/>
           </div>
+          </div>
+          
+        
+          <div className="video-grid-wrapp">
           <VideoGrid
             show={true}
             view="customview"
@@ -235,6 +247,8 @@ const ChefDetails = () => {
             handleVideoDelete={handleVideoDelete}
             videoPath="/showvideo"
           />
+          </div>
+         
 
           {filteredVideos.length === 0 && videos.length !== 0 && (
             <h3 className="no-data">

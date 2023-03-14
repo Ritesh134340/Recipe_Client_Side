@@ -7,6 +7,7 @@ import { NavLink } from "../../styles/userStyle/link.styled";
 import Loading from "../../components/Loading";
 import AdminNav from "../../components/AdminNav";
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
+import { Heading } from "../../components/Heading";
 
 const AdminHome = () => {
   const dispatch = useDispatch();
@@ -40,10 +41,7 @@ const AdminHome = () => {
 
   return (
           
-    <>
-    <div style={{paddingLeft:"30px",color:"#3A98B9",borderBottom:"0.5px solid #F5F5F5",marginBottom:"30px"}}>
-    <h1 >Recipe Dashboard</h1>
-    </div>
+   
     
     <AdminHomeWrapper>
          
@@ -51,21 +49,29 @@ const AdminHome = () => {
         {loading ? (
        <Loading />
      ) :  <BodyWrapper>
-      
-           <div className="search-holder">
-             <Search
+           <div className="heading-wrapper">
+           <Heading/>
+
+           
+            <div className="search-holder-main">
+            <Search
                handleSearch={handleSearch}
                placeholder="Search by channel or chef name"
-             />
+           width="100%"/>
+            </div>
+            
+          
            </div>
+          
+          
 
            <div>
              {filtered &&
                filtered.map((ele) => (
                  <div key={ele._id} className="indv-div-home">
                    <div className="logo-with-channel">
-                     <div className="profile-img">
-                       <img src={ele.logo} alt="profile" />
+                     <div className="profile-img" style={{backgroundImage:`url(${ele.logo})`}}>
+                      
                      </div>
                      <div>
                        <h3 className="channel-name">{ele.channel}</h3>
@@ -85,7 +91,7 @@ const AdminHome = () => {
            </div>
          </BodyWrapper>}
        </AdminHomeWrapper>
-    </>
+  
       
       
       

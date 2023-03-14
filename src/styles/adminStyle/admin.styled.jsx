@@ -3,82 +3,85 @@ import styled from "styled-components";
 
 export const AdminWrapper=styled.div`
 
-   .main-div{
-    display:flex;
-    gap:5px;
-   
-   }
-   .navigator{
-     width:215px;
-     height:500px;
-     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-     margin-top:30px;
-     padding-left:5px;
-     padding-right:5px;
-     margin-left:20px;
-     padding-top:25px;
-     border-radius:4px;
-    
+  box-sizing:border-box;
+  .admin-wrapper-main{
+   box-sizing:border-box;
+   display:flex;
+   margin-left:30px;
+   margin-top:35px;
+   padding:0px 12px;
+   border-radius:8px;
+   justify-content:center;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .admin-menu-wrapper{
+    display:none;
+  }
 
+   
+   .navigator{
+     box-sizing:border-box;
+     height:auto;
+     border-radius:4px;
    } 
+
    .common-sidebar-div{
-    
     display:flex;
     font-weight:500;
     gap:11px;
     margin:auto;
-    width:80%;
     border-radius:8px;
     padding:4px 10px;
     height:30px;
     align-items:center;
-    margin-bottom:5px;
-   
-    
-   }
-   .admin-body{
-       flex:1;
-       height:99.5vh;
-       overflow-y: scroll;
-       overflow-x:hidden ;
-   }
-   .log-out-div{
-    margin:auto;
-    margin-top:70px;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    padding-top:8px;
-    padding-bottom:8px;
-    border-radius:8px;
-    background-color:rgb(241 241 241);
+    margin-bottom:10px;
 
+    &:hover{
+      animation:tabAnimation .4s cubic-bezier(.25,.46,.45,.94) both
+    }
+    @keyframes tabAnimation
+    {
+      0%{
+      box-shadow:0 0 0 0 transparent
+      }
+    100%{
+      box-shadow:0 0 10px 0 rgba(0,0,0,.25)
+    }
+    }
    }
+   
    .log-out-main{
     display:flex;
+    margin:auto;
+    justify-content:center;
+    border-radius:5px;
+    background-color:#F6F7C1;
     cursor:pointer;
     align-items: center;
     gap:5px;
+    margin-top:50px;
+    margin-bottom:50px;
 
+    
    }
    .sign-out-icon{
      font-size:23px;
-     margin-top:0px;
-     color:rgb(120,115,116);
-     margin-bottom:0px;
+    
+     color:#E21818;
+    
    }
    .admin-logout-btn{
-    margin-top:0px;
-     margin-bottom:0px;
      outline:none;
      border:none;
-      color:rgb(120,115,116);
+      color:#E21818;
      cursor:pointer;
      font-weight:600;
      font-size:16px;
      font-family:sans-serif;
-     
+     margin-top:10px;
+     margin-bottom:10px;
   }
+
   .sidebar-profile{
      margin:auto;
     padding:0px 20px;
@@ -141,6 +144,82 @@ export const AdminWrapper=styled.div`
   .profile-img-side{
     width:100%;
     height:100%;
+  }
+ 
+
+  @media all and (max-width:1024px) and (min-width:769px){
+
+  .admin-wrapper-main{
+   margin-left:15px;
+   margin-top:35px;
+   padding:0px 12px;
+    }
+  
+  }
+
+
+  @media all and (max-width:768px) and (min-width:481px){
+
+    .admin-wrapper-main{
+   margin-left:15px;
+   margin-top:35px;
+   padding:0px 12px;
+    }
+    
+
+ 
+  }
+
+
+  @media all and (max-width:480px) and (min-width:279px){
+    background-color:white;
+    position:fixed;
+    top:0;
+    z-index:2;
+ 
+    .admin-wrapper-main{
+      position:absolute;
+       top:0; 
+      
+      transition:all 500ms ease;
+    left:${(props)=>props.navigator? "0% ": "-120%"};
+     z-index:99;
+      background-color:#F0EEED;
+      height:100vh;
+      border-radius:0px;
+      margin-top:0px;
+      margin-left:0px;
+      padding-top:20px ;
+      padding-left:25px;
+      padding-right:50px;
+    
+    }
+    .admin-menu-wrapper{
+      display:block;
+      width:100vw;
+      display:flex;
+      margin-top:8px;
+      align-items:center;
+      justify-content:flex-end;
+      box-sizing:border-box;
+      
+    }
+    .admin-menu-icon{
+      font-size:35px;
+      padding-right:8px;
+     
+    }
+    .admin-cross-icon{
+      font-size:35px;
+      padding-right:8px;
+
+  
+    }
+
+    .log-out-main{
+      margin-top:90px;
+    }
+    
   }
 `
 

@@ -5,19 +5,7 @@ import styled from "styled-components"
 
 const VideoPlayer = ({videoId}) => {
     
-    const opts = {
-      constrols:true,
-      playerVars: {
-        autoplay: 0,
-        controls: 1,
-        loop: 0,
-        modestbranding:0,
-        rel: 0,
-        showinfo: 1,
-  
-      }
-    };
-  
+
 
   return (
   

@@ -4,6 +4,8 @@ export const ShowUserVideoWrapper=styled.div`
       border:1px solid transparent;
       margin-top:70px;
       padding-bottom:30px;
+      min-height:100vh;
+   
       .dots-wrapper{
         position:relative;
       }
@@ -67,7 +69,7 @@ export const ShowUserVideoWrapper=styled.div`
        
       }
       .like-div{
-        border:1px solid red;
+   
         display:flex;
         align-items:center;
         gap:15px;
@@ -105,23 +107,23 @@ export const ShowUserVideoWrapper=styled.div`
   padding-left:8px;
 }
       .comment-input{
-        position:relative;
+        height:40px;
         border:none;
         outline:none;
-        vertical-align:top;
+        box-sizing:border-box;
+        padding-left:13px;
         padding-top:8px;
         font-family:'Roboto',sans-serif;
         font-weight:400;
         font-size:16px;
         padding-bottom:3px;
         width:100%;
-        margin-left:18px;
-        border-bottom:1px solid rgb(229,229,229);
-        display:inline-block;
+        box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+       
 
         &:focus{
           border-bottom:2px solid black;
-          transition:all 600ms ease;
+        
         }
 
       }
@@ -144,6 +146,7 @@ export const ShowUserVideoWrapper=styled.div`
        width:100%;
        margin-bottom:18px;
        margin-top:10px;
+       box-sizing:border-box;
       }
       .emoji-input-box{
         width:100%;
@@ -159,20 +162,16 @@ export const ShowUserVideoWrapper=styled.div`
         cursor:pointer;
         box-sizing:border-box;
         font-size:19px;
-      
-   
       }
       .emoji-wrapper{
         width:100%;
         box-sizing:border-box;
-         justify-content:center;
-        height:175px;
+        justify-content:center;
+        height:170px;
         display:flex;
-        gap:4px;
-        padding-top:10px;
+        gap:6px;
         flex-wrap:wrap;
-        overflow-y:scroll;
-        
+        overflow-y:scroll; 
       }
       .emoji-search-result-div{
         width:100%;
@@ -181,13 +180,16 @@ export const ShowUserVideoWrapper=styled.div`
       .emoji-container{
         position:absolute;
         left:0;
+        box-sizing:border-box;
         top:100%;
         width:400px;
         height:250px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
         background-color:white;
         border-radius:13px;
-        display:${(props)=>props.showEmoji ? "block": "none"}
+        display:${(props)=>props.showEmoji ? "block": "none"};
+        padding-bottom:15px;
+        
       }
       .emoji-icon{
         user-select:none;
@@ -205,6 +207,7 @@ export const ShowUserVideoWrapper=styled.div`
           display:flex;
           align-items:center;
           gap:23px;
+        
       }
       .comment-btn-div>p:nth-child(1){
         font-family:'Roboto',sans-serif;
@@ -236,15 +239,19 @@ export const ShowUserVideoWrapper=styled.div`
       }
       .comment-and-btn-wrapper{
         flex:1;
+        box-sizing:border-box;
        
       }
       .author-wrapper{
         display:flex;
+        gap:15px;
+        box-sizing:border-box;
         margin-top:20px;
+        align-items:centre;
         margin-bottom:25px;
       }
       .comment-btn-container{
-        margin-left:18px;
+        box-sizing:border-box;
         display:${(props)=>props.showCommentBx ? "block" : "none"}
        
       }
@@ -257,6 +264,7 @@ export const ShowUserVideoWrapper=styled.div`
         display:flex;
         padding-bottom:5px;
         margin-bottom:18px;
+       
       }
       .comment-author-image{
         display:inline-block;
@@ -270,19 +278,19 @@ export const ShowUserVideoWrapper=styled.div`
         
       }
       .comment-div{
-       padding-bottom:20%;;
+       padding-bottom:30%;
+       margin-top:20px;
       }
       .rating-div{
         margin-bottom:30px;
         display:flex;
         justify-content:space-between;
         align-items:center;
-        background-color:#EDF1D6;
+        background-color:#EEEEEE;
         padding:15px 5px;
         padding-left:8px;
         border-radius:8px;
         box-sizing:border-box;
-
       }
       
      .favourite-wrapper{
@@ -323,7 +331,7 @@ export const ShowUserVideoWrapper=styled.div`
       }
       .vid-des-div{
         padding:8px;
-        background-color:#EEEEEE;
+        background-color:#ECF2FF;
         transition:all 600ms ease-in-out;
         border-radius:5px;
       }
@@ -463,6 +471,10 @@ export const ShowUserVideoWrapper=styled.div`
    .player-wrapper{
     width:92%;
    }
+   .comment-div{
+       padding-bottom:33%;
+     
+      }
 }
 
 
@@ -471,6 +483,9 @@ export const ShowUserVideoWrapper=styled.div`
  .player-wrapper{
    width:94%;
  }
+ .comment-div{
+       padding-bottom:35%;
+      }
 }
 
 @media all and (max-width:480px) and (min-width:279px){
@@ -526,34 +541,25 @@ export const ShowUserVideoWrapper=styled.div`
   font-size:16px
  }
  .show-comment{
-
   padding-left:8px;
  }
- .comment-div{
-  border:1px solid red;
-  box-sizing:border-box;
- }
- .author-wrapper{
-  border:2px solid black;
-  box-sizing:border-box;
- }
- .comment-and-btn-wrapper{
-  border:1px solid yellow;
-  box-sizing:border-box;
- }
- .comment-btn-container{
-  border:1px solid purple;
-  box-sizing:border-box;
- }
- .comment-input{
-       box-sizing:border-box;
-       vertical-align:baseline;
-       padding-top:0px;
-        padding-bottom:0px;
-        margin-left:15px;
-      
-        display:block;
+ .emoji-wrapper{
+        height:150px;
       }
+ .emoji-container-main{
+        width:99%;
+      }
+   .comment-div{
+       padding-bottom:58%;
+      }
+ .emoji-container{
+        top:110%;
+        width:300px;
+        height:230px;
+        padding-bottom:0px;
+        border-radius:10px;
+      }
+
 } 
   
 `

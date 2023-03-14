@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {RiDeleteBin6Line} from "react-icons/ri"
+import { RiDeleteBin6Line } from "react-icons/ri";
 import {
   getVideoById,
   addComment,
@@ -20,10 +20,10 @@ import ShowStarRating from "../../components/ShowStarRating";
 import Footer from "../../components/Footer";
 import { BsEmojiLaughing } from "react-icons/bs";
 import { TimeCalculator } from "../../utils/calculateTime";
-import {uid} from "uid"
-import {BsThreeDotsVertical} from "react-icons/bs"
+import { uid } from "uid";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import emoji from "node-emoji";
-
+import axios from "axios";
 
 const UserShowVideo = () => {
   const { id } = useParams();
@@ -44,18 +44,48 @@ const UserShowVideo = () => {
   const profile = useSelector((state) => {
     return state.AuthReducer.profile;
   });
- console.log(videoData)
+
   const token = useSelector((state) => state.AuthReducer.token);
   const role = useSelector((state) => state.AuthReducer.role);
-  const [selected,setSelected]=useState("")
-  
- const handleDots=(id)=>{
-   selected==="" ?  setSelected(id) : setSelected("")
- 
- }
- const handleCommentDelete=(id)=>{
-  alert(id)
- }
+  const [selected, setSelected] = useState("");
+
+  const handleDots = (id) => {
+    selected === "" ? setSelected(id) : setSelected("");
+  };
+
+
+  const handleCommentDelete = (id) => {
+    axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/app/video/${videoData._id}/comment/${id}`,{headers:{'Authorization':`Bearer ${token}`}}).then((res)=>{
+      
+      if(res.status===200){
+        setCommentData(res.data.comments);
+        toast.success(res.data.mesg, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+      else{
+        toast.error('Something went wrong !', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    })
+  };
+
+
   const handleShowMore = () => {
     setShowMore(!showMore);
   };
@@ -179,48 +209,45 @@ const UserShowVideo = () => {
   const handleAddComment = () => {
     if (token && role === "user") {
       if (authorInputText !== "") {
-        const commentId=uid(16)
+        const commentId = uid(16);
         const payload = {
           videoId: videoData._id,
           comment: authorInputText,
           image: profile.image,
           name: profile.name,
-          commentId:commentId
+          commentId: commentId,
         };
-      
+
         dispatch(
-          addComment(payload, { headers: { Authorization: `Bearer ${token}` } }) )
-          .then((res)=>{
-            setCommentData(res.payload.comments)
-            setAuthorInputText("")
-            setShowEmojiContainer(false)
-            if(res.staus===200){
-              toast.success(res.payload.mesg, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            }
-            else{
-              toast.error(res.mesg, {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            }
-          
-          })
-       
+          addComment(payload, { headers: { Authorization: `Bearer ${token}` } })
+        ).then((res) => {
+          setCommentData(res.payload.comments);
+          setAuthorInputText("");
+          setShowEmojiContainer(false);
+          if (res.staus === 200) {
+            toast.success(res.payload.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            toast.error(res.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+        });
       } else {
         toast.error("Invalid input !", {
           position: "top-center",
@@ -246,9 +273,6 @@ const UserShowVideo = () => {
     }
   };
 
-
-
-
   useEffect(() => {
     dispatch(getVideoById(id)).then((res) => {
       setVideoData(res.payload.document);
@@ -258,16 +282,15 @@ const UserShowVideo = () => {
 
   useEffect(() => {
     if (emojiText === "") {
-      let emojiArray = emoji.search(emojiText);
-      let newemojiArray = emojiArray.splice(1122, 1217);
-      setEmojiSearchData(newemojiArray);
-    } else {
+      let emojiSearch = emoji.search("");
+      emojiSearch = emojiSearch.slice(1122, 1218);
+      setEmojiSearchData(emojiSearch);
+    }
+    if (emojiText !== "") {
       let emojiArray = emoji.search(emojiText);
       setEmojiSearchData(emojiArray);
     }
   }, [emojiText]);
-
-
 
   return (
     <>
@@ -277,7 +300,6 @@ const UserShowVideo = () => {
         modalShow={modalClose}
         showEmoji={showEmojiContainer}
       >
-       
         <Navbar />
         <div className="rating-modal">
           <div className="rating-modal-content">
@@ -321,12 +343,15 @@ const UserShowVideo = () => {
             <div className="player-div">
               <VideoPlayer videoId={videoData.videoId} />
             </div>
-             <div className="ch-log-nam-wrapper">
-              <div className="ch-show-log" style={{backgroundImage:`url(${videoData.channelLogo})`}}></div>
+            <div className="ch-log-nam-wrapper">
+              <div
+                className="ch-show-log"
+                style={{ backgroundImage: `url(${videoData.channelLogo})` }}
+              ></div>
               <div className="ch-show-nam">
                 <p>{videoData.channelName}</p>
               </div>
-             </div>
+            </div>
             <div>
               <p className="show-video-title">{videoData.title}</p>
             </div>
@@ -353,7 +378,12 @@ const UserShowVideo = () => {
             </div>
 
             <div className="comment-div">
-              <p className="show-comment">{commentData && commentData.comment?.length ? commentData.comment?.length : "0" } Comments</p>
+              <p className="show-comment">
+                {commentData && commentData.comment?.length
+                  ? commentData.comment?.length
+                  : "0"}{" "}
+                Comments
+              </p>
 
               <div className="author-wrapper">
                 <div
@@ -396,7 +426,7 @@ const UserShowVideo = () => {
                             <div className="emoji-search-result-div">
                               <div className="emoji-wrapper">
                                 {emojiSearchData &&
-                                  emojiSearchData.reverse().map((ele) => {
+                                  emojiSearchData.map((ele) => {
                                     return (
                                       <div
                                         className="emoji-holder-div"
@@ -438,49 +468,55 @@ const UserShowVideo = () => {
                 </div>
               </div>
 
-              
-                <div className="user-comment-main">
-                  {
-                    commentData && commentData.comment?.map((ele,index)=>
+              <div className="user-comment-main">
+                {commentData &&
+                  commentData.comment?.map((ele, index) => (
                     <div className="user-comment-div" key={ele.commentId}>
-                      
-                    <div
-                      className="comment-author-image"
-                      style={{ backgroundImage: `url(${ele.userImage})` }}
-                    >
+                      <div
+                        className="comment-author-image"
+                        style={{ backgroundImage: `url(${ele.userImage})` }}
+                      ></div>
 
-                    </div>
+                      <div className="comment-text-div">
+                        <div>
+                          <p className="user-name-text">
+                            {ele.userName}{" "}
+                            <span className="show-comment-time">
+                              {TimeCalculator(ele.postedAt)}
+                            </span>
+                          </p>
 
-                    <div className="comment-text-div">
-                   <div>
-                   <p className="user-name-text">
-                        {ele.userName}{" "}
-                        <span className="show-comment-time">{TimeCalculator(ele.postedAt)}</span>
-                      </p>
-                     
-                      <p className="user-comment-text">
-                       {ele.userComment}
-                      </p>
-                    
-                     
-                   </div>
-                      { (profile.id===ele.userId) && <div className="dots-wrapper">
-                        <BsThreeDotsVertical className="dots-icon" onClick={()=>handleDots(ele.commentId)}/>
-                        <div className="comment-del-div" style={{display:selected===ele.commentId?"block":"none"}}>
-                          <div className="del-icon-wrapper" onClick={()=>handleCommentDelete(ele.commentId)}>
-                          <RiDeleteBin6Line className="del-icon"/>
-                        <p className="del-text">Delete</p>
+                          <p className="user-comment-text">{ele.userComment}</p>
+                        </div>
+                        {profile.id === ele.userId && (
+                          <div className="dots-wrapper">
+                            <BsThreeDotsVertical
+                              className="dots-icon"
+                              onClick={() => handleDots(ele.commentId)}
+                            />
+                            <div
+                              className="comment-del-div"
+                              style={{
+                                display:
+                                  selected === ele.commentId ? "block" : "none",
+                              }}
+                            >
+                              <div
+                                className="del-icon-wrapper"
+                                onClick={() =>
+                                  handleCommentDelete(ele.commentId)
+                                }
+                              >
+                                <RiDeleteBin6Line className="del-icon" />
+                                <p className="del-text">Delete</p>
+                              </div>
+                            </div>
                           </div>
-                       
-                       </div>
-                       </div>}
+                        )}
+                      </div>
                     </div>
-                  </div>
-                    )
-                  }
-                 
-                </div>
-              
+                  ))}
+              </div>
             </div>
           </div>
         )}

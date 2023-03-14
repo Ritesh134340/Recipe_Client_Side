@@ -176,7 +176,7 @@ export const SubmitWrapper = styled.div`
     border: 1px solid transparent;
     border-radius: 7px;
     background-color: ${(props) =>
-      props.progress || props.progress ? "gray" : " rgb(13,71,161)"};
+      props.progress ? "gray" : " rgb(13,71,161)"};
     color: white;
     font-weight: bold;
     font-size: 17px;

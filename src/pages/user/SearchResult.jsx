@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from '../../components/Navbar';
 import VideoGrid from "../../components/VideoGrid"
+import Footer from '../../components/Footer';
 
 const SearchResult = () => {
     const dispatch=useDispatch()
@@ -39,14 +40,20 @@ const SearchResult = () => {
   
         <SearchResultWrapper>
             <Navbar/>
-            <div>
-              <p>Showing Search result for </p><span>{searchTerm}</span>
+            <div className="result-show">
+              <p>Showing Search result for : </p><span>{searchTerm}</span>
             </div>
             <div className="search-grid-wrapper">
-            <VideoGrid videos={searchData} view="linkview" videoPath="/uservideo" columns="4" />
+           { 
+           searchData && searchData.length>0 ? <VideoGrid videos={searchData} view="linkview" videoPath="/uservideo" columns="4" />
+                :
+            <div className="no-recipe-data">
+              <p className="no-recipe-text"><span>Recipe</span> not Available</p>
+            </div>
+            }
             </div>
            
-    
+        <Footer/>
         <ToastContainer/>
         </SearchResultWrapper>
      
