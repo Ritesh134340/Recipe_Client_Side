@@ -11,6 +11,7 @@ const initialState={
   loading:false,
   error:false,
   users:[],
+  homeData:{},
   filteredUser:[],
   allVideos:[],
   allFilteredVideos:[]
@@ -62,6 +63,33 @@ const reducer = (state=initialState,action) => {
   case types.DELETE_VIDEO_REQUEST: return {...state,error:false,loading:true}
   case types.DELETE_VIDEO_SUCCESS:return {...state,error:false,loading:false}
   case types.DELETE_VIDEO_FAILURE : return {...state,error:true,loading:false}
+
+
+  case types.GET_HOME_DATA_REQUEST: return {...state,error:false,loading:true}
+  case types.GET_HOME_DATA_SUCCESS:return {...state,homeData:payload.homeData,error:false,loading:false}
+  case types.GET_HOME_DATA_FAILURE : return {...state,error:true,loading:false}
+
+
+  case types.UPDATE_HOME_DATA_REQUEST: return {...state,error:false,loading:true}
+  case types.UPDATE_HOME_DATA_SUCCESS:return {...state,error:false,loading:false}
+  case types.UPDATE_HOME_DATA_FAILURE : return {...state,error:true,loading:false}
+
+
+  case types.ADD_HOME_DATA_REQUEST: return {...state,error:false,loading:true}
+  case types.ADD_HOME_DATA_SUCCESS:return {...state,error:false,loading:false}
+  case types.ADD_HOME_DATA_FAILURE : return {...state,error:true,loading:false}
+
+
+  case types.DELETE_HOME_DATA_REQUEST: return {...state,error:false,loading:true}
+  case types.DELETE_HOME_DATA_SUCCESS:return {...state,error:false,loading:false}
+  case types.DELETE_HOME_DATA_FAILURE : return {...state,error:true,loading:false}
+
+
+
+  case types.UPDATE_HEROIMAGE_DATA_REQUEST: return {...state,error:false,loading:true}
+  case types.UPDATE_HEROIMAGE_DATA_SUCCESS:return {...state,error:false,loading:false}
+  case types.UPDATE_HEROIMAGE_DATA_FAILURE : return {...state,error:true,loading:false}
+
 
 
   case types.GET_ALL_VIDEOS_AD_REQUEST : return {...state,loading:true,error:false};

@@ -36,7 +36,7 @@ export const LoadingWrapper = styled.div`
     width:88px;
     height:88px;
     box-sizing:border-box;
-    background-color:rgb(252,255,231);
+    background:linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
     border-top-color:red;
     border-bottom-color:blue;
     border-right-color:orange;

@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { searchVideoFilter } from "../../redux/AdminRedux/action";
 import VideoGrid from "../../components/VideoGrid";
 import Search from "../../components/Search";
-import {AiOutlineVideoCameraAdd} from "react-icons/ai"
+import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 import AdminNav from "../../components/AdminNav";
 
@@ -27,7 +27,7 @@ const ChefDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const [payload, setPayload] = useState({});
-  
+
   const { byId, loading, videos, filteredVideos } = useSelector((state) => {
     return {
       byId: state.AdminReducer.byId,
@@ -36,8 +36,8 @@ const ChefDetails = () => {
       filteredVideos: state.AdminReducer.filteredVideos,
     };
   });
-  
-  const token=useSelector((state)=>state.AuthReducer.token)
+
+  const token = useSelector((state) => state.AuthReducer.token);
 
   useEffect(() => {
     if (videoUrl !== "") {
@@ -107,7 +107,9 @@ const ChefDetails = () => {
     const length = Object.keys(payload).length;
 
     if (length > 0) {
-      dispatch(postVideo(payload,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
+      dispatch(
+        postVideo(payload, { headers: { Authorization: `Bearer ${token}` } })
+      ).then((res) => {
         if (res.status === 200) {
           toast.success(res.mesg, {
             position: "top-center",
@@ -123,7 +125,9 @@ const ChefDetails = () => {
           setVideoUrl("");
           setShowModal(false);
           const chefId = id;
-          dispatch(chefById(chefId,{headers:{'Authorization':`Bearer ${token}`}}));
+          dispatch(
+            chefById(chefId, { headers: { Authorization: `Bearer ${token}` } })
+          );
         } else if (res.status === 409) {
           toast.warn(res.mesg, {
             position: "top-center",
@@ -163,10 +167,14 @@ const ChefDetails = () => {
   };
 
   const handleVideoDelete = (videoId) => {
-    dispatch(deleteVideo(videoId,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
-      const chefId =id ;
+    dispatch(
+      deleteVideo(videoId, { headers: { Authorization: `Bearer ${token}` } })
+    ).then((res) => {
+      const chefId = id;
       if (res.successCode === 200) {
-        dispatch(chefById(chefId,{headers:{'Authorization':`Bearer ${token}`}})).then(() => {
+        dispatch(
+          chefById(chefId, { headers: { Authorization: `Bearer ${token}` } })
+        ).then(() => {
           toast.success("Video deleted successfully !", {
             position: "top-center",
             autoClose: 2000,
@@ -204,11 +212,10 @@ const ChefDetails = () => {
   };
 
   useEffect(() => {
-   
-    dispatch(chefById(id,{headers:{'Authorization':`Bearer ${token}`}}));
+    dispatch(chefById(id, { headers: { Authorization: `Bearer ${token}` } }));
   }, []);
-let  imageUrl=byId && byId.banner
- 
+  let imageUrl = byId && byId.banner;
+
   return (
     <ChefDetailsWrapper showModal={showModal}>
       <AdminNav selected="home" />
@@ -217,38 +224,38 @@ let  imageUrl=byId && byId.banner
       ) : (
         <BodyWrapper>
           <div className="banner-div">
-          
-          <div  className="banner-image-wrapper">
-            <img src={imageUrl} alt="" />
-           </div>
-
-            <div className="modal-btn-div">
-            <div className="search-wrapper">
-            <Search
-              width="100%"
-              placeholder="Search video by title"
-              handleSearch={handleSearch}
-            />
+            <div className="banner-image-wrapper">
+              <img src={imageUrl} alt="" />
             </div>
-           
-            <button className="modal-btn" onClick={() => setShowModal(true)}>
-              Add New Video
-            </button>
-            <AiOutlineVideoCameraAdd className="video-icon" onClick={() => setShowModal(true)}/>
           </div>
-          </div>
-          
-        
+
+          <div className="modal-btn-div">
+              <div className="search-wrapper">
+                <Search
+                  width="100%"
+                  placeholder="Search video by title"
+                  handleSearch={handleSearch}
+                />
+              </div>
+
+              <button className="modal-btn" onClick={() => setShowModal(true)}>
+                Add New Video
+              </button>
+              <AiOutlineVideoCameraAdd
+                className="video-icon"
+                onClick={() => setShowModal(true)}
+              />
+            </div>
+
           <div className="video-grid-wrapp">
-          <VideoGrid
-            show={true}
-            view="customview"
-            videos={filteredVideos}
-            handleVideoDelete={handleVideoDelete}
-            videoPath="/showvideo"
-          />
+            <VideoGrid
+              show={true}
+              view="customview"
+              videos={filteredVideos}
+              handleVideoDelete={handleVideoDelete}
+              videoPath="/showvideo"
+            />
           </div>
-         
 
           {filteredVideos.length === 0 && videos.length !== 0 && (
             <h3 className="no-data">

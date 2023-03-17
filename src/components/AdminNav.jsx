@@ -10,7 +10,8 @@ import {logoutUser} from "../redux/AuthRedux/action"
 import {HiOutlineUsers} from 'react-icons/hi'
 import {useNavigate} from "react-router-dom";
 import {AiOutlineMenu} from "react-icons/ai"
-import {RxCross2} from "react-icons/rx"
+import {RxCross2} from "react-icons/rx";
+import {GrDocumentUpdate} from "react-icons/gr"
 
 const AdminNav = ({ selected }) => {
   const navigate=useNavigate()
@@ -92,6 +93,18 @@ const AdminNav = ({ selected }) => {
       <HiOutlineUsers/>
 
       <p>Users</p>
+    </Tab>
+  </NavLink>
+
+
+  <NavLink to="/update">
+    <Tab
+      selected={selected === "update"}
+      className="common-sidebar-div"
+    >
+      <GrDocumentUpdate/>
+
+      <p>Update</p>
     </Tab>
   </NavLink>
 

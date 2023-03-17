@@ -8,8 +8,10 @@ export const AdminWrapper=styled.div`
    box-sizing:border-box;
    display:flex;
    margin-left:30px;
+
    margin-top:35px;
-   padding:0px 12px;
+   padding:0px 12px ;
+   padding-top:10px;
    border-radius:8px;
    justify-content:center;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

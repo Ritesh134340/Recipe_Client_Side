@@ -17,6 +17,7 @@ import UserShowVideo from "../pages/user/UserShowVideo";
 import SearchResult from "../pages/user/SearchResult";
 import ChannelDetails from "../pages/user/ChannelsDetails";
 import AllChannels from "../pages/user/AllChannels";
+import { Update } from "../pages/admin/Update";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -37,6 +38,7 @@ const AllRoutes = () => {
           </UserPrivate>
         }
       />
+      <Route path="/update" element={ <AdminPrivate><Update/></AdminPrivate>}/>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/searchresult" element={<SearchResult/>} />

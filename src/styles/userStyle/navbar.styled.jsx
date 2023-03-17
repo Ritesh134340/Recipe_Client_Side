@@ -19,9 +19,12 @@ export const NavWrapper=styled.div`
     }
     .chef-icon{
         font-size:40px;
-        background:#FCFFE7;
-        padding:8px;
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
         border-radius:50%;
+        /* border:2px solid ;border-image:linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+        border-image-slice:1; */
+        padding:8px;
+        
     }
     
    
@@ -52,18 +55,17 @@ export const NavWrapper=styled.div`
       background-color:rgb(0,0,0);
       background-color:rgba(0,0,0,0.5);
       top:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:8px;
+     
     }
     .details-close{
       cursor:pointer;
       font-size:25px;
-      padding-right:10px;
       padding-top:10px;
     }
     .nav-modal-content{
+      margin:auto;
+      box-sizing:border-box;
+      margin-top:6%;
       background-color:white;
       width:30%;
       border-radius:5px;
@@ -82,7 +84,7 @@ export const NavWrapper=styled.div`
     }
     .manage-acc{
       color:#9ca3af;
-      font-size:12px;
+      font-size:15px;
       letter-spacing:0.5px;
       line-height:16px;
       font-weight:400;
@@ -97,22 +99,30 @@ export const NavWrapper=styled.div`
      padding-left:8px;
      height:35px;
      margin-top:5px;
-     border:1px solid gray;
+     border:1px solid rgb(169,163,175);
      outline:none;
      margin-bottom:13px;
      border-radius:3px;
      box-sizing:border-box;
+     &:focus{
+     
+      border:1px solid rgb(26,148,236);
+      box-shadow: rgba(3,202,253, 0.12) 0px 2px 4px 0px, rgba(50,90,219, 0.32) 0px 2px 16px 0px;
+     }
 
     }
     .main-content>button{
       border-radius:6px;
-      padding:8px 13px;
+      padding:10px 13px;
       font-weight:bold;
       cursor:pointer;
-      border-none;
+      border:none;
       outline-none;
       display:block;
       margin-top:30px;
+      background: linear-gradient(135deg, black 0%, red 100%);
+      font-weight:600;
+      color:white;
     }
    
     .profile-name{
@@ -127,25 +137,27 @@ export const NavWrapper=styled.div`
       position:relative;
     }
     .edit-image-wrapper>img{
-      border:1px solid gray;
-      width:80px;
-      font-weight:500;
-      padding:3px;
-      height:80px;
+      width:120px;
+      height:120px;
       object-fit:top;
+      padding:4px;
       border-radius:5px;
+      background-clip: padding-box,border-box;
+      background-origin: padding-box,border-box;
+      background: linear-gradient(135deg, #00d2ff 0%, #3a47d5 100%);
+      
     }
     .change{
       position:absolute;
-      bottom:0%;
-      left:23%;
+      bottom:-7%;
+      left:26%;
       border:none;
       outline:none;
-      padding:3px 10px;
+      padding:8px 10px;
       font-size:13px;
       font-weight:600;
       border-radius:30px;
-      background-color:#3F497F;
+      background-color:rgb(51,88,218);
       color:white;
       cursor:pointer;
     }
@@ -186,6 +198,11 @@ export const NavWrapper=styled.div`
   .tabs-div{
     margin-right:15px;
   }
+  .nav-modal-content{
+      width:50%;
+      border-radius:5px;
+      padding:0px 25px 35px 25px;
+    }
 }
 
 
@@ -193,6 +210,11 @@ export const NavWrapper=styled.div`
   .tabs-div{
     margin-right:10px;
   }
+  .nav-modal-content{
+      width:53%;
+      border-radius:5px;
+      padding:0px 25px 35px 25px;
+    }
 }
 
 @media all and (max-width:480px) and (min-width:279px){
@@ -200,6 +222,11 @@ export const NavWrapper=styled.div`
     font-size:30px;
     color:#EB455F;
    }
+   .nav-modal-content{
+      width:97%;
+      border-radius:5px;
+      padding:0px 8px 35px 8px;
+    }
   
     .nav-left{
         margin-left:18px;
