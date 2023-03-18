@@ -56,7 +56,7 @@ export const InputWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    gap:20px;
+    gap: 20px;
     justify-content: center;
   }
   .facebook-btn-div p {

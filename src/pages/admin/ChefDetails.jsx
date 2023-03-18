@@ -230,22 +230,22 @@ const ChefDetails = () => {
           </div>
 
           <div className="modal-btn-div">
-              <div className="search-wrapper">
-                <Search
-                  width="100%"
-                  placeholder="Search video by title"
-                  handleSearch={handleSearch}
-                />
-              </div>
-
-              <button className="modal-btn" onClick={() => setShowModal(true)}>
-                Add New Video
-              </button>
-              <AiOutlineVideoCameraAdd
-                className="video-icon"
-                onClick={() => setShowModal(true)}
+            <div className="search-wrapper">
+              <Search
+                width="100%"
+                placeholder="Search video by title"
+                handleSearch={handleSearch}
               />
             </div>
+
+            <button className="modal-btn" onClick={() => setShowModal(true)}>
+              Add New Video
+            </button>
+            <AiOutlineVideoCameraAdd
+              className="video-icon"
+              onClick={() => setShowModal(true)}
+            />
+          </div>
 
           <div className="video-grid-wrapp">
             <VideoGrid

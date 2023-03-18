@@ -108,12 +108,14 @@ const RegisterChef = () => {
       <AdminNav selected="register" />
 
       <BodyWrapper>
-        <div  className="register-heading">
-        <h2>Register New Chef</h2>
+        <div className="register-heading">
+          <h2>Register New Chef</h2>
         </div>
-        
-        <div className="chef-main" style={{backgroundImage:"url(/illus.png"}} >
-      
+
+        <div
+          className="chef-main"
+          style={{ backgroundImage: "url(/illus.png" }}
+        >
           <div className="chef-form">
             <div className="uploaderWrapper">
               {image && (

@@ -1,50 +1,58 @@
-import React, { useRef,useEffect } from 'react'
-import {useNavigate} from "react-router-dom";
-import {FcGoogle} from "react-icons/fc";
-import {BsFacebook} from "react-icons/bs"
-import { HeadingWrapper, SignupImage , InputWrapper, MainDiv, NavLink, SignupWrapper, SubmitWrapper }  from "../../styles/userStyle/signup.style"
-import { useState } from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-import {signupUser} from "../../redux/AuthRedux/action"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {SiCodechef} from "react-icons/si";
-import Navbar from '../../components/Navbar';
+import React, { useRef} from "react";
+import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
+import {
+  HeadingWrapper,
+  SignupImage,
+  InputWrapper,
+  MainDiv,
+  NavLink,
+  SignupWrapper,
+  SubmitWrapper,
+} from "../../styles/userStyle/signup.style";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../../redux/AuthRedux/action";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { SiCodechef } from "react-icons/si";
+import Navbar from "../../components/Navbar";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
-import Loading from '../../components/Loading';
-import {HiOutlineUserCircle} from "react-icons/hi"
+import Loading from "../../components/Loading";
+import { HiOutlineUserCircle } from "react-icons/hi";
 import storage from "../../utils/firebaseStorage";
-import {getDownloadURL,ref,uploadBytesResumable} from "firebase/storage";
-import {uid} from "uid"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { uid } from "uid";
 
 const Signup = () => {
-  const navigate=useNavigate()
-  const dispatch=useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
-  const [name,setName]=useState("")
-  const [email,setEmail]=useState("")
-  const [gender,setGender]=useState("")
-  const [password,setPassword]=useState("")
-  const ImageRef=useRef(null)
-  const [image,setImage]=useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [password, setPassword] = useState("");
+  const ImageRef = useRef(null);
+  const [image, setImage] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const {REACT_APP_SERVER_ADDRESS}=process.env
-  const imageUrl=image && URL.createObjectURL(image)
-  
+  const { REACT_APP_SERVER_ADDRESS } = process.env;
+  const imageUrl = image && URL.createObjectURL(image);
 
-  const {loading}=useSelector((state)=>{return {loading:state.AuthReducer.loading}})
+  const { loading } = useSelector((state) => {
+    return { loading: state.AuthReducer.loading };
+  });
 
+  const handleUpload = () => {
+    ImageRef.current.click();
+  };
 
-  const handleUpload=()=>{
-       ImageRef.current.click()
-  }
-
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(!image){
+    if (!image) {
       toast.warn("Please select profile image !", {
         position: "top-center",
         autoClose: 2000,
@@ -54,11 +62,10 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "colored",
-        });
-    }
-    else if( name!=="" && email!=="" && password!=="" && gender){
-      const fileName=uid()+image.name;
-      const storageRef=ref(storage,`profile/${fileName}`)
+      });
+    } else if (name !== "" && email !== "" && password !== "" && gender) {
+      const fileName = uid() + image.name;
+      const storageRef = ref(storage, `profile/${fileName}`);
 
       const uploadTask = uploadBytesResumable(storageRef, image);
 
@@ -75,20 +82,17 @@ const Signup = () => {
           console.log(error);
         },
         () => {
-         
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            
-            const payload={
-              name:name,
-              image:downloadURL,
-              gender:gender,
-              email:email,
-              password:password
-            }
-            setShowProgress(false)
-          dispatch(signupUser(payload)).then((res)=>{
-               
-               if(res.status===201){
+            const payload = {
+              name: name,
+              image: downloadURL,
+              gender: gender,
+              email: email,
+              password: password,
+            };
+            setShowProgress(false);
+            dispatch(signupUser(payload)).then((res) => {
+              if (res.status === 201) {
                 toast.success(res.payload.mesg, {
                   position: "top-center",
                   autoClose: 2000,
@@ -98,20 +102,16 @@ const Signup = () => {
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
-                  });
-                  setImage("")
-                  setEmail("")
-                  setPassword("")
-                  setName("")
-                 
-                    setTimeout(()=>{
-                      navigate("/")
-                    },2000)
-                  
-               }
-               
-               else if(res.err===409){
-                
+                });
+                setImage("");
+                setEmail("");
+                setPassword("");
+                setName("");
+
+                setTimeout(() => {
+                  navigate("/");
+                }, 2000);
+              } else if (res.err === 409) {
                 toast.warn(res.mesg, {
                   position: "top-center",
                   autoClose: 2000,
@@ -121,9 +121,8 @@ const Signup = () => {
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
-                  });
-               }
-               else{
+                });
+              } else {
                 toast.error(res.mesg, {
                   position: "top-center",
                   autoClose: 2000,
@@ -133,16 +132,13 @@ const Signup = () => {
                   draggable: true,
                   progress: undefined,
                   theme: "colored",
-                  });
-               }
-            })
-          })
-        
+                });
+              }
+            });
+          });
         }
       );
-  
-    }
-    else{
+    } else {
       toast.error("All fields are required !", {
         position: "top-center",
         autoClose: 2000,
@@ -152,71 +148,102 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "colored",
-        });
+      });
     }
-    
-  }
+  };
 
-  const handleGoogleSignup=(e)=>{
-    e.preventDefault()
-    window.open(`${REACT_APP_SERVER_ADDRESS}/auth/google`,'_self');
-
- }
- const handleFacebookLogin = (e) => {
-  e.preventDefault();
-  window.open(`${REACT_APP_SERVER_ADDRESS}/auth/facebook`, "_self");
-};
+  const handleGoogleSignup = (e) => {
+    e.preventDefault();
+    window.open(`${REACT_APP_SERVER_ADDRESS}/auth/google`, "_self");
+  };
+  const handleFacebookLogin = (e) => {
+    e.preventDefault();
+    window.open(`${REACT_APP_SERVER_ADDRESS}/auth/facebook`, "_self");
+  };
 
   return (
     <>
-    <Navbar/>
-      <div> 
-     { loading ? <Loading/> : <SignupWrapper>
-        <div className="logo-in-log">
-      
-      <SiCodechef className="logo-sign"/>
- 
-      <h1>Recipe</h1></div>
-        <HeadingWrapper>
-          <h1>Sign Up</h1>
-         
-         <MainDiv>
-       
-         <SignupImage>
-          <div onClick={handleUpload}>
-            { !imageUrl && <HiOutlineUserCircle className="user-icon"/> }
-            { imageUrl && <img src={imageUrl} alt="profile" />}
-          </div>
-          {showProgress && (
-              <div className="progress-main">
-                <div
-                  style={{
-                    height: "15px",
-                    width: `${progress}%`,
-                   borderRadius:"6px",
-                    backgroundColor: "rgb(41 182 218)",
-                  }}
-                ></div><p className="percentage">{`${progress}%`}</p>
-              </div>
-            )}
-         </SignupImage>
+      <Navbar />
+      <div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <SignupWrapper>
+            <div className="logo-in-log">
+              <SiCodechef className="logo-sign" />
 
-         <form >
-          <InputWrapper isFocus={isFocus} showPass={showPass}>
-         <input type="file" hidden ref={ImageRef} onChange={(e)=>setImage(e.target.files[0])}/>
-          <label>Full Name</label><br/>
-           <input className="em-inp" value={name} type="text" onChange={(e)=>setName(e.target.value)}></input><br/>
-           <label>Gender</label><br/>
-           <select onChange={(e)=>setGender(e.target.value)} style={{borderRadius:"5px",height:"35px",width:"85px",fontFamily:"sans-serif"}}className="em-inp">
-            <option value="#">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-           </select>
-           <br/>
-           <label>Email</label><br/>
-           <input className="em-inp" value={email} type="email" onChange={(e)=>setEmail(e.target.value)}></input><br/>
-           <label>Password</label><br/>
-           <div className="pass-inp-div">
+              <h1>Recipe</h1>
+            </div>
+            <HeadingWrapper>
+              <h1>Sign Up</h1>
+
+              <MainDiv>
+                <SignupImage>
+                  <div onClick={handleUpload}>
+                    {!imageUrl && <HiOutlineUserCircle className="user-icon" />}
+                    {imageUrl && <img src={imageUrl} alt="profile" />}
+                  </div>
+                  {showProgress && (
+                    <div className="progress-main">
+                      <div
+                        style={{
+                          height: "15px",
+                          width: `${progress}%`,
+                          borderRadius: "6px",
+                          backgroundColor: "rgb(41 182 218)",
+                        }}
+                      ></div>
+                      <p className="percentage">{`${progress}%`}</p>
+                    </div>
+                  )}
+                </SignupImage>
+
+                <form>
+                  <InputWrapper isFocus={isFocus} showPass={showPass}>
+                    <input
+                      type="file"
+                      hidden
+                      ref={ImageRef}
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
+                    <label>Full Name</label>
+                    <br />
+                    <input
+                      className="em-inp"
+                      value={name}
+                      type="text"
+                      onChange={(e) => setName(e.target.value)}
+                    ></input>
+                    <br />
+                    <label>Gender</label>
+                    <br />
+                    <select
+                      onChange={(e) => setGender(e.target.value)}
+                      style={{
+                        borderRadius: "5px",
+                        height: "35px",
+                        width: "85px",
+                        fontFamily: "sans-serif",
+                      }}
+                      className="em-inp"
+                    >
+                      <option value="#">Select</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                    <br />
+                    <label>Email</label>
+                    <br />
+                    <input
+                      className="em-inp"
+                      value={email}
+                      type="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    ></input>
+                    <br />
+                    <label>Password</label>
+                    <br />
+                    <div className="pass-inp-div">
                       <input
                         className="pass-inp"
                         vlaue={password}
@@ -238,48 +265,55 @@ const Signup = () => {
                         />
                       )}
                     </div>
-           <SubmitWrapper progress={showProgress} submitting={loading}>
-           <button disabled={showProgress || loading} onClick={handleSubmit} >{showProgress ? "Image Uploading... ": "Submit"}</button>
-           
-           </SubmitWrapper>
-           <div className="google-btn-wrapper">
-           <div  className="or-div">
-            <h3>OR</h3>
-           </div>
-
-           <div className="google-btn-div" >
-            <span><FcGoogle className="google-icon"/></span>
-           <button onClick={handleGoogleSignup}>SIGN UP WITH GOOGLE</button>
-           </div>
-
-           <div className="facebook-btn-div">
-                        <div className="fb-icon-wrapper"onClick={handleFacebookLogin}>
-                        <span>
-                          <BsFacebook className="fb-icon" />
-                        </span>
-                        <p >SIGNUP WITH FACEBOOK</p>
-                        </div>
-                        
+                    <SubmitWrapper progress={showProgress} submitting={loading}>
+                      <button
+                        disabled={showProgress || loading}
+                        onClick={handleSubmit}
+                      >
+                        {showProgress ? "Image Uploading... " : "Submit"}
+                      </button>
+                    </SubmitWrapper>
+                    <div className="google-btn-wrapper">
+                      <div className="or-div">
+                        <h3>OR</h3>
                       </div>
-   
-          </div>
-          </InputWrapper>
-           
-         </form>
-       
-         <h5>Already have an account ?<NavLink to="/login">Sign In</NavLink></h5> 
 
-         </MainDiv>
-         
-         </HeadingWrapper>
-       
-      </SignupWrapper>}
-      <ToastContainer/>
+                      <div className="google-btn-div">
+                        <span>
+                          <FcGoogle className="google-icon" />
+                        </span>
+                        <button onClick={handleGoogleSignup}>
+                          SIGN UP WITH GOOGLE
+                        </button>
+                      </div>
+
+                      <div className="facebook-btn-div">
+                        <div
+                          className="fb-icon-wrapper"
+                          onClick={handleFacebookLogin}
+                        >
+                          <span>
+                            <BsFacebook className="fb-icon" />
+                          </span>
+                          <p>SIGNUP WITH FACEBOOK</p>
+                        </div>
+                      </div>
+                    </div>
+                  </InputWrapper>
+                </form>
+
+                <h5>
+                  Already have an account ?
+                  <NavLink to="/login">Sign In</NavLink>
+                </h5>
+              </MainDiv>
+            </HeadingWrapper>
+          </SignupWrapper>
+        )}
+        <ToastContainer />
       </div>
     </>
-         
-  
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

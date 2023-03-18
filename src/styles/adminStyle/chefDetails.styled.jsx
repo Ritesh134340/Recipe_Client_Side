@@ -10,7 +10,7 @@ export const ChefDetailsWrapper = styled.div`
     width: 100%;
   }
   .banner-div {
-  box-sizing:border-box;
+    box-sizing: border-box;
   }
   .banner-image-wrapper {
     margin: auto;
@@ -28,7 +28,7 @@ export const ChefDetailsWrapper = styled.div`
     z-index: 1;
     box-sizing: border-box;
     padding-bottom: 38px;
-    padding-top:15px;
+    padding-top: 15px;
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -158,10 +158,10 @@ export const ChefDetailsWrapper = styled.div`
     }
 
     .modal-btn-div {
-    padding-bottom: 58px;
-     padding-top:45px;
-     background-color:white;
-  }
+      padding-bottom: 58px;
+      padding-top: 45px;
+      background-color: white;
+    }
 
     .modal-btn {
       margin: auto;
@@ -185,10 +185,10 @@ export const ChefDetailsWrapper = styled.div`
       margin-top: 80px;
     }
     .modal-btn-div {
-    padding-bottom: 58px;
-     padding-top:45px;
-     background-color:white;
-  }
+      padding-bottom: 58px;
+      padding-top: 45px;
+      background-color: white;
+    }
 
     .modal-btn {
       margin: auto;
@@ -204,16 +204,15 @@ export const ChefDetailsWrapper = styled.div`
 
   @media all and (max-width: 480px) and (min-width: 279px) {
     gap: 0px;
-   box-sizing:border-box;
- 
+    box-sizing: border-box;
+
     .video-icon {
       display: block;
       font-size: 25px;
       margin-right: 10px;
       cursor: pointer;
     }
-   
-    
+
     .video-grid-wrapp {
       width: 100%;
       margin: auto;
@@ -226,15 +225,13 @@ export const ChefDetailsWrapper = styled.div`
       width: 65%;
       margin-top: 80px;
     }
-    .banner-div{
-      margin-top:55px;
-     
+    .banner-div {
+      margin-top: 55px;
     }
     .modal-btn-div {
-    padding-bottom:35px;
-    top:40px;
-  
-  }
+      padding-bottom: 35px;
+      top: 40px;
+    }
 
     .modal-btn {
       display: none;

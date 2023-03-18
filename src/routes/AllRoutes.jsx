@@ -38,12 +38,19 @@ const AllRoutes = () => {
           </UserPrivate>
         }
       />
-      <Route path="/update" element={ <AdminPrivate><Update/></AdminPrivate>}/>
+      <Route
+        path="/update"
+        element={
+          <AdminPrivate>
+            <Update />
+          </AdminPrivate>
+        }
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/searchresult" element={<SearchResult/>} />
-      <Route path="/allchannels" element={<AllChannels/>} />
-      <Route path="/channeldetails/:id" element={<ChannelDetails/>} />
+      <Route path="/searchresult" element={<SearchResult />} />
+      <Route path="/allchannels" element={<AllChannels />} />
+      <Route path="/channeldetails/:id" element={<ChannelDetails />} />
       <Route
         path="/newchef"
         element={
@@ -77,20 +84,35 @@ const AllRoutes = () => {
         }
       />
 
-<Route
+      <Route
         path="/users"
         element={
           <AdminPrivate>
-            <Users/>
+            <Users />
           </AdminPrivate>
         }
       />
 
-      <Route path="/uservideo/:id" element={<UserShowVideo/>}/>
+      <Route path="/uservideo/:id" element={<UserShowVideo />} />
 
-      <Route path="/redirect" element={<GoogleRedirect/>} />
+      <Route path="/redirect" element={<GoogleRedirect />} />
 
-      <Route path="*" element={<h3 style={{display:"flex",alignItems:"center",justifyContent:"center",height:"80vh",color:"gray"}}>Page Not Found...!</h3>}/>
+      <Route
+        path="*"
+        element={
+          <h3
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "80vh",
+              color: "gray",
+            }}
+          >
+            Page Not Found...!
+          </h3>
+        }
+      />
     </Routes>
   );
 };

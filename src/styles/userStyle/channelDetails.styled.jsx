@@ -1,12 +1,11 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const ChannelDetailsWrapper=styled.div`
-  margin-top:80px;
-  .channeldetails-wrapper-main{
+export const ChannelDetailsWrapper = styled.div`
+  margin-top: 80px;
+  .channeldetails-wrapper-main {
     width: 85%;
-    box-sizing:border-box;
-    margin:auto;
-
+    box-sizing: border-box;
+    margin: auto;
   }
   .banner-div {
     margin: auto;
@@ -16,15 +15,13 @@ export const ChannelDetailsWrapper=styled.div`
     display: block;
     margin: auto;
     height: auto;
-    width:100%;
-   
+    width: 100%;
   }
   .modal-btn-div {
-    margin:auto;
+    margin: auto;
     margin-top: 70px;
     margin-bottom: 80px;
-    width:50%;
-    
+    width: 50%;
   }
 
   .no-data {
@@ -32,12 +29,11 @@ export const ChannelDetailsWrapper=styled.div`
     text-align: center;
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: 0.5px;  
+    letter-spacing: 0.5px;
   }
 
   .query {
     color: green;
-  
   }
 
   .label {
@@ -49,8 +45,6 @@ export const ChannelDetailsWrapper=styled.div`
     display: block;
     letter-spacing: 0.6px;
   }
- 
-  
 
   .input {
     width: 100%;
@@ -62,48 +56,41 @@ export const ChannelDetailsWrapper=styled.div`
     border: 1px solid gray;
     padding-left: 8px;
   }
-  
-  @media all and (max-width:1024px) and (min-width:769px){
-    .channeldetails-wrapper-main{
-  width:98%;
-  padding-bottom:40px;
 
- }
+  @media all and (max-width: 1024px) and (min-width: 769px) {
+    .channeldetails-wrapper-main {
+      width: 98%;
+      padding-bottom: 40px;
+    }
 
- .no-data {
-    padding-bottom:218px;
-  }
-  .modal-btn-div {
-    width:65%;
-  }
-}
-
-
-@media all and (max-width:768px) and (min-width:481px){
-  .channeldetails-wrapper-main{
-  width:98%;
-  padding-bottom:40px;
- 
- }
- .no-data {
-    padding-bottom:58px;
-  }
-  .modal-btn-div {
-    width:65%;
+    .no-data {
+      padding-bottom: 218px;
+    }
+    .modal-btn-div {
+      width: 65%;
+    }
   }
 
-}
-
-@media all and (max-width:480px) and (min-width:279px){
- .channeldetails-wrapper-main{
-  width:99%;
-  padding-bottom:40px;
-
- }
- .modal-btn-div {
-    width:95%;
+  @media all and (max-width: 768px) and (min-width: 481px) {
+    .channeldetails-wrapper-main {
+      width: 98%;
+      padding-bottom: 40px;
+    }
+    .no-data {
+      padding-bottom: 58px;
+    }
+    .modal-btn-div {
+      width: 65%;
+    }
   }
-}
 
- 
-`
+  @media all and (max-width: 480px) and (min-width: 279px) {
+    .channeldetails-wrapper-main {
+      width: 99%;
+      padding-bottom: 40px;
+    }
+    .modal-btn-div {
+      width: 95%;
+    }
+  }
+`;

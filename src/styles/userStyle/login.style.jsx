@@ -22,16 +22,15 @@ export const LoginWrapper = styled.div`
     display: ${(props) => (props.showForgotModal ? "block" : "none")};
   }
   .otp-input-div {
-
-    margin-top:15px;
-    margin-bottom:10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
   .otp-input-wrapper {
     display: flex;
     justify-content: space-evenly;
     width: 60%;
     margin: auto;
-   margin-bottom:20px;
+    margin-bottom: 20px;
   }
   .otp-inp-box {
     text-align: center;
@@ -52,7 +51,7 @@ export const LoginWrapper = styled.div`
     display: block;
     margin: auto;
     cursor: pointer;
-    background-color: rgb(13,71,161);
+    background-color: rgb(13, 71, 161);
     color: white;
     font-size: 15px;
     border-radius: 5px;
@@ -95,7 +94,7 @@ export const LoginWrapper = styled.div`
     display: block;
     margin: auto;
     cursor: pointer;
-    background-color: rgb(13,71,161);
+    background-color: rgb(13, 71, 161);
     color: white;
     font-size: 15px;
     border-radius: 5px;
@@ -129,10 +128,9 @@ export const LoginWrapper = styled.div`
       margin-bottom: 50px;
     }
     .forgot-modal-main {
-    margin-top: 80px;
-    width: 60%;
-
-  }
+      margin-top: 80px;
+      width: 60%;
+    }
   }
 
   @media all and (max-width: 768px) and (min-width: 481px) {
@@ -141,21 +139,19 @@ export const LoginWrapper = styled.div`
       margin-bottom: 50px;
     }
     .forgot-modal-main {
-    margin-top: 80px;
-    width: 58%;
-
-  }
+      margin-top: 80px;
+      width: 58%;
+    }
   }
 
   @media all and (max-width: 480px) and (min-width: 279px) {
     width: 95%;
 
     .forgot-modal-main {
-    margin-top: 80px;
-    width: 85%;
+      margin-top: 80px;
+      width: 85%;
+    }
   }
-  }
-  
 `;
 
 export const InputWrapper = styled.div`

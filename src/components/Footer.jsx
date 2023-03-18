@@ -11,46 +11,40 @@ const Footer = () => {
     <FooterWrapper>
       <div className="footer-main">
         <div className="icon-div">
-        {/* <div className="made-india-div">
+          {/* <div className="made-india-div">
             <p>Made with ❤️ in India.</p>
           </div> */}
-            <div className="recipe-icon-wrapper">
-            <SiCodechef  className="chef-icon" />
+          <div className="recipe-icon-wrapper">
+            <SiCodechef className="chef-icon" />
             <p className="chef-icon-p">Recipe.com</p>
-            </div>
-
-           
-        
+          </div>
         </div>
-
-
 
         <div className="left-and-right">
           <div className="left-div">
             <div className="about">
               <h3>About</h3>
               <p>
-                Welcome to our website! Our
-                site is powered by the MERN stack, and we utilize the YouTube
-                API to bring you the latest and most popular recipe videos on
-                the web.
+                Welcome to our website! Our site is powered by the MERN stack,
+                and we utilize the YouTube API to bring you the latest and most
+                popular recipe videos on the web.
               </p>
               <p>
-                Our user-friendly interface makes it easy to find and save the content you love.
+                Our user-friendly interface makes it easy to find and save the
+                content you love.
               </p>
 
               <p>
-                Thank you for choosing our website.we look
-                forward to bringing you even more great content in the future!
+                Thank you for choosing our website.we look forward to bringing
+                you even more great content in the future!
               </p>
             </div>
           </div>
           <div className="mid-div">
-          
             <div className="projects">
               <h3>More Projects</h3>
               <div className="project-link">
-              <FaExternalLinkAlt className="link-icon" />
+                <FaExternalLinkAlt className="link-icon" />
                 <p>
                   <a href="https://ritesh134340.github.io" target="_blank">
                     Visit Now{" "}
@@ -71,13 +65,11 @@ const Footer = () => {
                     href={"mailto:riteshkumar134340@gmail.com"}
                     target="_blank"
                   >
-                   ritesh134340@gmail.com
+                    ritesh134340@gmail.com
                   </a>
                 </p>
               </div>
             </div>
-        
-           
           </div>
 
           <div className="right-div">
@@ -100,20 +92,18 @@ const Footer = () => {
                   <BsTelegram className="social-common tele" />
                 </a>
               </div>
-            
             </div>
             <div className="qr-div">
-                <img
-                  className="qr-image"
-                  src="https://firebasestorage.googleapis.com/v0/b/recipe-238bd.appspot.com/o/qrcode%2Ftele.png?alt=media&token=1de5a40b-7249-4000-8ff1-81e5668818ee"
-                  alt=""
-                />
-              </div>
+              <img
+                className="qr-image"
+                src="https://firebasestorage.googleapis.com/v0/b/recipe-238bd.appspot.com/o/qrcode%2Ftele.png?alt=media&token=1de5a40b-7249-4000-8ff1-81e5668818ee"
+                alt=""
+              />
+            </div>
           </div>
         </div>
 
         <div className="made-with">
-       
           <div>
             <p>Copyright &copy; 2023 All Rights Reserved by Recipe.</p>
           </div>

@@ -2,7 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import { FavouriteWrapper } from "../../styles/userStyle/favourite.styled";
 import Navbar from "../../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { getFavourite,filterFavourite, removeFavourite } from "../../redux/AppRedux/action";
+import {
+  getFavourite,
+  filterFavourite,
+  removeFavourite,
+} from "../../redux/AppRedux/action";
 import Loading from "../../components/Loading";
 import VideoPlayer from "../../components/VideoPlayer";
 
@@ -20,19 +24,29 @@ const Favourite = () => {
   const token = useSelector((state) => state.AuthReducer.token);
   const loading = useSelector((state) => state.AppReducer.loading);
 
-  const {filteredFavourite,favouriteVideo}=useSelector((state)=>{return {filteredFavourite:state.AppReducer.filteredFavourite,favouriteVideo:state.AppReducer.favouriteVideo}})
+  const { filteredFavourite, favouriteVideo } = useSelector((state) => {
+    return {
+      filteredFavourite: state.AppReducer.filteredFavourite,
+      favouriteVideo: state.AppReducer.favouriteVideo,
+    };
+  });
 
   const handleVideoSearch = (searchTerm) => {
-    const filtered=favouriteVideo && favouriteVideo.filter((ele)=>
-      ele.title.toLowerCase().includes(searchTerm.toLowerCase()) ||  ele.channelName.toLowerCase().includes(searchTerm.toLowerCase()) || ele.chefName.toLowerCase().includes(searchTerm.toLowerCase()) 
-    )
+    const filtered =
+      favouriteVideo &&
+      favouriteVideo.filter(
+        (ele) =>
+          ele.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          ele.channelName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          ele.chefName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
-    dispatch(filterFavourite(filtered))
+    dispatch(filterFavourite(filtered));
   };
 
   useEffect(() => {
     const payload = { headers: { Authorization: `Bearer ${token}` } };
-    dispatch(getFavourite(payload))
+    dispatch(getFavourite(payload));
   }, []);
 
   const handleChange = (src, title) => {
@@ -44,8 +58,7 @@ const Favourite = () => {
     const payload = { headers: { Authorization: `Bearer ${token}` } };
     dispatch(removeFavourite(id, payload)).then((res) => {
       if (res.status === 200) {
-        dispatch(getFavourite(payload))
-        .then((res)=>{
+        dispatch(getFavourite(payload)).then((res) => {
           toast.success("Removed from favourite list !", {
             position: "top-center",
             autoClose: 2000,
@@ -56,8 +69,7 @@ const Favourite = () => {
             progress: undefined,
             theme: "colored",
           });
-        })
-       
+        });
       } else {
         toast.error(res.mesg, {
           position: "top-center",
@@ -74,35 +86,33 @@ const Favourite = () => {
   };
 
   return (
-  
-    
-      <FavouriteWrapper>
-          <Navbar />
-        <div className="favourite-heading-wrapper">
-          <h2 ref={videoRef}>Favourite Recipe List</h2>
+    <FavouriteWrapper>
+      <Navbar />
+      <div className="favourite-heading-wrapper">
+        <h2 ref={videoRef}>Favourite Recipe List</h2>
+      </div>
+
+      {videoId && (
+        <div className="player-wrapper">
+          <VideoPlayer videoId={videoId} height="450px" />
+          <p className="player-title">{title}</p>
         </div>
+      )}
 
-      
-         {videoId && <div className="player-wrapper">
-            <VideoPlayer videoId={videoId} height="450px" />
-            <p className="player-title">{title}</p>
-          </div>}
-       
+      <div className="search-box-wrapper">
+        <Search
+          width="100%"
+          placeholder="Search video by title or channel"
+          handleSearch={handleVideoSearch}
+        />
+      </div>
 
-        <div className="search-box-wrapper">
-          <Search
-            width="100%"
-            placeholder="Search video by title or channel"
-            handleSearch={handleVideoSearch}
-          />
-        </div>
-
-        {loading ? (
-          <Loading />
-        ) : (
-           filteredFavourite.length>0 && <div className="favourite-grid-wrapper">
-
-            {filteredFavourite  && 
+      {loading ? (
+        <Loading />
+      ) : (
+        filteredFavourite.length > 0 && (
+          <div className="favourite-grid-wrapper">
+            {filteredFavourite &&
               filteredFavourite.map((ele, index) => (
                 <div key={ele._id} className="ele-wrapper">
                   <div
@@ -122,31 +132,25 @@ const Favourite = () => {
                     Remove
                   </button>
                 </div>
- 
-  
-
-
               ))}
-
-              
-            
           </div>
-          
-        )}
+        )
+      )}
 
-        {(filteredFavourite.length===0 || favouriteVideo.length===0) && <div className="fav-data-div">
-          
-          <p><span>Data</span>not available ...</p>
-        </div>}
-
-
-        <div className="footer-wrapper-div">
-        <Footer />
+      {(filteredFavourite.length === 0 || favouriteVideo.length === 0) && (
+        <div className="fav-data-div">
+          <p>
+            <span>Data</span>not available ...
+          </p>
         </div>
+      )}
 
-  <ToastContainer/>
-      </FavouriteWrapper>
-   
+      <div className="footer-wrapper-div">
+        <Footer />
+      </div>
+
+      <ToastContainer />
+    </FavouriteWrapper>
   );
 };
 

@@ -233,7 +233,13 @@ const Navbar = ({ color, link }) => {
 
         <div className="nav-left">
           <NavLink color="#FF0303" to="/">
-            <SiCodechef className="chef-icon" style={{boxShadow:" rgba(255,3,3, 0.19) 0px 10px 20px, rgba(255,3,3, 0.23) 0px 6px 6px"}} />
+            <SiCodechef
+              className="chef-icon"
+              style={{
+                boxShadow:
+                  " rgba(255,3,3, 0.19) 0px 10px 20px, rgba(255,3,3, 0.23) 0px 6px 6px",
+              }}
+            />
           </NavLink>
         </div>
 

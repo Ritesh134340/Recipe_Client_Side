@@ -39,8 +39,7 @@ const ChannelDetails = () => {
   }, []);
 
   return (
-   
-     <ChannelDetailsWrapper>
+    <ChannelDetailsWrapper>
       <Navbar />
       {loading ? (
         <Loading />
@@ -53,7 +52,8 @@ const ChannelDetails = () => {
             <Search
               placeholder="Search video by title"
               handleSearch={handleSearch}
-            width="100%" />
+              width="100%"
+            />
           </div>
           <VideoGrid
             show={true}
@@ -75,7 +75,7 @@ const ChannelDetails = () => {
           )}
         </div>
       )}
-      <Footer/>
+      <Footer />
       <ToastContainer />
     </ChannelDetailsWrapper>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "../../components/AdminNav";
-import {Heading} from "../../components/Heading"
+import { Heading } from "../../components/Heading";
 import { BodyWrapper } from "../../styles/commonStyle/flexbody.styled";
 import { UsersWrapper } from "../../styles/adminStyle/users.styled";
 import storage from "../../utils/firebaseStorage";
@@ -19,7 +19,6 @@ import Search from "../../components/Search";
 const Users = () => {
   const [deleting, setDeleting] = useState(false);
   const { users, loading, filteredUser } = useSelector((state) => {
-
     return {
       users: state.AdminReducer.users,
       loading: state.AdminReducer.loading,
@@ -27,7 +26,7 @@ const Users = () => {
     };
   });
 
-  const token=useSelector((state)=>state.AuthReducer.token)
+  const token = useSelector((state) => state.AuthReducer.token);
 
   const dispatch = useDispatch();
 
@@ -42,14 +41,13 @@ const Users = () => {
     const filter =
       users &&
       users.filter((ele) => {
-        
         return (
           ele.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           ele.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
           ele.gender.toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
-      
+
     dispatch(filterUsers(filter));
   };
 
@@ -58,9 +56,13 @@ const Users = () => {
     if (image.includes("/o/")) {
       deleteFirebaseImage(image).then(() => {
         setDeleting(false);
-        dispatch(deleteUser(id,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
+        dispatch(
+          deleteUser(id, { headers: { Authorization: `Bearer ${token}` } })
+        ).then((res) => {
           if (res.successCode === 200) {
-            dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}})).then(() => {
+            dispatch(
+              getUser({ headers: { Authorization: `Bearer ${token}` } })
+            ).then(() => {
               setDeleting(false);
               toast.success("User deleted successfully !", {
                 position: "top-center",
@@ -90,9 +92,13 @@ const Users = () => {
       });
     } else {
       setDeleting(true);
-      dispatch(deleteUser(id,{headers:{'Authorization':`Bearer ${token}`}})).then((res) => {
+      dispatch(
+        deleteUser(id, { headers: { Authorization: `Bearer ${token}` } })
+      ).then((res) => {
         if (res.successCode === 200) {
-          dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}})).then(() => {
+          dispatch(
+            getUser({ headers: { Authorization: `Bearer ${token}` } })
+          ).then(() => {
             setDeleting(false);
             toast.success("User deleted successfully !", {
               position: "top-center",
@@ -123,25 +129,29 @@ const Users = () => {
   };
 
   useEffect(() => {
-    users.length === 0 && dispatch(getUser({headers:{'Authorization':`Bearer ${token}`}}));
+    users.length === 0 &&
+      dispatch(getUser({ headers: { Authorization: `Bearer ${token}` } }));
   }, []);
 
   return (
     <UsersWrapper>
       <AdminNav selected="users" />
       {deleting || loading ? (
-          <Loading />
-        ) :  <BodyWrapper>
-        <div className="search-div">
-          <Heading/>
-          <div className="search-wrapper">
-          <Search handleSearch={handleSearch} placeholder="Search user data" width="100%" />
+        <Loading />
+      ) : (
+        <BodyWrapper>
+          <div className="search-div">
+            <Heading />
+            <div className="search-wrapper">
+              <Search
+                handleSearch={handleSearch}
+                placeholder="Search user data"
+                width="100%"
+              />
+            </div>
           </div>
-         
-        </div>
 
           <table className="table-main">
-           
             <thead className="thead">
               <tr>
                 <th>Image</th>
@@ -155,27 +165,24 @@ const Users = () => {
               {filteredUser &&
                 filteredUser.map((ele) => (
                   <tr key={ele._id} className="body-row">
-                     <td>
-                     <div className="pro-img" alt="profile" style={{backgroundImage:`url(${ele.image})`}} />
-                     </td>
-                     
+                    <td>
+                      <div
+                        className="pro-img"
+                        alt="profile"
+                        style={{ backgroundImage: `url(${ele.image})` }}
+                      />
+                    </td>
 
                     <td>
-                    <div className="name-with-email">
-                    <div className="data-common-name">{ele.name}</div>
-                    <div className="data-common">{ele.email}</div>
-                    </div>
-                    </td>
-                    
-
-                    
-                    
-                    <td >
-                     <div className="data-common-gender">
-                     {ele.gender}
-                     </div>
+                      <div className="name-with-email">
+                        <div className="data-common-name">{ele.name}</div>
+                        <div className="data-common">{ele.email}</div>
+                      </div>
                     </td>
 
+                    <td>
+                      <div className="data-common-gender">{ele.gender}</div>
+                    </td>
 
                     <td>
                       <button
@@ -185,14 +192,12 @@ const Users = () => {
                         Delete
                       </button>
                     </td>
-
                   </tr>
                 ))}
             </tbody>
           </table>
-        
-      </BodyWrapper>
-      }
+        </BodyWrapper>
+      )}
       <ToastContainer />
     </UsersWrapper>
   );

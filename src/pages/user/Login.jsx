@@ -46,10 +46,12 @@ const Login = () => {
   const navigate = useNavigate();
   const { REACT_APP_SERVER_ADDRESS } = process.env;
   const [forgotEmail, setForgotEmail] = useState("");
-  
-  const { loading,resetToken,passwordToken } = useSelector((state) => {
+
+  const { loading, resetToken, passwordToken } = useSelector((state) => {
     return {
-      loading: state.AuthReducer.loading,resetToken:state.AuthReducer.resetToken,passwordToken:state.AuthReducer.passwordToken
+      loading: state.AuthReducer.loading,
+      resetToken: state.AuthReducer.resetToken,
+      passwordToken: state.AuthReducer.passwordToken,
     };
   });
 
@@ -169,8 +171,7 @@ const Login = () => {
         const payload = { email: forgotEmail };
         dispatch(getOtp(payload)).then((res) => {
           if (res.status === 200) {
-            
-            setForgotEmail("")
+            setForgotEmail("");
             toast.success(res.payload.mesg, {
               position: "top-center",
               autoClose: 2000,
@@ -224,17 +225,17 @@ const Login = () => {
   const handleVerifyOtp = () => {
     if (otp1 && otp2 && otp3 && otp4 && otp5) {
       const combinedOtp = otp1 + otp2 + otp3 + otp4 + otp5;
-     
+
       if (resetToken) {
         dispatch(verifyOtp({ token: resetToken, otp: combinedOtp })).then(
           (res) => {
             if (res.status === 200) {
               localStorage.removeItem("resetToken");
-              setOtp1("")
-              setOtp2("")
-              setOtp3("")
-              setOtp4("")
-              setOtp5("")
+              setOtp1("");
+              setOtp2("");
+              setOtp3("");
+              setOtp4("");
+              setOtp5("");
               toast.success(res.payload.mesg, {
                 position: "top-center",
                 autoClose: 2000,
@@ -273,8 +274,6 @@ const Login = () => {
       }
     }
   };
-
-  
 
   return (
     <>
@@ -382,10 +381,9 @@ const Login = () => {
                 <div className="cross-icon-div">
                   <RxCross2 onClick={() => setShowForgot(false)} />
                 </div>
-              
 
-
-                 { (!resetToken && !passwordToken) && <div className="forgot-modal-content">
+                {!resetToken && !passwordToken && (
+                  <div className="forgot-modal-content">
                     <p className="otp-des">
                       An otp will be sent to your registered email, using which
                       you can reset your password.
@@ -400,90 +398,89 @@ const Login = () => {
                     <button className="send-btn" onClick={handleEmailSubmit}>
                       Continue
                     </button>
-                  </div>}
-                
-
-
-              { resetToken && <div className="otp-wrapper-main" >
-                  <div className="otp-input-div">
-                    <div className="otp-input-wrapper">
-                      <input
-                        value={otp1}
-                        onChange={(e) => handleChange(e, input1Ref)}
-                        type="text"
-                        ref={input1Ref}
-                        className="otp-inp-box"
-                        maxLength={1}
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace") {
-                            handleBackKeyPress(input1Ref);
-                          }
-                        }}
-                      />
-
-                      <input
-                        ref={input2Ref}
-                        value={otp2}
-                        onChange={(e) => handleChange(e, input2Ref)}
-                        type="text"
-                        className="otp-inp-box"
-                        maxLength={1}
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace") {
-                            handleBackKeyPress(input2Ref);
-                          }
-                        }}
-                      />
-
-                      <input
-                        ref={input3Ref}
-                        value={otp3}
-                        onChange={(e) => handleChange(e, input3Ref)}
-                        type="text"
-                        className="otp-inp-box"
-                        maxLength={1}
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace") {
-                            handleBackKeyPress(input3Ref);
-                          }
-                        }}
-                      />
-                      <input
-                        ref={input4Ref}
-                        value={otp4}
-                        onChange={(e) => handleChange(e, input4Ref)}
-                        type="text"
-                        className="otp-inp-box"
-                        maxLength={1}
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace") {
-                            handleBackKeyPress(input4Ref);
-                          }
-                        }}
-                      />
-                      <input
-                        ref={input5Ref}
-                        value={otp5}
-                        onChange={(e) => handleChange(e, input5Ref)}
-                        type="text"
-                        className="otp-inp-box"
-                        maxLength={1}
-                        onKeyDown={(e) => {
-                          if (e.key === "Backspace") {
-                            handleBackKeyPress(input5Ref);
-                          }
-                        }}
-                      />
-                    </div>
-                    <button className="send-btn" onClick={handleVerifyOtp}>
-                      Submit OTP
-                    </button>
                   </div>
-                
-                </div>}
+                )}
 
-             {passwordToken && <PasswordStrength setModal={setShowForgot} />}
+                {resetToken && (
+                  <div className="otp-wrapper-main">
+                    <div className="otp-input-div">
+                      <div className="otp-input-wrapper">
+                        <input
+                          value={otp1}
+                          onChange={(e) => handleChange(e, input1Ref)}
+                          type="text"
+                          ref={input1Ref}
+                          className="otp-inp-box"
+                          maxLength={1}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              handleBackKeyPress(input1Ref);
+                            }
+                          }}
+                        />
 
+                        <input
+                          ref={input2Ref}
+                          value={otp2}
+                          onChange={(e) => handleChange(e, input2Ref)}
+                          type="text"
+                          className="otp-inp-box"
+                          maxLength={1}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              handleBackKeyPress(input2Ref);
+                            }
+                          }}
+                        />
+
+                        <input
+                          ref={input3Ref}
+                          value={otp3}
+                          onChange={(e) => handleChange(e, input3Ref)}
+                          type="text"
+                          className="otp-inp-box"
+                          maxLength={1}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              handleBackKeyPress(input3Ref);
+                            }
+                          }}
+                        />
+                        <input
+                          ref={input4Ref}
+                          value={otp4}
+                          onChange={(e) => handleChange(e, input4Ref)}
+                          type="text"
+                          className="otp-inp-box"
+                          maxLength={1}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              handleBackKeyPress(input4Ref);
+                            }
+                          }}
+                        />
+                        <input
+                          ref={input5Ref}
+                          value={otp5}
+                          onChange={(e) => handleChange(e, input5Ref)}
+                          type="text"
+                          className="otp-inp-box"
+                          maxLength={1}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              handleBackKeyPress(input5Ref);
+                            }
+                          }}
+                        />
+                      </div>
+                      <button className="send-btn" onClick={handleVerifyOtp}>
+                        Submit OTP
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {passwordToken && <PasswordStrength setModal={setShowForgot} />}
               </div>
             </div>
           </LoginWrapper>

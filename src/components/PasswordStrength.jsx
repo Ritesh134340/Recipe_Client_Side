@@ -1,88 +1,81 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { resetPassword } from "../redux/AuthRedux/action";
 import { GetFromLocalStorage } from "../utils/LocalStorageData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-
-const PasswordStrength = ({setModal}) => {
+const PasswordStrength = ({ setModal }) => {
   const [password, setPassword] = useState("");
-  const navigate=useNavigate()
-  const dispatch=useDispatch()
-  const [confirm,setConfirm]=useState("")
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [confirm, setConfirm] = useState("");
   const [strength, setStrength] = useState(0);
 
-  const handlePasswordSubmit=()=>{
-    if(password===confirm){
-        if(strength<5){
-            toast.warn("Weak password !", {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-        }
-        else{
-            const token=GetFromLocalStorage('passwordToken') || "";
-            const payload={
-               token:token,
-               password:confirm
-            }
-           dispatch(resetPassword(payload)).then((res)=>{
-            console.log(res)
-            if(res.status===200){
-                setPassword("");
-                setConfirm("")
-                setModal(false)
-                toast.success(res.payload.mesg, {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                  });
-
-            }
-            else{
-                toast.error(res.mesg, {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                  });
-            }
-           })
-        }
-       
+  const handlePasswordSubmit = () => {
+    if (password === confirm) {
+      if (strength < 5) {
+        toast.warn("Weak password !", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const token = GetFromLocalStorage("passwordToken") || "";
+        const payload = {
+          token: token,
+          password: confirm,
+        };
+        dispatch(resetPassword(payload)).then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            setPassword("");
+            setConfirm("");
+            setModal(false);
+            toast.success(res.payload.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            toast.error(res.mesg, {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+        });
+      }
+    } else {
+      toast.warn("Password mismatched !", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
-    else{
-        toast.warn("Password mismatched !", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-    }
-    
-  }
+  };
 
   const handleChange = (e) => {
     setPassword(e.target.value);
@@ -99,7 +92,7 @@ const PasswordStrength = ({setModal}) => {
 
   const calculateStrength = (value) => {
     let score = 0;
-    value = value.replace(/\s/g, '')
+    value = value.replace(/\s/g, "");
     if (value.length >= 8) score++;
     if (/[a-z]/.test(value)) score++;
     if (/[A-Z]/.test(value)) score++;
@@ -110,34 +103,45 @@ const PasswordStrength = ({setModal}) => {
 
   return (
     <StrengthWrapper passwordSt={strength}>
-        <label className='input-label'>New Password</label>
+      <label className="input-label">New Password</label>
       <input
         type="password"
         id="password"
         value={password}
         onChange={handleChange}
         onKeyDown={handleBackPress}
-      className="input-box-common"/><br/>
-       <label className='input-label'>Confirm Password</label>
-      <input type="text"  className="input-box-common" 
-      onChange={(e)=>setConfirm(e.target.value)}
+        className="input-box-common"
+      />
+      <br />
+      <label className="input-label">Confirm Password</label>
+      <input
+        type="text"
+        className="input-box-common"
+        onChange={(e) => setConfirm(e.target.value)}
       />
       <br />
       <label className="strength-label">Password Strength</label>
-     { password && <div className="strength-main">
-        <div className="color-div"></div>
-      </div>}
+      {password && (
+        <div className="strength-main">
+          <div className="color-div"></div>
+        </div>
+      )}
       <div className="list">
-       <ul>
-        <li>Password must be between 8 and 20 characters in length.</li>
-        <li>Password should include at least one uppercase letter, one lowercase letter, one number, and one symbol.</li>
-        <li>Password may contain symbols.</li>
-        <li>Passwords cannot contain spaces.</li>
-        <li>Using a unique password is recommended.</li>
-       </ul>
+        <ul>
+          <li>Password must be between 8 and 20 characters in length.</li>
+          <li>
+            Password should include at least one uppercase letter, one lowercase
+            letter, one number, and one symbol.
+          </li>
+          <li>Password may contain symbols.</li>
+          <li>Passwords cannot contain spaces.</li>
+          <li>Using a unique password is recommended.</li>
+        </ul>
       </div>
-      <button className="pass-save-btn" onClick={handlePasswordSubmit}>Submit Password</button>
-      <ToastContainer/>
+      <button className="pass-save-btn" onClick={handlePasswordSubmit}>
+        Submit Password
+      </button>
+      <ToastContainer />
     </StrengthWrapper>
   );
 };
@@ -209,6 +213,13 @@ box-sizing:border:box;
   .color-div {
     height: 100%;
     width: ${(props) => `${props.passwordSt}%`};
-    background-color:${(props)=>props.passwordSt<=20 ? "red" : props.passwordSt>20 && props.passwordSt<=40 ? "gray" : props.passwordSt>40 && props.passwordSt<100 ? "blue" : "green"}
+    background-color:${(props) =>
+      props.passwordSt <= 20
+        ? "red"
+        : props.passwordSt > 20 && props.passwordSt <= 40
+        ? "gray"
+        : props.passwordSt > 40 && props.passwordSt < 100
+        ? "blue"
+        : "green"}
   }
 `;

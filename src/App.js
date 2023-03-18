@@ -1,7 +1,7 @@
 import AllRoutes from "./routes/AllRoutes";
 
 function App() {
-  return <AllRoutes />
+  return <AllRoutes />;
 }
 
 export default App;

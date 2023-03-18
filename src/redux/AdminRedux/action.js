@@ -46,38 +46,76 @@ export const updateHomeData = (payload, header) => (dispatch) => {
     });
 };
 
-export const addHomeData=(payload,header)=>(dispatch)=>{
-  dispatch({type:types.ADD_HOME_DATA_REQUEST});
-  return axios.put(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/add/carousel/data`,payload,header)
-  .then((res)=>{
-    return dispatch({type:types.ADD_HOME_DATA_SUCCESS,payload:res.data,status:res.status})
-  })
-  .catch((err)=>{
-    return dispatch({type:types.ADD_HOME_DATA_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
-  })
-}
+export const addHomeData = (payload, header) => (dispatch) => {
+  dispatch({ type: types.ADD_HOME_DATA_REQUEST });
+  return axios
+    .put(
+      `${process.env.REACT_APP_SERVER_ADDRESS}/admin/add/carousel/data`,
+      payload,
+      header
+    )
+    .then((res) => {
+      return dispatch({
+        type: types.ADD_HOME_DATA_SUCCESS,
+        payload: res.data,
+        status: res.status,
+      });
+    })
+    .catch((err) => {
+      return dispatch({
+        type: types.ADD_HOME_DATA_FAILURE,
+        status: err.response.status,
+        mesg: err.response.data.mesg,
+      });
+    });
+};
 
-export const deleteHomeData=(payload,header)=>(dispatch)=>{
-  dispatch({type:types.DELETE_HOME_DATA_REQUEST});
-  return axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/data/${payload.objectId}/image/${payload.imageId}`,header)
-  .then((res)=>{
-    return dispatch({type:types.DELETE_HOME_DATA_SUCCESS,payload:res.data,status:res.status})
-  })
-  .catch((err)=>{
-    return dispatch({type:types.DELETE_HOME_DATA_FAILURE,mesg:err.response.data.mesg,status:err.response.status})
-  })
-}
+export const deleteHomeData = (payload, header) => (dispatch) => {
+  dispatch({ type: types.DELETE_HOME_DATA_REQUEST });
+  return axios
+    .delete(
+      `${process.env.REACT_APP_SERVER_ADDRESS}/admin/delete/data/${payload.objectId}/image/${payload.imageId}`,
+      header
+    )
+    .then((res) => {
+      return dispatch({
+        type: types.DELETE_HOME_DATA_SUCCESS,
+        payload: res.data,
+        status: res.status,
+      });
+    })
+    .catch((err) => {
+      return dispatch({
+        type: types.DELETE_HOME_DATA_FAILURE,
+        mesg: err.response.data.mesg,
+        status: err.response.status,
+      });
+    });
+};
 
-export const updateHeroImage=(payload,header)=>(dispatch)=>{
-  dispatch({type:types.UPDATE_HEROIMAGE_DATA_REQUEST});
-  return axios.patch(`${process.env.REACT_APP_SERVER_ADDRESS}/admin/update/hero/image`,payload,header)
-  .then((res)=>{
-    return dispatch({type:types.UPDATE_HEROIMAGE_DATA_REQUEST,payload:res.data,status:res.status})
-  })
-  .catch((err)=>{
-    return dispatch({type:types.UPDATE_HEROIMAGE_DATA_FAILURE,status:err.response.status,mesg:err.response.data.mesg})
-  })
-}
+export const updateHeroData = (payload, header) => (dispatch) => {
+  dispatch({ type: types.UPDATE_HEROIMAGE_DATA_REQUEST });
+  return axios
+    .patch(
+      `${process.env.REACT_APP_SERVER_ADDRESS}/admin/update/hero/image`,
+      payload,
+      header
+    )
+    .then((res) => {
+      return dispatch({
+        type: types.UPDATE_HEROIMAGE_DATA_SUCCESS,
+        payload: res.data,
+        status: res.status,
+      });
+    })
+    .catch((err) => {
+      return dispatch({
+        type: types.UPDATE_HEROIMAGE_DATA_FAILURE,
+        status: err.response.status,
+        mesg: err.response.data.mesg,
+      });
+    });
+};
 
 export const getChef = (header) => (dispatch) => {
   dispatch({ type: types.CHEF_REQUEST });

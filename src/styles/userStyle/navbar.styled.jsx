@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-export const NavWrapper=styled.div`
+export const NavWrapper = styled.div`
 
     display:flex;
     width:100%;
     position: fixed;
     top:0px;
-    box-shadow:${(props)=>props.color ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
+    box-shadow:${(props) =>
+      props.color ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"} ;
     align-items:center;
     height:70px;
-    background-color:${(props)=>props.color?props.color:"white"};
+    background-color:${(props) => (props.color ? props.color : "white")};
     justify-content:space-between;
     z-index:999;
     transition:all 500ms ease-in-out;
@@ -189,7 +190,7 @@ export const NavWrapper=styled.div`
     }
 .nav-user-name{
   
-    color:${(props)=>props.nameColor ? props.nameColor : "black"};
+    color:${(props) => (props.nameColor ? props.nameColor : "black")};
   letter-spacing:0.5px;
   font-weight: bold;  
 }
@@ -243,12 +244,12 @@ export const NavWrapper=styled.div`
         font-weight:100;
         color:black;
         font-size:33px;
-        display:${(props)=>!props.show ? "block" : "none"}
+        display:${(props) => (!props.show ? "block" : "none")}
     }
     .cross-icon{
       transition: all 600ms ease;
         font-size:35px;
-        display:${(props)=>props.show ? "block" : "none"}
+        display:${(props) => (props.show ? "block" : "none")}
     }
     .nav-user-name{
         color:white;
@@ -260,8 +261,8 @@ export const NavWrapper=styled.div`
       top:0px;
       height:100vh;
       margin-right:0px;
-      left:${(props)=>props.show ? "-18%" : "-130%"};
-      top:${(props)=>props.show ? "0%" : "-150vh"};
+      left:${(props) => (props.show ? "-18%" : "-130%")};
+      top:${(props) => (props.show ? "0%" : "-150vh")};
       background-color :#00425A ;
 
       width:100vw;
@@ -274,4 +275,4 @@ export const NavWrapper=styled.div`
         flex-direction:column;
     }
 }
-`
+`;

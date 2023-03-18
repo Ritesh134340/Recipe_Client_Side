@@ -3,25 +3,23 @@ import styled from "styled-components";
 export const AdminHomeWrapper = styled.div`
   display: flex;
 
-   .heading-wrapper{
-   
-    margin:auto;
-    position:sticky;
-    top:0px;
-    width:98%;
-    background-color:white;
-    margin-top:20px;
-    margin-bottom:50px;
-    padding-top:10px;
-    padding-bottom:30px;
-   }
-  
-  .search-holder-main{
-    width:52%;
-    margin:auto;
+  .heading-wrapper {
+    margin: auto;
+    position: sticky;
+    top: 0px;
+    width: 98%;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+
+  .search-holder-main {
+    width: 52%;
+    margin: auto;
   }
   .indv-div-home {
-  
     width: 80%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 15px;
@@ -31,7 +29,6 @@ export const AdminHomeWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     border-radius: 12px;
-
   }
   .logo-with-channel {
     display: flex;
@@ -44,11 +41,11 @@ export const AdminHomeWrapper = styled.div`
   }
   .profile-img {
     border-radius: 50%;
-    width:70px;
-    height:70px;
-    background-size:cover;
-    background-position:top;
-    background-repeat:no-repeat;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
   }
   .chef-name {
     font-size: 11px;
@@ -76,70 +73,66 @@ export const AdminHomeWrapper = styled.div`
     color: green;
   }
 
-  @media all and (max-width:1024px) and (min-width:769px){
-    .search-holder-main{
-     width:88%
+  @media all and (max-width: 1024px) and (min-width: 769px) {
+    .search-holder-main {
+      width: 88%;
     }
     .indv-div-home {
-    width: 90%;
-    padding:8px 10px;
-    border-radius:8px;
+      width: 90%;
+      padding: 8px 10px;
+      border-radius: 8px;
     }
     .details-btn {
-    margin-right: 20px;
-  }
-  .profile-img{
-    width:60px;
-    height:60px;
-  }
+      margin-right: 20px;
+    }
+    .profile-img {
+      width: 60px;
+      height: 60px;
+    }
   }
 
-
-  @media all and (max-width:768px) and (min-width:481px){
-    .search-holder-main{
-     width:88%
+  @media all and (max-width: 768px) and (min-width: 481px) {
+    .search-holder-main {
+      width: 88%;
     }
     .indv-div-home {
-    width: 90%;
-    padding:8px 10px;
-    border-radius:8px;
+      width: 90%;
+      padding: 8px 10px;
+      border-radius: 8px;
     }
     .details-btn {
-    margin-right: 20px;
-  }
-  .profile-img{
-    width:60px;
-    height:60px;
-  }
+      margin-right: 20px;
+    }
+    .profile-img {
+      width: 60px;
+      height: 60px;
+    }
   }
 
+  @media all and (max-width: 480px) and (min-width: 279px) {
+    .heading-wrapper {
+      top: 20px;
+      margin-bottom: 30px;
+    }
+    .log-out-main {
+      margin-top: 120px;
+    }
 
-  @media all and (max-width:480px) and (min-width:279px){
-  .heading-wrapper{
-   top:20px;
-   margin-bottom:30px;
-   
-  }
-  .log-out-main{
-
-    margin-top:120px;
-  }
- 
- .search-holder-main{
-   width:92%;
- }
+    .search-holder-main {
+      width: 92%;
+    }
     .indv-div-home {
-    width: 97%;
-    box-sizing:border-box;
-    padding:8px 10px;
-    border-radius:8px;
+      width: 97%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      border-radius: 8px;
     }
     .details-btn {
-    margin-right: 5px;
-  }
-  .profile-img{
-    width:40px;
-    height:40px;
-  }
+      margin-right: 5px;
+    }
+    .profile-img {
+      width: 40px;
+      height: 40px;
+    }
   }
 `;

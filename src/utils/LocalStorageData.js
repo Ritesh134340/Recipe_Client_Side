@@ -7,14 +7,12 @@ export const SaveToLocalStorage = (key, data) => {
 };
 
 export const GetFromLocalStorage = (key) => {
-    try{
-        const data = localStorage.getItem(key);
-        if (data){
-            return JSON.parse(data);
-        } 
+  try {
+    const data = localStorage.getItem(key);
+    if (data) {
+      return JSON.parse(data);
     }
-    catch(err){
-        console.log(err)
-    }
-  
+  } catch (err) {
+    console.log(err);
+  }
 };

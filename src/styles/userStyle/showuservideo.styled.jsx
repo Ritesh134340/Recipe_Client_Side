@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ShowUserVideoWrapper=styled.div` 
+export const ShowUserVideoWrapper = styled.div` 
       border:1px solid transparent;
       margin-top:70px;
       padding-bottom:30px;
@@ -187,7 +187,7 @@ export const ShowUserVideoWrapper=styled.div`
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
         background-color:white;
         border-radius:13px;
-        display:${(props)=>props.showEmoji ? "block": "none"};
+        display:${(props) => (props.showEmoji ? "block" : "none")};
         padding-bottom:15px;
         
       }
@@ -252,7 +252,7 @@ export const ShowUserVideoWrapper=styled.div`
       }
       .comment-btn-container{
         box-sizing:border-box;
-        display:${(props)=>props.showCommentBx ? "block" : "none"}
+        display:${(props) => (props.showCommentBx ? "block" : "none")}
        
       }
       .user-comment-main{
@@ -345,7 +345,7 @@ export const ShowUserVideoWrapper=styled.div`
         position:fixed;
         top:0;
         left:0;
-        display:${(props)=>props.modalShow ? "block" : "none"};
+        display:${(props) => (props.modalShow ? "block" : "none")};
         background-color:rgba(0,0,0,0.5);
         width:100%;
         height:100vh;
@@ -428,7 +428,7 @@ export const ShowUserVideoWrapper=styled.div`
        background-color:white;
       }
       .video-desc{
-        height:${(props)=>props.showDesc? "auto": "150px"};
+        height:${(props) => (props.showDesc ? "auto" : "150px")};
         overflow:hidden;
       }
       .show-video-title{
@@ -562,4 +562,4 @@ export const ShowUserVideoWrapper=styled.div`
 
 } 
   
-`
+`;

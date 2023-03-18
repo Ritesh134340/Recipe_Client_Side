@@ -53,38 +53,39 @@ const UserShowVideo = () => {
     selected === "" ? setSelected(id) : setSelected("");
   };
 
-
   const handleCommentDelete = (id) => {
-    axios.delete(`${process.env.REACT_APP_SERVER_ADDRESS}/app/video/${videoData._id}/comment/${id}`,{headers:{'Authorization':`Bearer ${token}`}}).then((res)=>{
-      
-      if(res.status===200){
-        setCommentData(res.data.comments);
-        toast.success(res.data.mesg, {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-      else{
-        toast.error('Something went wrong !', {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-    })
+    axios
+      .delete(
+        `${process.env.REACT_APP_SERVER_ADDRESS}/app/video/${videoData._id}/comment/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setCommentData(res.data.comments);
+          toast.success(res.data.mesg, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Something went wrong !", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
   };
-
 
   const handleShowMore = () => {
     setShowMore(!showMore);
