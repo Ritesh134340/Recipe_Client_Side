@@ -36,19 +36,21 @@ const Users = () => {
 
     return deleteObject(storageRef);
   };
-
+ 
   const handleSearch = (searchTerm) => {
-    const filter =
+
+    const filtered =
       users &&
       users.filter((ele) => {
         return (
+          ele.gender.toLowerCase()===(searchTerm.toLowerCase())||
           ele.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          ele.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          ele.gender.toLowerCase().includes(searchTerm.toLowerCase())
+          ele.email.toLowerCase().includes(searchTerm.toLowerCase()) 
+          
         );
       });
-
-    dispatch(filterUsers(filter));
+  
+    dispatch(filterUsers(filtered));
   };
 
   const handleDelete = async (image, id) => {
@@ -195,7 +197,11 @@ const Users = () => {
                   </tr>
                 ))}
             </tbody>
+           
           </table>
+         { (users.length!==0 && filteredUser.length===0) && <div style={{width:"100%",height:"50px",boxSizing:"border-box",textAlign:"center",color:"gray",fontSize:"18px"}}>
+            <p><span style={{color:"green",fontSize:'19px',fontWeight:"bold"}}>User</span> not found !</p>
+          </div>}
         </BodyWrapper>
       )}
       <ToastContainer />
