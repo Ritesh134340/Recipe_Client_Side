@@ -344,6 +344,7 @@ export const ShowUserVideoWrapper = styled.div`
       .rating-modal{
         position:fixed;
         top:0;
+       
         left:0;
         display:${(props) => (props.modalShow ? "block" : "none")};
         background-color:rgba(0,0,0,0.5);
@@ -475,6 +476,10 @@ export const ShowUserVideoWrapper = styled.div`
        padding-bottom:33%;
      
       }
+      .rating-modal-content{
+       width:75%;
+       margin-top:16%;
+      }
 }
 
 
@@ -486,9 +491,18 @@ export const ShowUserVideoWrapper = styled.div`
  .comment-div{
        padding-bottom:35%;
       }
+      .rating-modal-content{
+       width:65%;
+       margin-top:16%;
+      }
 }
 
 @media all and (max-width:480px) and (min-width:279px){
+
+  .rating-modal-content{
+       width:95%;
+       margin-top:16%;
+      }
  .player-wrapper{
   width:100%;
  }

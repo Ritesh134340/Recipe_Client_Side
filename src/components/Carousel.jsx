@@ -121,7 +121,7 @@ export const CarouselWrapper = styled.div`
     margin: auto;
     box-sizing: border-box;
     width: 96%;
-    border-radius: 13px;
+    border-radius: 10px;
   }
   .slick-prev:before,
   .slick-next:before {

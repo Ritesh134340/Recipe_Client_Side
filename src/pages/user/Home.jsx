@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import { HomeWrapper } from "../../styles/userStyle/home.styled";
 import Carousel from "../../components/Carousel";
 import { useSelector, useDispatch } from "react-redux";
+import Loading from "../../components/Loading";
 import {
   getAllVideos,
   setSearchTerm,
@@ -48,7 +49,7 @@ const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarColor, setNavbarColor] = useState("transparent");
 
-  const {uploadedVideos, filteredUploadedVideos } = useSelector(
+  const {uploadedVideos, filteredUploadedVideos,loading } = useSelector(
     (state) => {
       return {
         loading: state.AppReducer.loading,
@@ -110,6 +111,7 @@ const Home = () => {
 
   return (
     <>
+      {loading  ?  <Loading/> :
       <HomeWrapper bg={homeData?.heroImage}>
         <Navbar color={navbarColor} link="white" />
 
@@ -155,7 +157,7 @@ const Home = () => {
           </div>
         )}
         <Footer />
-      </HomeWrapper>
+      </HomeWrapper>}
     </>
   );
 };

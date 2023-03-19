@@ -33,6 +33,6 @@ export const PlayerWrapper = styled.div`
   }
 
   @media all and (max-width: 480px) and (min-width: 279px) {
-    height: 200px;
+    height: 250px;
   }
 `;

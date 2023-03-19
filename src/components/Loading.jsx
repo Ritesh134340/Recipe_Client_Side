@@ -5,8 +5,11 @@ const Loading = () => {
   return (
     <LoadingWrapper>
       <div className="icon-div">
-        <div className="border-div"></div>
-        <SiCodechef className="chef-icon" />
+      <SiCodechef className="chef-icon" />
+        <div className="border-div">
+       
+        </div>
+       
       </div>
     </LoadingWrapper>
   );
