@@ -27,6 +27,7 @@ https://amazingrecipe.in
 
 **AS USER :**
 - User can land on home page and watch different uploaded recipe videos.
+- User can update his profile image, name and email.
 - Any recipe video or channel name can be searched from the search bar given at top of the home page.
 - On the home page click search functionality is used which gets data from server based on search text.
 - All other search starts working if user starts typing, but there is pre-applied debouncing functionality to decrease the  rate of request made.
