@@ -11,10 +11,15 @@ As a user, you can create an account, sign in,watch and start adding your favori
 https://amazingrecipe.in
 
 ## Visitor Credentials :
-Admin: 
+Admin:
+
+     
      Email    :  admin@recipe.com
+     
      password :  admin@recipe
+     
 User :
+
  - Let's start with creating new account !
 
 ## Backend Repository : 
