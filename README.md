@@ -55,6 +55,12 @@ https://amazingrecipe.in
 
 ## Tech Stack
 
+**Deployment**
+- AWS (Client Side)
+- AWS (Server Side)
+- Domain (GoDaddy)
+- AWS services used for deployment(Load Balancer, Route 53, ACM for SSL certificate)
+
 **Client:**
  - React-Js
  - Redux
