@@ -8,7 +8,7 @@ export const getAllVideos = () => (dispatch) => {
     .then((res) => {
       return dispatch({
         type: types.GET_ALL_VIDEOS_SUCCESS,
-        payload: res.data.data,
+        payload: res.data,
         successCode: res.status,
       });
     })

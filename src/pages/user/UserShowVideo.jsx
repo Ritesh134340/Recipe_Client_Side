@@ -24,6 +24,7 @@ import { uid } from "uid";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import emoji from "node-emoji";
 import axios from "axios";
+import RenderDescription from "../../components/RenderDescription";
 
 const UserShowVideo = () => {
   const { id } = useParams();
@@ -53,6 +54,11 @@ const UserShowVideo = () => {
     selected === "" ? setSelected(id) : setSelected("");
   };
 
+
+
+ 
+ 
+  
   const handleCommentDelete = (id) => {
     axios
       .delete(
@@ -372,7 +378,10 @@ const UserShowVideo = () => {
             </div>
             <div className="vid-des-div">
               <h4>Video Description : </h4>
-              <pre className="video-desc">{videoData.description}</pre>
+               <pre className="video-desc">
+                {videoData.description}
+                </pre>
+                <RenderDescription description={videoData.description}/>
               <p className="show-more-text" onClick={handleShowMore}>
                 {showMore ? "Show Less" : "... Show more"}
               </p>

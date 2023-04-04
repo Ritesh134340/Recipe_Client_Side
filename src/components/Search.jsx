@@ -8,8 +8,13 @@ const Search = ({
   width,
   placeholder,
   handleClickSearch,
+  sugg=""
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(()=>{
+  setSearchTerm(sugg)
+  },[sugg])
 
   useEffect(() => {
     let timerId;
@@ -25,6 +30,8 @@ const Search = ({
     };
   }, [searchTerm]);
 
+
+  
   const handleBack = (e) => {
     if (e.key === "Backspace") {
       setSearchTerm(e.target.value);

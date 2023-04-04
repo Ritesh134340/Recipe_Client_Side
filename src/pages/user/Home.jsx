@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import { HomeWrapper } from "../../styles/userStyle/home.styled";
+import {BsSearch} from "react-icons/bs"
 import Carousel from "../../components/Carousel";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
@@ -9,59 +10,37 @@ import {
   setSearchTerm,
 } from "../../redux/AppRedux/action";
 import { getHomeData } from "../../redux/AdminRedux/action";
-
 import VideoGrid from "../../components/VideoGrid";
 import Pagination from "../../components/Pagination";
 import Footer from "../../components/Footer";
 import Search from "../../components/Search";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 
-const data = [
-  {
-    image:
-      "https://yt3.googleusercontent.com/ytc/AL5GRJVmL-c8HxJp0vFE_9YaVsujNWmz_EdAzibwnOwNRg=s88-c-k-c0x00ffffff-no-rj",
-  },
-  {
-    image:
-      "https://yt3.googleusercontent.com/Y9WNjujyk3DD1-us69Hksq8cjX8FI1VA1dopoC8prw1WwhjiN8JQiKnHJRtLuj3hITSynJxi=s88-c-k-c0x00ffffff-no-rj",
-  },
-  {
-    image:
-      "https://yt3.googleusercontent.com/ytc/AL5GRJUnX5BZBfCeHOGrriZYY-uPaNFaD9pxOlcVXbszDQ=s88-c-k-c0x00ffffff-no-rj",
-  },
-  {
-    image:
-      "https://yt3.googleusercontent.com/ytc/AL5GRJXQpmLL88JcuzwZgY7o9k4ZyziLw_PtAJkrHoaj=s88-c-k-c0x00ffffff-no-rj",
-  },
-  {
-    image:
-      "https://yt3.googleusercontent.com/GVTtEiBD6Mt1FR_Y5FKgYa8mHXcJiNfzDTa991tu1LZ3OrOANZC4J1-kSMmuaEys86yY336pcg=s88-c-k-c0x00ffffff-no-rj",
-  },
-  {
-    image:
-      "https://yt3.googleusercontent.com/5r_5Sfai3atj0lLu9luwMNO-XfnOP8IB3DSDqX88nnHIO6en34IJvDeBL-tbI8EDJDlS1WhW=s88-c-k-c0x00ffffff-no-rj",
-  },
-];
+
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [suggTerm, setSuggTerm] = useState("")
+  const [showSugg,setShowSugg]=useState(false)
+  const [searchParams,setSearchParams]=useSearchParams()
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navbarColor, setNavbarColor] = useState("transparent");
 
-  const {uploadedVideos, filteredUploadedVideos,loading } = useSelector(
+  const {uploadedVideos, filteredUploadedVideos,loading,suggestions } = useSelector(
     (state) => {
       return {
         loading: state.AppReducer.loading,
         uploadedVideos: state.AppReducer.uploadedVideos,
         filteredUploadedVideos: state.AppReducer.filteredUploadedVideos,
+        suggestions:state.AppReducer.suggestions
       };
     }
   );
-
-  const [perPage, setPerPage] = useState(8);
+ const [suggestion,setSuggestion]=useState([]);
+  const perPage= 8;
   const [homeData, setHomeData] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage =Number(searchParams.get("page")) || 1
   const firstIndex = (currentPage - 1) * perPage;
   const lastIndex = firstIndex + perPage;
   const totalPages = Math.ceil(filteredUploadedVideos.length / perPage);
@@ -69,15 +48,34 @@ const Home = () => {
   let filteredVideos = filteredUploadedVideos.slice(firstIndex, lastIndex);
 
   const handlePageChange = (current) => {
-    setCurrentPage(current);
+    setSearchParams({page:current})
   };
-  const handleSearch = (searchTerm) => {};
+
+
+  const handleSearch = (searchTerm) => {
+    if(searchTerm){
+      setShowSugg(true)
+    }
+    else{
+      setShowSugg(false)
+    }
+  
+    const filtered=suggestions && suggestions.filter((ele)=>{
+      return ele.title.includes(searchTerm.toLowerCase())
+    })
+
+    setSuggestion(filtered.slice(0,6))
+
+  };
+  
+
 
   const handleClickSearch = (searchTerm) => {
     if (searchTerm) {
       dispatch(setSearchTerm(searchTerm));
       navigate("/searchresult");
     }
+    
   };
 
   useEffect(() => {
@@ -125,8 +123,20 @@ const Home = () => {
                 height="50px"
                 handleSearch={handleSearch}
                 handleClickSearch={handleClickSearch}
+                sugg={suggTerm}
               />
+
+              {(showSugg && suggestion?.length>0) && <div className="suggestion-wrapper" >
+              {
+                suggestion && suggestion.map((ele)=>{
+                  return <div className="sugg-wrapper" key={ele._id}
+                  onClick={()=>setSuggTerm(ele.title)}
+                  ><BsSearch/><p >{ele.title}</p></div>
+                })
+              }
+              </div>}
             </div>
+          
           </div>
         </div>
         <div></div>

@@ -15,6 +15,7 @@ const initialState = {
   searchData: [],
   channelData: [],
   filteredChannel: [],
+  suggestions:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,8 +29,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
-        uploadedVideos: payload,
-        filteredUploadedVideos: payload,
+        suggestions:payload.suggestions,
+        uploadedVideos: payload.data,
+        filteredUploadedVideos: payload.data,
       };
     case types.GET_ALL_VIDEOS_FAILURE:
       return { ...state, loading: false, error: true };

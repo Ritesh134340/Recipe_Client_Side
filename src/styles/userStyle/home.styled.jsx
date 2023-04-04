@@ -10,6 +10,23 @@ export const HomeWrapper = styled.div`
     justify-content: center;
     margin-top: 80px;
   }
+  .sugg-wrapper{
+
+    display:flex;
+    cursor:pointer;
+    align-items:center;
+    gap:15px;
+    padding-left:15px;
+    box-sizing:border-box;
+    &:hover{
+      background-color:#EEEEEE;
+    }
+  }
+  .sugg-wrapper>p{
+    margin-top:9px;
+    margin-bottom:9px;
+   
+  }
   .search-wrapper {
     height: 460px;
     width: 100%;
@@ -36,6 +53,18 @@ export const HomeWrapper = styled.div`
 
   .combine {
     width: 100%;
+    position:relative;
+  }
+  .suggestion-wrapper{
+    position:absolute;
+    top:100%;
+    padding:20px 0px;
+    overflow:hidden;
+    background-color:white;
+   
+    width:100%;
+    border-radius:8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
   .carousel-div-home {

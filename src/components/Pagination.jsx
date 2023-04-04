@@ -28,8 +28,10 @@ const Pagination = ({ current, total, handleChange }) => {
         >
           Prev
         </button>
-        <div className="show-current">{current}</div>
-
+        
+         <div className="show-current">
+        {pages}
+        </div>
         <button
           style={{backgroundColor:total===current ?"#BAD7E9":"#3A98B9"}}
           disabled={total === current}
@@ -40,9 +42,7 @@ const Pagination = ({ current, total, handleChange }) => {
         </button>
       </div>
 
-      {/* <div>
-     {pages}
-     </div> */}
+     
     </PaginationWrapper>
   );
 };
