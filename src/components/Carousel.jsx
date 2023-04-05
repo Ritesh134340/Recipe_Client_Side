@@ -81,7 +81,7 @@ const Carousel = ({ data }) => {
         {data &&
           data.map((ele, index) => (
             <div key={index} className="carousel-image-wrapper">
-              <img className="carousel-image" src={ele.image}></img>
+              <img className="carousel-image" src={ele.image} alt="thumbnail"></img>
               <div className="abs-text-div">
                 <p className="image-text">{ele.text}</p>
               </div>
@@ -110,13 +110,13 @@ export const CarouselWrapper = styled.div`
   .abs-text-div {
     position: absolute;
     top: 4%;
-    margin-left: 2%;
+    margin-left:2%;
     width: 130px;
     background-color: rgba(0, 0, 0, 0.6);
   }
 
   .carousel-image {
-    height: 200px;
+    height: 210px;
     display: block;
     margin: auto;
     box-sizing: border-box;
@@ -135,6 +135,7 @@ export const CarouselWrapper = styled.div`
   @media all and (max-width: 1024px) and (min-width: 769px) {
     .carousel-image {
       width: 96%;
+      height:180px;
       border-radius: 10px;
     }
   }
@@ -142,6 +143,7 @@ export const CarouselWrapper = styled.div`
   @media all and (max-width: 768px) and (min-width: 481px) {
     .carousel-image {
       width: 93%;
+      height:180px;
       border-radius: 10px;
     }
   }
@@ -149,7 +151,13 @@ export const CarouselWrapper = styled.div`
   @media all and (max-width: 480px) and (min-width: 279px) {
     .carousel-image {
       width: 95%;
+      height:220px;
       border-radius: 8px;
     }
+    .abs-text-div {
+   
+    margin-left:2.5%;
+   
+  }
   }
 `;

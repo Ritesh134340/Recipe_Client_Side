@@ -6,9 +6,10 @@ export const HomeWrapper = styled.div`
   .pagination-wrapper {
     margin: auto;
     display: flex;
+    margin-bottom:50px;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
+    margin-top: 60px;
   }
   .sugg-wrapper{
 

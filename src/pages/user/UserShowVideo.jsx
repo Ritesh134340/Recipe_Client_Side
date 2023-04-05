@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RiDeleteBin6Line } from "react-icons/ri";
+
 import {
   getVideoById,
   addComment,
@@ -16,7 +17,7 @@ import { ShowUserVideoWrapper } from "../../styles/userStyle/showuservideo.style
 import Loading from "../../components/Loading";
 import { BiAddToQueue } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
-import ShowStarRating from "../../components/ShowStarRating";
+ import ShowStarRating from "../../components/ShowStarRating"
 import Footer from "../../components/Footer";
 import { BsEmojiLaughing } from "react-icons/bs";
 import { TimeCalculator } from "../../utils/calculateTime";
@@ -24,7 +25,10 @@ import { uid } from "uid";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import emoji from "node-emoji";
 import axios from "axios";
-import RenderDescription from "../../components/RenderDescription";
+
+import StarInput from "../../components/StarInput";
+import ModifyDescription from "../../components/VideoDescription";
+
 
 const UserShowVideo = () => {
   const { id } = useParams();
@@ -33,12 +37,14 @@ const UserShowVideo = () => {
   const [showEmojiContainer, setShowEmojiContainer] = useState(false);
   const [modalClose, setModalClose] = useState(false);
   const [videoData, setVideoData] = useState({});
+ 
   const [emojiText, setEmojiText] = useState("");
   const [emojiSearchData, setEmojiSearchData] = useState([]);
   const [authorInputText, setAuthorInputText] = useState("");
   const [showCommetBox, setShowCommentBox] = useState(false);
   const [commentData, setCommentData] = useState({});
   const [rating, setRating] = useState(1);
+  
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.AppReducer.loading);
   const noOfUsers = videoData && videoData.ratedBy && videoData.ratedBy.length;
@@ -56,8 +62,6 @@ const UserShowVideo = () => {
 
 
 
- 
- 
   
   const handleCommentDelete = (id) => {
     axios
@@ -313,7 +317,10 @@ const UserShowVideo = () => {
             <div className="cross-container">
               <RxCross2
                 className="rating-cross-icon"
-                onClick={() => setModalClose(false)}
+                onClick={() => {
+                setModalClose(false)
+                setRating(rating)
+                }}
               />
             </div>
             <div className="main-modal-content">
@@ -324,19 +331,15 @@ const UserShowVideo = () => {
                 important to us.We look closely each feedback given by our
                 users. This will help us to bring more quality content for you.
               </p>
+              <div className="rating-div-wrapper">
               <p className="input-tag">
                 Your rating for this video{" "}
-                <input
-                  className="rating-input"
-                  type="text"
-                  maxLength="1"
-                  value={rating}
-                  onChange={(e) => setRating(e.target.value)}
-                />{" "}
-                / 5{" "}
               </p>
+              <StarInput initialRating={rating} ratingSetter={setRating} />
+              </div>
+             
             </div>
-
+             
             <button className="rating-sub-btn" onClick={handleSubmitRating}>
               {loading ? "Adding..." : "Submit"}
             </button>
@@ -378,10 +381,10 @@ const UserShowVideo = () => {
             </div>
             <div className="vid-des-div">
               <h4>Video Description : </h4>
-               <pre className="video-desc">
-                {videoData.description}
-                </pre>
-                <RenderDescription description={videoData.description}/>
+                <div className="video-desc">
+                <ModifyDescription description={videoData.description}/>
+                </div>
+            
               <p className="show-more-text" onClick={handleShowMore}>
                 {showMore ? "Show Less" : "... Show more"}
               </p>

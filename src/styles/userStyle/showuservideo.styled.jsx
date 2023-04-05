@@ -5,7 +5,11 @@ export const ShowUserVideoWrapper = styled.div`
       margin-top:70px;
       padding-bottom:30px;
       min-height:100vh;
-   
+     .rating-div-wrapper{
+      display:flex;
+      align-items:center;
+      gap:9px;
+     }
       .dots-wrapper{
         position:relative;
       }
@@ -330,8 +334,9 @@ export const ShowUserVideoWrapper = styled.div`
         gap:8px;
       }
       .vid-des-div{
-        padding:8px;
+        padding:8px 20px;
         background-color:#ECF2FF;
+      
         transition:all 600ms ease-in-out;
         border-radius:5px;
       }
@@ -431,6 +436,7 @@ export const ShowUserVideoWrapper = styled.div`
       .video-desc{
         height:${(props) => (props.showDesc ? "auto" : "150px")};
         overflow:hidden;
+      
       }
       .show-video-title{
         font-weight:500;

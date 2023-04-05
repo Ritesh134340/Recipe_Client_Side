@@ -1,6 +1,7 @@
 import React from "react";
+
 import {
-  AnimationTest,
+
   CustomWrapper,
   VideoGridWrapper,
 } from "../styles/commonStyle/videoGrid.styled";

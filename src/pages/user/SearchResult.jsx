@@ -7,14 +7,19 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../../components/Navbar";
 import VideoGrid from "../../components/VideoGrid";
 import Footer from "../../components/Footer";
+import { useSearchParams } from "react-router-dom";
+
 
 const SearchResult = () => {
+ 
   const dispatch = useDispatch();
   const searchTerm = useSelector((state) => state.AppReducer.searchTerm);
+  const [searchParams,setSearchParams]=useSearchParams();
   const searchData = useSelector((state) => state.AppReducer.searchData);
 
   useEffect(() => {
     if (searchTerm) {
+      setSearchParams({"q":searchTerm})
       dispatch(findSearch(searchTerm)).then((res) => {
         if (res.status !== 200) {
           toast.error(res.mesg, {
