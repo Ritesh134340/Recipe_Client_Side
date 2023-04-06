@@ -117,9 +117,10 @@ export const setSearchTerm = (payload) => (dispatch) => {
 };
 
 export const findSearch = (payload) => (dispatch) => {
+
   dispatch({ type: types.SEARCH_REQUEST });
   return axios
-    .get(`${process.env.REACT_APP_SERVER_ADDRESS}/app/search?title=${payload}`)
+    .get(`${process.env.REACT_APP_SERVER_ADDRESS}/app/search?q=${payload}`)
     .then((res) => {
       return dispatch({
         type: types.SEARCH_SUCCESS,

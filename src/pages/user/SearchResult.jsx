@@ -7,20 +7,46 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../../components/Navbar";
 import VideoGrid from "../../components/VideoGrid";
 import Footer from "../../components/Footer";
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams} from "react-router-dom"
 
 
 const SearchResult = () => {
- 
   const dispatch = useDispatch();
+
   const searchTerm = useSelector((state) => state.AppReducer.searchTerm);
-  const [searchParams,setSearchParams]=useSearchParams();
+
   const searchData = useSelector((state) => state.AppReducer.searchData);
 
+
+  const [searchParams,setSearchParams]=useSearchParams();
+ 
+let prev=searchParams.get("q")
+
+
   useEffect(() => {
-    if (searchTerm) {
-      setSearchParams({"q":searchTerm})
-      dispatch(findSearch(searchTerm)).then((res) => {
+   if(prev){
+  
+      dispatch(findSearch(prev)).then((res) => {
+        if (res.status !== 200) {
+          toast.error(res.mesg, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+
+      return 
+   }
+   else  if (searchTerm) {
+        setSearchParams({q:searchTerm})
+
+      dispatch(findSearch(searchParams.get("q"))).then((res) => {
         if (res.status !== 200) {
           toast.error(res.mesg, {
             position: "top-center",

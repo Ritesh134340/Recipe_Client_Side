@@ -68,9 +68,15 @@ const Home = () => {
     setSuggestion(filtered.slice(0, 6));
   };
 
-  const handleClickSearch = (searchTerm) => {
+ 
+
+
+
+  const handleClickSearch = async (searchTerm) => {
+
     if (searchTerm) {
       setSuggTerm(searchTerm);
+     
       dispatch(setSearchTerm(searchTerm));
       navigate("/searchresult");
     }
