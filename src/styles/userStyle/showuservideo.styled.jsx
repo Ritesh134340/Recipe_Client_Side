@@ -333,18 +333,13 @@ export const ShowUserVideoWrapper = styled.div`
         align-items:center;
         gap:8px;
       }
-      .vid-des-div{
-        padding:8px 20px;
-        background-color:#ECF2FF;
-      
-        transition:all 600ms ease-in-out;
-        border-radius:5px;
-      }
+    
       .show-more-text{
         color:blue;
         font-size:14px;
         cursor:pointer;
         user-select:none;
+      
       }
       .rating-modal{
         position:fixed;

@@ -15,7 +15,6 @@ import Search from "../../components/Search";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = () => {
- 
   const dispatch = useDispatch();
   const [suggTerm, setSuggTerm] = useState("");
   const [showSugg, setShowSugg] = useState(false);
@@ -34,7 +33,6 @@ const Home = () => {
       };
     });
 
-    
   const [suggestion, setSuggestion] = useState([]);
   const perPage = 8;
   const [homeData, setHomeData] = useState({});
@@ -46,10 +44,9 @@ const Home = () => {
   let filteredVideos = filteredUploadedVideos.slice(firstIndex, lastIndex);
 
   const handlePageChange = (current) => {
-    if(current<=totalPages && current>0){
+    if (current <= totalPages && current > 0) {
       setSearchParams({ page: current });
     }
-    
   };
 
   const handleSearch = (searchTerm) => {
@@ -68,15 +65,9 @@ const Home = () => {
     setSuggestion(filtered.slice(0, 6));
   };
 
- 
-
-
-
   const handleClickSearch = async (searchTerm) => {
-
     if (searchTerm) {
       setSuggTerm(searchTerm);
-     
       dispatch(setSearchTerm(searchTerm));
       navigate("/searchresult");
     }
@@ -132,6 +123,7 @@ const Home = () => {
                   handleSearch={handleSearch}
                   handleClickSearch={handleClickSearch}
                   sugg={suggTerm}
+                  delay={10}
                 />
 
                 {showSugg && suggestion?.length > 0 && (
@@ -157,11 +149,12 @@ const Home = () => {
           <div></div>
 
           <div className="carousel-div-home">
-            <h1 className="home-head">Best One Recipe</h1>
+            <h1 className="home-head">Amazing Recipe </h1>
             <Carousel data={homeData?.carouselData} />
           </div>
 
-          <h1 className="home-head loved">Most Loved Videos</h1>
+          <h1 className="home-head loved">Recipe Gallery</h1>
+
           <div className="video-grid-wrapper">
             <VideoGrid
               rowgap="40px"

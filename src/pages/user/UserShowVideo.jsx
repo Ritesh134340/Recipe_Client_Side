@@ -17,7 +17,7 @@ import { ShowUserVideoWrapper } from "../../styles/userStyle/showuservideo.style
 import Loading from "../../components/Loading";
 import { BiAddToQueue } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
- import ShowStarRating from "../../components/ShowStarRating"
+import ShowStarRating from "../../components/ShowStarRating";
 import Footer from "../../components/Footer";
 import { BsEmojiLaughing } from "react-icons/bs";
 import { TimeCalculator } from "../../utils/calculateTime";
@@ -29,22 +29,20 @@ import axios from "axios";
 import StarInput from "../../components/StarInput";
 import ModifyDescription from "../../components/VideoDescription";
 
-
 const UserShowVideo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [showMore, setShowMore] = useState(false);
   const [showEmojiContainer, setShowEmojiContainer] = useState(false);
   const [modalClose, setModalClose] = useState(false);
   const [videoData, setVideoData] = useState({});
- 
+
   const [emojiText, setEmojiText] = useState("");
   const [emojiSearchData, setEmojiSearchData] = useState([]);
   const [authorInputText, setAuthorInputText] = useState("");
   const [showCommetBox, setShowCommentBox] = useState(false);
   const [commentData, setCommentData] = useState({});
   const [rating, setRating] = useState(1);
-  
+
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.AppReducer.loading);
   const noOfUsers = videoData && videoData.ratedBy && videoData.ratedBy.length;
@@ -60,9 +58,6 @@ const UserShowVideo = () => {
     selected === "" ? setSelected(id) : setSelected("");
   };
 
-
-
-  
   const handleCommentDelete = (id) => {
     axios
       .delete(
@@ -97,9 +92,6 @@ const UserShowVideo = () => {
       });
   };
 
-  const handleShowMore = () => {
-    setShowMore(!showMore);
-  };
   const handleSubmitRating = () => {
     const converted = parseInt(rating);
     if (isNaN(converted)) {
@@ -306,7 +298,6 @@ const UserShowVideo = () => {
   return (
     <>
       <ShowUserVideoWrapper
-        showDesc={showMore}
         showCommentBx={showCommetBox}
         modalShow={modalClose}
         showEmoji={showEmojiContainer}
@@ -318,8 +309,8 @@ const UserShowVideo = () => {
               <RxCross2
                 className="rating-cross-icon"
                 onClick={() => {
-                setModalClose(false)
-                setRating(rating)
+                  setModalClose(false);
+                  setRating(rating);
                 }}
               />
             </div>
@@ -332,14 +323,11 @@ const UserShowVideo = () => {
                 users. This will help us to bring more quality content for you.
               </p>
               <div className="rating-div-wrapper">
-              <p className="input-tag">
-                Your rating for this video{" "}
-              </p>
-              <StarInput initialRating={rating} ratingSetter={setRating} />
+                <p className="input-tag">Your rating for this video </p>
+                <StarInput initialRating={rating} ratingSetter={setRating} />
               </div>
-             
             </div>
-             
+
             <button className="rating-sub-btn" onClick={handleSubmitRating}>
               {loading ? "Adding..." : "Submit"}
             </button>
@@ -379,16 +367,8 @@ const UserShowVideo = () => {
                 </p>
               </div>
             </div>
-            <div className="vid-des-div">
-              <h4>Video Description : </h4>
-                <div className="video-desc">
-                <ModifyDescription description={videoData.description}/>
-                </div>
-            
-              <p className="show-more-text" onClick={handleShowMore}>
-                {showMore ? "Show Less" : "... Show more"}
-              </p>
-            </div>
+
+            <ModifyDescription description={videoData.description} />
 
             <div className="comment-div">
               <p className="show-comment">

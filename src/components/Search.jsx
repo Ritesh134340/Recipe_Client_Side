@@ -8,7 +8,8 @@ const Search = ({
   width,
   placeholder,
   handleClickSearch,
-  sugg=""
+  sugg="",
+  delay=500
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -22,7 +23,7 @@ const Search = ({
       clearTimeout(timerId);
       timerId = setTimeout(() => {
         handleSearch(searchTerm);
-      }, 500);
+      }, delay);
     }
 
     return () => {

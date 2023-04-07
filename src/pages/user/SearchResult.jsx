@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { SearchResultWrapper } from "../../styles/userStyle/search.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { findSearch } from "../../redux/AppRedux/action";
@@ -19,14 +19,24 @@ const SearchResult = () => {
 
 
   const [searchParams,setSearchParams]=useSearchParams();
+
+  let initialQuery=searchParams.get("q")
+  const [query,setQuery]=useState(initialQuery || "")
+
+
  
-let prev=searchParams.get("q")
+ useEffect(()=>{
+    if(!query){
+      setSearchParams({q:searchTerm})
+      setQuery(searchTerm)
+    }
+  
+ },[])
 
 
   useEffect(() => {
-   if(prev){
-  
-      dispatch(findSearch(prev)).then((res) => {
+     if(query){
+      dispatch(findSearch(query)).then((res) => {
         if (res.status !== 200) {
           toast.error(res.mesg, {
             position: "top-center",
@@ -40,35 +50,17 @@ let prev=searchParams.get("q")
           });
         }
       });
-
-      return 
-   }
-   else  if (searchTerm) {
-        setSearchParams({q:searchTerm})
-
-      dispatch(findSearch(searchParams.get("q"))).then((res) => {
-        if (res.status !== 200) {
-          toast.error(res.mesg, {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-      });
-    }
-  }, []);
+     }
+    
+    
+  }, [query]);
 
   return (
     <SearchResultWrapper>
       <Navbar />
       <div className="result-show">
         <p>Showing Search result for : </p>
-        <span>{searchTerm}</span>
+        <span>{query}</span>
       </div>
       <div className="search-grid-wrapper">
         {searchData && searchData.length > 0 ? (

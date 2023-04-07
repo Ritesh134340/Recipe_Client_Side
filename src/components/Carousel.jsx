@@ -99,6 +99,8 @@ export const CarouselWrapper = styled.div`
 
   .carousel-image-wrapper {
     position: relative;
+ ;
+    outline:none;
   }
 
   .image-text {
